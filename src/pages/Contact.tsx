@@ -28,8 +28,8 @@ export default function Contact() {
   const [iframeLoaded, setIframeLoaded] = useState(false)
 
   return (
-    <section className="relative overflow-hidden bg-ink-950 pt-32 pb-20 sm:pt-36 lg:pt-40 lg:pb-28">
-      <div className="pointer-events-none absolute inset-0">
+    <section className="relative bg-ink-950 pt-32 pb-20 sm:pt-36 lg:pt-40 lg:pb-28">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <SmartImage
           image={IMAGES.heroContact}
           variant="dark"
@@ -100,7 +100,7 @@ export default function Contact() {
                 </span>
               </div>
 
-              <div className="relative">
+              <div className="relative max-h-[640px] overflow-y-auto">
                 {!iframeLoaded && (
                   <div className="absolute inset-0 z-10 animate-pulse space-y-4 bg-white p-6">
                     <div className="h-4 w-1/3 rounded bg-ink-100" />
@@ -115,13 +115,16 @@ export default function Contact() {
                 <iframe
                   src={ENQUIRY_FORM_EMBED_URL}
                   title="Aremu Tech Eazy Solutions enquiry form"
-                  className="h-[1200px] w-full"
+                  className="h-[1400px] w-full"
                   loading="lazy"
                   onLoad={() => setIframeLoaded(true)}
                 >
                   Loading enquiry form…
                 </iframe>
               </div>
+              <p className="border-t border-ink-100 bg-white px-5 py-3 text-center text-[12px] text-ink-400">
+                Scroll within the form to see every question
+              </p>
             </div>
           </Reveal>
         </div>
