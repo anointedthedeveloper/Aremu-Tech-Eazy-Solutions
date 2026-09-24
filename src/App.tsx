@@ -38,7 +38,7 @@ function App() {
     <BrowserRouter>
       <PageLoader />
       <ScrollToTop />
-      <div className="min-h-screen overflow-x-hidden bg-paper">
+      <div className="min-h-screen bg-paper">
         <Navbar />
         <main>
           <AnimatedRoutes />

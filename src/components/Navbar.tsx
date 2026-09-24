@@ -67,8 +67,8 @@ export default function Navbar() {
       <div
         className={`mx-auto flex max-w-8xl items-center justify-between rounded-2xl border transition-all duration-300 ${
           scrolled || open
-            ? 'h-14 border-white/10 bg-ink-950/85 px-4 shadow-[0_16px_40px_-16px_rgba(0,0,0,0.55)] backdrop-blur-xl sm:h-16 sm:px-6'
-            : 'h-16 border-white/10 bg-ink-950/45 px-4 shadow-[0_8px_24px_-16px_rgba(0,0,0,0.4)] backdrop-blur-md sm:h-[4.5rem] sm:px-6'
+            ? 'h-14 border-white/10 bg-ink-950/90 px-4 shadow-[0_16px_40px_-16px_rgba(0,0,0,0.55)] backdrop-blur-xl sm:h-16 sm:px-6'
+            : 'h-16 border-white/10 bg-ink-950/75 px-4 shadow-[0_8px_24px_-16px_rgba(0,0,0,0.4)] backdrop-blur-xl sm:h-[4.5rem] sm:px-6'
         }`}
       >
         <Link to="/" className="group relative z-10 shrink-0" onClick={() => setOpen(false)}>
