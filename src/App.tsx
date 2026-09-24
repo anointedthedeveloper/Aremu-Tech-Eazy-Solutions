@@ -1,28 +1,29 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import CompanyIntro from './components/CompanyIntro'
-import Services from './components/Services'
-import WhyChooseUs from './components/WhyChooseUs'
-import Process from './components/Process'
-import Capabilities from './components/Capabilities'
-import EnquiryCTA from './components/EnquiryCTA'
 import Footer from './components/Footer'
+import ScrollToTop from './components/ScrollToTop'
+import Home from './pages/Home'
+import ServicesPage from './pages/ServicesPage'
+import About from './pages/About'
+import Contact from './pages/Contact'
 
 function App() {
   return (
-    <div className="min-h-screen overflow-x-hidden bg-paper">
-      <Navbar />
-      <main>
-        <Hero />
-        <CompanyIntro />
-        <Services />
-        <WhyChooseUs />
-        <Process />
-        <Capabilities />
-        <EnquiryCTA />
-      </main>
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <ScrollToTop />
+      <div className="min-h-screen overflow-x-hidden bg-paper">
+        <Navbar />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/services" element={<ServicesPage />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </BrowserRouter>
   )
 }
 

@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { Link, NavLink } from 'react-router-dom'
 import Logo from './Logo'
 import { IconArrowRight, IconClose, IconMenu } from './icons'
-import { ENQUIRY_FORM_URL, NAV_LINKS } from '../lib/constants'
+import { NAV_LINKS } from '../lib/constants'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -31,32 +32,35 @@ export default function Navbar() {
       }`}
     >
       <div className="mx-auto flex h-16 max-w-8xl items-center justify-between px-5 sm:px-8 lg:h-20 lg:px-10">
-        <a href="#top" className="relative z-10" onClick={() => setOpen(false)}>
+        <Link to="/" className="relative z-10" onClick={() => setOpen(false)}>
           <Logo />
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-9 lg:flex" aria-label="Primary">
           {NAV_LINKS.map((link) => (
-            <a
+            <NavLink
               key={link.href}
-              href={link.href}
-              className="text-[14.5px] font-medium text-ink-600 transition-colors hover:text-ink-950"
+              to={link.href}
+              end={link.href === '/'}
+              className={({ isActive }) =>
+                `text-[14.5px] font-medium transition-colors hover:text-ink-950 ${
+                  isActive ? 'text-ink-950' : 'text-ink-600'
+                }`
+              }
             >
               {link.label}
-            </a>
+            </NavLink>
           ))}
         </nav>
 
         <div className="hidden lg:block">
-          <a
-            href={ENQUIRY_FORM_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to="/contact"
             className="group inline-flex items-center gap-2 rounded-full bg-ink-950 px-5 py-2.5 text-[14px] font-semibold text-white transition-colors hover:bg-amber-600"
           >
             Submit an Enquiry
             <IconArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-          </a>
+          </Link>
         </div>
 
         <button
@@ -83,25 +87,28 @@ export default function Navbar() {
           >
             <nav className="flex flex-col px-5 py-4" aria-label="Mobile">
               {NAV_LINKS.map((link) => (
-                <a
+                <NavLink
                   key={link.href}
-                  href={link.href}
+                  to={link.href}
+                  end={link.href === '/'}
                   onClick={() => setOpen(false)}
-                  className="border-b border-ink-100 py-3.5 text-[16px] font-medium text-ink-800 last:border-none"
+                  className={({ isActive }) =>
+                    `border-b border-ink-100 py-3.5 text-[16px] font-medium last:border-none ${
+                      isActive ? 'text-amber-600' : 'text-ink-800'
+                    }`
+                  }
                 >
                   {link.label}
-                </a>
+                </NavLink>
               ))}
-              <a
-                href={ENQUIRY_FORM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/contact"
                 onClick={() => setOpen(false)}
                 className="mt-4 inline-flex items-center justify-center gap-2 rounded-full bg-ink-950 px-5 py-3 text-[15px] font-semibold text-white"
               >
                 Submit an Enquiry
                 <IconArrowRight className="h-4 w-4" />
-              </a>
+              </Link>
             </nav>
           </motion.div>
         )}

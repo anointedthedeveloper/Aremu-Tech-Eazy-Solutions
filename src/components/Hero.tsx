@@ -1,6 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import { IconArrowRight, IconMessageCheck, IconWifi } from './icons'
-import { ENQUIRY_FORM_URL } from '../lib/constants'
 
 export default function Hero() {
   const reduceMotion = useReducedMotion()
@@ -53,21 +53,19 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.18 }}
             className="mt-9 flex flex-col gap-3.5 sm:flex-row sm:items-center"
           >
-            <a
-              href={ENQUIRY_FORM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/contact"
               className="group inline-flex items-center justify-center gap-2 rounded-full bg-ink-950 px-6 py-3.5 text-[15px] font-semibold text-white transition-colors hover:bg-amber-600"
             >
               Submit an Enquiry
               <IconArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-            </a>
-            <a
-              href="#services"
+            </Link>
+            <Link
+              to="/services"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-ink-200 px-6 py-3.5 text-[15px] font-semibold text-ink-800 transition-colors hover:border-ink-950 hover:text-ink-950"
             >
               See what we handle
-            </a>
+            </Link>
           </motion.div>
         </div>
 
