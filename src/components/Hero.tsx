@@ -22,7 +22,7 @@ export default function Hero() {
         className="pointer-events-none absolute -top-6 right-8 hidden h-40 w-40 sm:block lg:right-16 lg:h-52 lg:w-52"
       />
 
-      <div className="relative mx-auto w-full max-w-8xl px-5 pt-32 pb-14 sm:px-8 sm:pb-20 lg:px-10 lg:pb-24">
+      <div className="relative mx-auto w-full max-w-8xl px-5 pt-28 pb-14 sm:px-8 sm:pb-16 lg:px-10 lg:pb-20">
         <motion.p
           initial={reduceMotion ? false : { opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -57,7 +57,7 @@ export default function Hero() {
           initial={reduceMotion ? false : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.22 }}
-          className="mt-9 flex flex-col gap-3.5 sm:flex-row sm:items-center"
+          className="mt-7 flex flex-col gap-3.5 sm:flex-row sm:items-center"
         >
           <Link
             to="/contact"
@@ -79,7 +79,7 @@ export default function Hero() {
           initial={reduceMotion ? false : { opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-10 hidden max-w-xs items-center gap-3 rounded-xl border border-white/15 bg-white/10 px-4 py-3.5 backdrop-blur-md sm:flex"
+          className="mt-6 hidden max-w-xs items-center gap-3 rounded-xl border border-white/15 bg-white/10 px-4 py-3.5 backdrop-blur-md sm:flex"
         >
           <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-amber-500/20 text-amber-300">
             <IconMessageCheck className="h-[18px] w-[18px]" />
