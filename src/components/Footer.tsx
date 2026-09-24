@@ -1,5 +1,6 @@
+import { Link } from 'react-router-dom'
 import Logo from './Logo'
-import { ENQUIRY_FORM_URL, NAV_LINKS } from '../lib/constants'
+import { NAV_LINKS } from '../lib/constants'
 
 export default function Footer() {
   return (
@@ -22,12 +23,12 @@ export default function Footer() {
               <ul className="mt-4 space-y-3">
                 {NAV_LINKS.map((link) => (
                   <li key={link.href}>
-                    <a
-                      href={link.href}
+                    <Link
+                      to={link.href}
                       className="text-[14px] text-ink-300 transition-colors hover:text-white"
                     >
                       {link.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -39,14 +40,12 @@ export default function Footer() {
               </p>
               <ul className="mt-4 space-y-3">
                 <li>
-                  <a
-                    href={ENQUIRY_FORM_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <Link
+                    to="/contact"
                     className="text-[14px] text-ink-300 transition-colors hover:text-white"
                   >
                     Submit an Enquiry
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>

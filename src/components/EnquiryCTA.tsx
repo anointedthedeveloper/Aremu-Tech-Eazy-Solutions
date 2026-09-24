@@ -1,10 +1,10 @@
+import { Link } from 'react-router-dom'
 import Reveal from './Reveal'
 import { IconArrowRight } from './icons'
-import { ENQUIRY_FORM_URL } from '../lib/constants'
 
 export default function EnquiryCTA() {
   return (
-    <section id="enquiry" className="border-t border-ink-100 py-20 sm:py-24 lg:py-28">
+    <section className="border-t border-ink-100 py-20 sm:py-24 lg:py-28">
       <div className="mx-auto max-w-8xl px-5 sm:px-8 lg:px-10">
         <Reveal className="relative overflow-hidden rounded-2xl border border-ink-200/70 bg-ink-950 px-6 py-14 text-center sm:px-12 sm:py-16 lg:py-20">
           <div
@@ -27,17 +27,15 @@ export default function EnquiryCTA() {
             </p>
 
             <div className="mt-9 flex justify-center">
-              <a
-                href={ENQUIRY_FORM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/contact"
                 className="group inline-flex items-center gap-2 rounded-full bg-amber-500 px-7 py-3.5 text-[15px] font-semibold text-ink-950 transition-colors hover:bg-amber-400"
               >
                 Submit an Enquiry
                 <IconArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-              </a>
+              </Link>
             </div>
-            <p className="mt-4 text-[13px] text-ink-300">Opens our enquiry form in a new tab</p>
+            <p className="mt-4 text-[13px] text-ink-300">Fill it out right here on the site</p>
           </div>
         </Reveal>
       </div>

@@ -1,14 +1,15 @@
 export const ENQUIRY_FORM_URL =
   'https://docs.google.com/forms/d/e/1FAIpQLScKwMM3OcD6H2yIfEEmFz2eTdlrljdfRiVbtXdHizm3S1BRBg/viewform'
 
+export const ENQUIRY_FORM_EMBED_URL = `${ENQUIRY_FORM_URL}?embedded=true`
+
 export const COMPANY_NAME = 'Aremu Tech Eazy Solutions'
 
 export const NAV_LINKS = [
-  { label: 'Services', href: '#services' },
-  { label: 'Why Us', href: '#why-us' },
-  { label: 'Process', href: '#process' },
-  { label: 'Capabilities', href: '#capabilities' },
-  { label: 'Contact', href: '#enquiry' },
+  { label: 'Home', href: '/' },
+  { label: 'Services', href: '/services' },
+  { label: 'About', href: '/about' },
+  { label: 'Contact', href: '/contact' },
 ]
 
 export interface Service {

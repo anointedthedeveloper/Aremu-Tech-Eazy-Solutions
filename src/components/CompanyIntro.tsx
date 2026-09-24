@@ -1,5 +1,7 @@
 import Reveal from './Reveal'
+import SmartImage from './SmartImage'
 import { IconCompass, IconShieldCheck, IconTarget } from './icons'
+import { IMAGES } from '../lib/images'
 
 const POINTS = [
   {
@@ -21,16 +23,14 @@ const POINTS = [
 
 export default function CompanyIntro() {
   return (
-    <section id="about" className="border-t border-ink-100 py-20 sm:py-24 lg:py-28">
+    <section className="border-t border-ink-100 py-20 sm:py-24 lg:py-28">
       <div className="mx-auto max-w-8xl px-5 sm:px-8 lg:px-10">
         <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
           <Reveal>
-            <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-amber-600">
-              About Us
-            </p>
-            <h2 className="mt-4 text-balance text-3xl font-bold leading-tight text-ink-950 sm:text-[2.25rem]">
-              A tech partner for the problems that aren&apos;t worth losing a day to.
-            </h2>
+            <SmartImage
+              image={IMAGES.aboutTeam}
+              className="aspect-[4/3] w-full rounded-2xl"
+            />
           </Reveal>
 
           <div>
