@@ -48,6 +48,14 @@ export const IMAGES = {
     url: unsplash('photo-1560472354-b33ff0c44a43', 1100),
     alt: 'Server room with illuminated network racks',
   },
+  heroHome: {
+    url: unsplash('photo-1531973576160-7125cd663d86', 1400),
+    alt: 'Developer working across multiple monitors at a desk',
+  },
+  heroContact: {
+    url: unsplash('photo-1423666639041-f56000c27a9a', 1000),
+    alt: 'Person typing on a laptop keyboard at a desk',
+  },
   gallery: [
     {
       url: unsplash('photo-1531297484001-80022131f5a1', 900),

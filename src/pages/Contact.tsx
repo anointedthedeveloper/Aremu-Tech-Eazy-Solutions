@@ -30,6 +30,7 @@ export default function Contact() {
         eyebrow="Contact"
         title="Tell us what you need."
         description="Fill out the enquiry form below with what's going on, and we'll work out how to help. It's the same form, right here on the site."
+        image={IMAGES.heroContact}
       />
 
       <section className="border-t border-ink-100 py-16 sm:py-20 lg:py-24">

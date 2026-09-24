@@ -1,4 +1,5 @@
 import Reveal from './Reveal'
+import BrandTriangle from './BrandTriangle'
 import { CAPABILITIES } from '../lib/constants'
 
 export default function Capabilities() {
@@ -35,26 +36,11 @@ export default function Capabilities() {
             <div className="relative overflow-hidden rounded-2xl bg-ink-950 p-8 sm:p-10">
               <div className="dot-grid absolute inset-0 text-ink-800 opacity-60 [mask-image:radial-gradient(ellipse_65%_65%_at_30%_20%,black,transparent)]" />
 
-              <svg
-                viewBox="0 0 200 180"
-                aria-hidden="true"
+              <BrandTriangle
+                gradientId="capTri"
+                strokeWidth={3}
                 className="relative h-24 w-24 sm:h-28 sm:w-28"
-              >
-                <defs>
-                  <linearGradient id="capTri" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stopColor="#9a7fdb" />
-                    <stop offset="55%" stopColor="#c04aa8" />
-                    <stop offset="100%" stopColor="#ee8620" />
-                  </linearGradient>
-                </defs>
-                <path
-                  d="M100 8 L188 168 L12 168 Z"
-                  fill="none"
-                  stroke="url(#capTri)"
-                  strokeWidth="3"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              />
 
               <p className="relative mt-7 max-w-xs font-display text-[21px] font-semibold leading-snug text-white sm:text-[23px]">
                 No brand lock-in. No platform bias.

@@ -1,6 +1,9 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { IconArrowRight, IconMessageCheck, IconWifi } from './icons'
+import BrandTriangle from './BrandTriangle'
+import SmartImage from './SmartImage'
+import { IMAGES } from '../lib/images'
 
 export default function Hero() {
   const reduceMotion = useReducedMotion()
@@ -9,6 +12,10 @@ export default function Hero() {
     <section id="top" className="relative overflow-hidden pt-28 pb-20 sm:pt-32 sm:pb-24 lg:pt-40 lg:pb-28">
       {/* background texture */}
       <div className="pointer-events-none absolute inset-0 -z-10">
+        <SmartImage
+          image={IMAGES.heroHome}
+          className="absolute inset-y-0 right-0 w-[55%] opacity-[0.14] [mask-image:linear-gradient(to_left,black,transparent)] sm:w-[45%]"
+        />
         <div className="dot-grid absolute inset-0 text-ink-300 opacity-[0.35] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,black,transparent)]" />
         <div className="absolute -right-32 top-10 h-[420px] w-[420px] rounded-full bg-gradient-to-br from-amber-300/25 via-violet-500/10 to-transparent blur-3xl" />
       </div>
@@ -77,27 +84,12 @@ export default function Hero() {
           className="relative mx-auto w-full max-w-md lg:max-w-none"
         >
           {/* triangle motif — brand mark echo, sitting behind the panel */}
-          <svg
-            viewBox="0 0 200 180"
-            aria-hidden="true"
+          <BrandTriangle
+            gradientId="heroTri"
+            strokeWidth={2}
+            opacity={0.9}
             className="pointer-events-none absolute -top-9 right-6 h-40 w-40 sm:right-10 sm:h-48 sm:w-48"
-          >
-            <defs>
-              <linearGradient id="heroTri" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stopColor="#9a7fdb" />
-                <stop offset="55%" stopColor="#c04aa8" />
-                <stop offset="100%" stopColor="#ee8620" />
-              </linearGradient>
-            </defs>
-            <path
-              d="M100 8 L188 168 L12 168 Z"
-              fill="none"
-              stroke="url(#heroTri)"
-              strokeWidth="2"
-              strokeLinejoin="round"
-              opacity="0.9"
-            />
-          </svg>
+          />
 
           {/* enquiry preview panel */}
           <div className="relative rounded-2xl border border-ink-200/70 bg-white shadow-[0_20px_60px_-25px_rgba(13,14,19,0.35)]">
