@@ -1,11 +1,17 @@
 import { Link } from 'react-router-dom'
 import Logo from './Logo'
+import SmartImage from './SmartImage'
 import { NAV_LINKS } from '../lib/constants'
+import { IMAGES } from '../lib/images'
 
 export default function Footer() {
   return (
-    <footer className="border-t border-ink-100 bg-ink-950">
-      <div className="mx-auto max-w-8xl px-5 py-14 sm:px-8 lg:px-10 lg:py-16">
+    <footer className="relative overflow-hidden border-t border-ink-100 bg-ink-950">
+      <div className="pointer-events-none absolute inset-0">
+        <SmartImage image={IMAGES.gallery[3]} className="h-full w-full opacity-[0.08]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/95 to-ink-950/80" />
+      </div>
+      <div className="relative mx-auto max-w-8xl px-5 py-14 sm:px-8 lg:px-10 lg:py-16">
         <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
           <div>
             <Logo variant="light" />
