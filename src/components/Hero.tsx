@@ -1,6 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { IconArrowRight, IconMessageCheck, IconWifi } from './icons'
-import markUrl from '../assets/brand/mark.png'
 import { ENQUIRY_FORM_URL } from '../lib/constants'
 
 export default function Hero() {
@@ -79,11 +78,11 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.15 }}
           className="relative mx-auto w-full max-w-md lg:max-w-none"
         >
-          {/* triangle motif */}
+          {/* triangle motif — brand mark echo, sitting behind the panel */}
           <svg
             viewBox="0 0 200 180"
             aria-hidden="true"
-            className="pointer-events-none absolute -top-10 right-2 h-48 w-48 opacity-70 sm:h-56 sm:w-56"
+            className="pointer-events-none absolute -top-9 right-6 h-40 w-40 sm:right-10 sm:h-48 sm:w-48"
           >
             <defs>
               <linearGradient id="heroTri" x1="0" y1="0" x2="1" y2="1">
@@ -96,32 +95,48 @@ export default function Hero() {
               d="M100 8 L188 168 L12 168 Z"
               fill="none"
               stroke="url(#heroTri)"
-              strokeWidth="2.5"
+              strokeWidth="2"
               strokeLinejoin="round"
+              opacity="0.9"
             />
           </svg>
 
-          {/* main console panel */}
+          {/* enquiry preview panel */}
           <div className="relative rounded-2xl border border-ink-200/70 bg-white shadow-[0_20px_60px_-25px_rgba(13,14,19,0.35)]">
             <div className="flex items-center gap-1.5 border-b border-ink-100 px-4 py-3">
               <span className="h-2.5 w-2.5 rounded-full bg-ink-200" />
               <span className="h-2.5 w-2.5 rounded-full bg-ink-200" />
               <span className="h-2.5 w-2.5 rounded-full bg-ink-200" />
-              <span className="ml-3 text-[12px] font-medium text-ink-500">Enquiry — new request</span>
+              <span className="ml-3 text-[12px] font-medium text-ink-500">New enquiry — preview</span>
             </div>
-            <div className="space-y-3.5 p-5">
-              <div className="h-3 w-3/4 rounded-full bg-ink-100" />
-              <div className="h-3 w-full rounded-full bg-ink-100" />
-              <div className="h-3 w-5/6 rounded-full bg-ink-100" />
-              <div className="mt-4 flex items-center gap-3 rounded-xl border border-amber-100 bg-amber-50/60 p-3.5">
-                <IconWifi className="h-5 w-5 shrink-0 text-amber-600" />
-                <div className="h-2.5 w-2/3 rounded-full bg-amber-200/70" />
+
+            <div className="space-y-4 p-5">
+              <div>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-ink-400">
+                  What&apos;s going on?
+                </p>
+                <div className="mt-2 rounded-lg border border-ink-100 bg-ink-50/50 px-3.5 py-3">
+                  <p className="text-[13.5px] text-ink-400">
+                    e.g. &ldquo;Office Wi-Fi keeps dropping every afternoon&rdquo;
+                  </p>
+                </div>
               </div>
-              <div className="flex items-center gap-3 rounded-xl border border-ink-100 bg-ink-50/60 p-3.5">
-                <span className="flex h-5 w-5 items-center justify-center">
-                  <img src={markUrl} alt="" aria-hidden="true" className="h-5 w-5 object-contain" />
+
+              <div>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-ink-400">
+                  Category
+                </p>
+                <div className="mt-2 flex items-center gap-3 rounded-lg border border-amber-200/70 bg-amber-50/60 px-3.5 py-3">
+                  <IconWifi className="h-4 w-4 shrink-0 text-amber-600" />
+                  <p className="text-[13.5px] font-medium text-ink-800">Networking &amp; Connectivity</p>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-end border-t border-ink-100 pt-4">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-ink-950 px-4 py-2 text-[12.5px] font-semibold text-white">
+                  Submit
+                  <IconArrowRight className="h-3.5 w-3.5" />
                 </span>
-                <div className="h-2.5 w-1/2 rounded-full bg-ink-200/70" />
               </div>
             </div>
           </div>

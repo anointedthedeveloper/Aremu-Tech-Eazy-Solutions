@@ -1,17 +1,5 @@
 import Reveal from './Reveal'
-import {
-  IconChip,
-  IconClock,
-  IconCompass,
-  IconGlobe,
-  IconLayers,
-  IconShieldCheck,
-  IconTools,
-  IconWifi,
-} from './icons'
 import { CAPABILITIES } from '../lib/constants'
-
-const TILE_ICONS = [IconChip, IconLayers, IconWifi, IconTools, IconCompass, IconShieldCheck, IconGlobe, IconClock]
 
 export default function Capabilities() {
   return (
@@ -43,20 +31,40 @@ export default function Capabilities() {
             </ul>
           </Reveal>
 
-          <Reveal delay={0.1} className="relative">
-            <div className="pointer-events-none absolute -top-8 -right-8 h-40 w-40 rounded-full bg-gradient-to-br from-violet-500/10 via-magenta-500/10 to-amber-300/15 blur-2xl" />
-            <div className="relative rounded-2xl border border-ink-200/70 bg-white p-6 shadow-[0_20px_60px_-30px_rgba(13,14,19,0.3)] sm:p-8">
-              <div className="grid grid-cols-4 gap-3 sm:gap-4">
-                {TILE_ICONS.map((Icon, i) => (
-                  <div
-                    key={i}
-                    className="flex aspect-square items-center justify-center rounded-xl border border-ink-100 bg-ink-50/60 text-ink-600 transition-colors hover:border-amber-300 hover:text-amber-600"
-                  >
-                    <Icon className="h-5 w-5 sm:h-6 sm:w-6" />
-                  </div>
-                ))}
-              </div>
-              <p className="mt-6 text-center text-[12.5px] font-medium text-ink-500">
+          <Reveal delay={0.1}>
+            <div className="relative overflow-hidden rounded-2xl bg-ink-950 p-8 sm:p-10">
+              <div className="dot-grid absolute inset-0 text-ink-800 opacity-60 [mask-image:radial-gradient(ellipse_65%_65%_at_30%_20%,black,transparent)]" />
+
+              <svg
+                viewBox="0 0 200 180"
+                aria-hidden="true"
+                className="relative h-24 w-24 sm:h-28 sm:w-28"
+              >
+                <defs>
+                  <linearGradient id="capTri" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stopColor="#9a7fdb" />
+                    <stop offset="55%" stopColor="#c04aa8" />
+                    <stop offset="100%" stopColor="#ee8620" />
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M100 8 L188 168 L12 168 Z"
+                  fill="none"
+                  stroke="url(#capTri)"
+                  strokeWidth="3"
+                  strokeLinejoin="round"
+                />
+              </svg>
+
+              <p className="relative mt-7 max-w-xs font-display text-[21px] font-semibold leading-snug text-white sm:text-[23px]">
+                No brand lock-in. No platform bias.
+              </p>
+              <p className="relative mt-3 max-w-xs text-[14.5px] leading-relaxed text-ink-300">
+                If it plugs in, connects, or runs software, there&apos;s a good chance
+                we can help with it.
+              </p>
+
+              <p className="relative mt-8 border-t border-ink-800 pt-5 text-[12.5px] font-semibold uppercase tracking-[0.08em] text-amber-400">
                 Devices &middot; Systems &middot; Networks &middot; Software &middot; Support
               </p>
             </div>

@@ -6,7 +6,7 @@ export default function EnquiryCTA() {
   return (
     <section id="enquiry" className="border-t border-ink-100 py-20 sm:py-24 lg:py-28">
       <div className="mx-auto max-w-8xl px-5 sm:px-8 lg:px-10">
-        <Reveal className="relative overflow-hidden rounded-3xl border border-ink-200/70 bg-ink-950 px-6 py-14 text-center sm:px-12 sm:py-16 lg:py-20">
+        <Reveal className="relative overflow-hidden rounded-2xl border border-ink-200/70 bg-ink-950 px-6 py-14 text-center sm:px-12 sm:py-16 lg:py-20">
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-0 opacity-40 [mask-image:radial-gradient(ellipse_60%_60%_at_50%_0%,black,transparent)]"

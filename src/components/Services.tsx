@@ -34,11 +34,11 @@ export default function Services() {
             const Icon = ICONS[i % ICONS.length]
             return (
               <Reveal key={service.index} delay={i * 0.04}>
-                <div className="group grid grid-cols-[auto_1fr] items-start gap-5 py-7 transition-colors sm:grid-cols-[3.5rem_auto_1fr] sm:items-center sm:gap-8 sm:py-8">
-                  <span className="font-display text-[14px] font-semibold text-ink-300 transition-colors group-hover:text-amber-600">
+                <div className="group grid grid-cols-[auto_1fr] items-start gap-5 px-4 py-7 transition-colors -mx-4 hover:bg-white sm:grid-cols-[3.5rem_auto_1fr] sm:items-center sm:gap-8 sm:py-8">
+                  <span className="font-display text-[14px] font-semibold text-amber-600">
                     {service.index}
                   </span>
-                  <span className="hidden h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-ink-200 text-ink-700 transition-colors group-hover:border-amber-400 group-hover:text-amber-600 sm:flex">
+                  <span className="hidden h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-ink-200 text-ink-600 transition-colors group-hover:border-amber-400 group-hover:bg-amber-50 group-hover:text-amber-600 sm:flex">
                     <Icon className="h-5 w-5" />
                   </span>
                   <div className="col-span-2 sm:col-span-1">
