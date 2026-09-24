@@ -56,6 +56,24 @@ export const IMAGES = {
     url: unsplash('photo-1423666639041-f56000c27a9a', 1000),
     alt: 'Person typing on a laptop keyboard at a desk',
   },
+  heroSlides: [
+    {
+      url: unsplash('photo-1498050108023-c5249f4df085', 1800),
+      alt: 'Laptop displaying lines of code on a desk in a modern workspace',
+    },
+    {
+      url: unsplash('photo-1497215728101-856f4ea42174', 1800),
+      alt: 'Team collaborating around a table in a bright modern office',
+    },
+    {
+      url: unsplash('photo-1581092160562-40aa08e78837', 1800),
+      alt: 'Technician working carefully inside an open computer',
+    },
+    {
+      url: unsplash('photo-1556761175-4b46a572b786', 1800),
+      alt: 'Business professional reviewing information on a tablet',
+    },
+  ] satisfies SiteImage[],
   gallery: [
     {
       url: unsplash('photo-1531297484001-80022131f5a1', 900),

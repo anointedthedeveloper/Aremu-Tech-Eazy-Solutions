@@ -36,12 +36,12 @@ function MenuIcon({ open }: { open: boolean }) {
 
 const mobileListVariants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.05, delayChildren: 0.05 } },
+  visible: { transition: { staggerChildren: 0.06, delayChildren: 0.15 } },
 }
 
 const mobileItemVariants = {
-  hidden: { opacity: 0, x: -12 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] as const } },
+  hidden: { opacity: 0, y: 14 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] as const } },
 }
 
 export default function Navbar() {
@@ -49,7 +49,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12)
+    const onScroll = () => setScrolled(window.scrollY > 20)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
@@ -63,31 +63,31 @@ export default function Navbar() {
   }, [open])
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled || open
-          ? 'bg-paper/90 backdrop-blur-md shadow-[0_1px_0_0_rgba(20,22,29,0.08)]'
-          : 'bg-transparent'
-      }`}
-    >
-      <div className="mx-auto flex h-16 max-w-8xl items-center justify-between px-5 sm:px-8 lg:h-20 lg:px-10">
-        <Link to="/" className="group relative z-10" onClick={() => setOpen(false)}>
+    <header className="fixed inset-x-0 top-0 z-50 px-4 pt-3 sm:px-6 sm:pt-4">
+      <div
+        className={`mx-auto flex max-w-8xl items-center justify-between rounded-2xl border transition-all duration-300 ${
+          scrolled || open
+            ? 'h-14 border-white/10 bg-ink-950/85 px-4 shadow-[0_16px_40px_-16px_rgba(0,0,0,0.55)] backdrop-blur-xl sm:h-16 sm:px-6'
+            : 'h-16 border-white/10 bg-ink-950/45 px-4 shadow-[0_8px_24px_-16px_rgba(0,0,0,0.4)] backdrop-blur-md sm:h-[4.5rem] sm:px-6'
+        }`}
+      >
+        <Link to="/" className="group relative z-10 shrink-0" onClick={() => setOpen(false)}>
           <motion.span
             className="block"
             whileHover={{ rotate: -6, scale: 1.06 }}
             transition={{ type: 'spring', stiffness: 400, damping: 15 }}
           >
-            <Logo />
+            <Logo variant="light" />
           </motion.span>
         </Link>
 
-        <nav className="hidden items-center gap-9 lg:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary">
           {NAV_LINKS.map((link) => (
             <NavLink
               key={link.href}
               to={link.href}
               end={link.href === '/'}
-              className="relative py-2 text-[14.5px] font-medium text-ink-600 transition-colors hover:text-ink-950 aria-[current=page]:text-ink-950"
+              className="relative py-2 text-[14.5px] font-medium text-ink-200 transition-colors hover:text-white aria-[current=page]:text-white"
             >
               {({ isActive }) => (
                 <>
@@ -95,7 +95,7 @@ export default function Navbar() {
                   {isActive && (
                     <motion.span
                       layoutId="nav-active-underline"
-                      className="absolute inset-x-0 -bottom-0.5 h-[2px] rounded-full bg-amber-500"
+                      className="absolute inset-x-0 -bottom-0.5 h-[2px] rounded-full bg-amber-400"
                       transition={{ type: 'spring', stiffness: 480, damping: 38 }}
                     />
                   )}
@@ -111,7 +111,7 @@ export default function Navbar() {
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
             transition={{ type: 'spring', stiffness: 500, damping: 25 }}
-            className="group inline-flex items-center gap-2 rounded-full bg-ink-950 px-5 py-2.5 text-[14px] font-semibold text-white transition-colors hover:bg-amber-600"
+            className="group inline-flex items-center gap-2 rounded-full bg-amber-500 px-5 py-2.5 text-[14px] font-semibold text-ink-950 transition-colors hover:bg-amber-400"
           >
             Submit an Enquiry
             <IconArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
@@ -120,7 +120,7 @@ export default function Navbar() {
 
         <button
           type="button"
-          className="relative z-10 flex h-10 w-10 items-center justify-center rounded-full text-ink-900 lg:hidden"
+          className="relative z-10 flex h-10 w-10 items-center justify-center rounded-full text-white lg:hidden"
           aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
           aria-controls="mobile-menu"
@@ -134,43 +134,41 @@ export default function Navbar() {
         {open && (
           <motion.div
             id="mobile-menu"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-            className="overflow-hidden border-t border-ink-100 bg-paper lg:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed inset-0 z-40 bg-ink-950/98 backdrop-blur-2xl lg:hidden"
           >
             <motion.nav
-              className="flex flex-col px-5 py-4"
+              className="flex h-full flex-col justify-center gap-1 px-8 pb-16"
               aria-label="Mobile"
               variants={mobileListVariants}
               initial="hidden"
               animate="visible"
             >
               {NAV_LINKS.map((link) => (
-                <motion.div key={link.href} variants={mobileItemVariants}>
+                <motion.div key={link.href} variants={mobileItemVariants} className="overflow-hidden border-b border-white/10 py-4">
                   <NavLink
                     to={link.href}
                     end={link.href === '/'}
                     onClick={() => setOpen(false)}
-                    className="flex items-center gap-2.5 border-b border-ink-100 py-3.5 text-[16px] font-medium text-ink-800 aria-[current=page]:text-amber-600"
+                    className="flex items-center gap-3 font-display text-[32px] font-semibold text-ink-200 aria-[current=page]:text-white"
                   >
                     {({ isActive }) => (
                       <>
-                        {isActive && (
-                          <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
-                        )}
+                        {isActive && <span className="h-2 w-2 rounded-full bg-amber-400" />}
                         {link.label}
                       </>
                     )}
                   </NavLink>
                 </motion.div>
               ))}
-              <motion.div variants={mobileItemVariants}>
+              <motion.div variants={mobileItemVariants} className="mt-8">
                 <Link
                   to="/contact"
                   onClick={() => setOpen(false)}
-                  className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-ink-950 px-5 py-3 text-[15px] font-semibold text-white"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-amber-500 px-5 py-4 text-[16px] font-semibold text-ink-950"
                 >
                   Submit an Enquiry
                   <IconArrowRight className="h-4 w-4" />

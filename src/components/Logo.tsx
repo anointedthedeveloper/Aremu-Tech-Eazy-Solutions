@@ -26,7 +26,7 @@ export default function Logo({ variant = 'dark', className = '' }: LogoProps) {
           Eazy Solutions
         </span>
       </span>
-      <span className="sr-only">, Empowering Your Tech Dreams</span>
+      <span className="sr-only">, practical technology support</span>
     </span>
   )
 }

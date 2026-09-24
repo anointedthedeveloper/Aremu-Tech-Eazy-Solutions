@@ -10,7 +10,7 @@ export default function EnquiryCTA() {
       <div className="mx-auto max-w-8xl px-5 sm:px-8 lg:px-10">
         <Reveal className="relative overflow-hidden rounded-2xl border border-ink-200/70 bg-ink-950 px-6 py-14 text-center sm:px-12 sm:py-16 lg:py-20">
           <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-            <SmartImage image={IMAGES.gallery[1]} className="h-full w-full opacity-[0.14]" />
+            <SmartImage image={IMAGES.gallery[1]} variant="dark" showLabel={false} className="h-full w-full opacity-[0.14]" />
             <div className="absolute inset-0 bg-ink-950/90" />
             <div className="absolute inset-0 opacity-60 [mask-image:radial-gradient(ellipse_60%_60%_at_50%_0%,black,transparent)]">
               <div className="dot-grid absolute inset-0 text-ink-700" />
