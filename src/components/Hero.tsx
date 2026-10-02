@@ -98,13 +98,38 @@ export default function Hero() {
   const count = SLIDES.length
   const slide = SLIDES[index]
 
-  const go = useCallback((i: number) => setIndex(((i % count) + count) % count), [count])
+  const [progress, setProgress] = useState(0) // 0..1 through the current slide
+  const elapsed = useRef(0)
 
+  const go = useCallback(
+    (i: number) => {
+      elapsed.current = 0
+      setProgress(0)
+      setIndex(((i % count) + count) % count)
+    },
+    [count],
+  )
+
+  // Time spent on the current slide is accumulated, so pausing (hover) keeps the progress and resumes where it left off.
   useEffect(() => {
     if (reduceMotion || paused) return
-    const id = setTimeout(() => setIndex((i) => (i + 1) % count), INTERVAL)
-    return () => clearTimeout(id)
-  }, [index, paused, reduceMotion, count])
+    let raf = 0
+    let last = performance.now()
+    const tick = (now: number) => {
+      elapsed.current += Math.min(now - last, 100) // ignore long gaps, e.g. a backgrounded tab
+      last = now
+      if (elapsed.current >= INTERVAL) {
+        elapsed.current = 0
+        setProgress(0)
+        setIndex((i) => (i + 1) % count)
+      } else {
+        setProgress(elapsed.current / INTERVAL)
+      }
+      raf = requestAnimationFrame(tick)
+    }
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [paused, reduceMotion, count])
 
   const onTouchEnd = (x: number) => {
     if (touchX.current === null) return
@@ -256,12 +281,9 @@ export default function Hero() {
                   <span className="relative block h-[3px] overflow-hidden rounded-full bg-white/30">
                     {i < index && <span className="absolute inset-0 bg-white" />}
                     {i === index && (
-                      <motion.span
-                        key={`${index}-${paused}`}
+                      <span
                         className="absolute inset-y-0 left-0 bg-amber-400"
-                        initial={{ width: reduceMotion || paused ? '100%' : '0%' }}
-                        animate={{ width: '100%' }}
-                        transition={{ duration: reduceMotion || paused ? 0 : INTERVAL / 1000, ease: 'linear' }}
+                        style={{ width: reduceMotion ? '100%' : `${progress * 100}%` }}
                       />
                     )}
                   </span>
