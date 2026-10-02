@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
 import Logo from './Logo'
 import SmartImage from './SmartImage'
-import { NAV_LINKS, SERVICES } from '../lib/constants'
+import { NAV_LINKS } from '../lib/constants'
+import { SERVICES, serviceHref } from '../lib/services'
 import { CONTACT } from '../lib/contact'
 import { IMAGES } from '../lib/images'
 
@@ -51,10 +52,10 @@ export default function Footer() {
               Services
             </p>
             <ul className="mt-5 space-y-3">
-              {SERVICES.slice(0, 5).map((service) => (
+              {SERVICES.slice(0, 6).map((service) => (
                 <li key={service.index}>
                   <Link
-                    to="/services"
+                    to={serviceHref(service)}
                     className="text-[14px] text-ink-300 transition-colors hover:text-white"
                   >
                     {service.title.split(' & ')[0]}

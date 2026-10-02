@@ -14,6 +14,8 @@ const Contact = lazy(() => import('./pages/Contact'))
 const InternshipPage = lazy(() => import('./pages/InternshipPage'))
 const Apply = lazy(() => import('./pages/Apply'))
 const Projects = lazy(() => import('./pages/Projects'))
+const ServiceDetail = lazy(() => import('./pages/ServiceDetail'))
+const NotFound = lazy(() => import('./pages/NotFound'))
 
 function AnimatedRoutes() {
   const location = useLocation()
@@ -32,11 +34,13 @@ function AnimatedRoutes() {
         <Routes location={location}>
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<ServicesPage />} />
+          <Route path="/services/:slug" element={<ServiceDetail />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/apply" element={<Apply />} />
           <Route path="/internship" element={<InternshipPage />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         </Suspense>
       </motion.div>
