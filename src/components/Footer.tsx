@@ -7,7 +7,7 @@ import { IMAGES } from '../lib/images'
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-ink-100 bg-ink-950">
+    <footer className="relative overflow-hidden border-t border-ink-100 bg-deep">
       <div className="pointer-events-none absolute inset-0">
         <SmartImage
           image={IMAGES.trunkingInstall}

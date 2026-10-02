@@ -5,7 +5,7 @@ import { IMAGES } from '../lib/images'
 
 export default function Process() {
   return (
-    <section id="process" className="relative overflow-hidden border-t border-ink-100 bg-ink-950 py-20 sm:py-24 lg:py-28">
+    <section id="process" className="relative overflow-hidden border-t border-ink-100 bg-deep py-16 sm:py-20 lg:py-24">
       <div className="pointer-events-none absolute inset-0">
         <SmartImage image={IMAGES.siteCrew} variant="dark" showLabel={false} className="h-full w-full opacity-[0.16]" />
         <div className="absolute inset-0 bg-gradient-to-b from-ink-950 via-ink-950/95 to-ink-950" />

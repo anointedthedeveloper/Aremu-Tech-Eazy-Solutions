@@ -14,7 +14,7 @@ const LEARNING = [
 
 export default function Internship() {
   return (
-    <section id="internship" className="relative overflow-hidden bg-ink-950 py-20 sm:py-24 lg:py-28">
+    <section id="internship" className="relative overflow-hidden bg-deep py-16 sm:py-20 lg:py-24">
       <div className="brand-glow pointer-events-none absolute inset-0 opacity-80" />
       <div className="relative mx-auto max-w-8xl px-5 sm:px-8 lg:px-10">
         <div className="grid items-center gap-12 lg:grid-cols-[1fr_1fr] lg:gap-20">

@@ -23,7 +23,7 @@ const POINTS = [
 
 export default function CompanyIntro() {
   return (
-    <section className="border-t border-ink-100 dark:border-white/10 py-20 sm:py-24 lg:py-28">
+    <section className="border-t border-ink-100 dark:border-white/10 py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-8xl px-5 sm:px-8 lg:px-10">
         <div className="grid gap-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <Reveal className="relative">

@@ -4,7 +4,7 @@ import { CAPABILITIES } from '../lib/constants'
 
 export default function Capabilities() {
   return (
-    <section id="capabilities" className="py-20 sm:py-24 lg:py-28">
+    <section id="capabilities" className="py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-8xl px-5 sm:px-8 lg:px-10">
         <div className="grid gap-14 lg:grid-cols-2 lg:gap-16">
           <Reveal>
@@ -33,7 +33,7 @@ export default function Capabilities() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <div className="relative overflow-hidden rounded-2xl bg-ink-950 p-8 sm:p-10">
+            <div className="relative overflow-hidden rounded-2xl bg-deep p-8 sm:p-10">
               <div className="dot-grid absolute inset-0 text-ink-800 opacity-60 [mask-image:radial-gradient(ellipse_65%_65%_at_30%_20%,black,transparent)]" />
 
               <BrandTriangle

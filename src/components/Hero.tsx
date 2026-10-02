@@ -14,7 +14,7 @@ export default function Hero() {
   })
 
   return (
-    <section id="top" className="relative overflow-hidden bg-ink-950">
+    <section id="top" className="relative overflow-hidden bg-deep">
       {/* ambient backdrop: blurred footage poster + brand-colour glow */}
       <img
         src={VIDEOS.fieldTesting.poster}

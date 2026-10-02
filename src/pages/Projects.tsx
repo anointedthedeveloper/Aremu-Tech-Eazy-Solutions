@@ -54,7 +54,7 @@ export default function Projects() {
 
       <LabShowcase eyebrow="Finished Results" title="The labs, ready for exam day." text="Rows of cubicles, laptops in place, lighting and fans installed." />
 
-      <section className="relative overflow-hidden bg-ink-950 py-20 sm:py-24 lg:py-28">
+      <section className="relative overflow-hidden bg-deep py-16 sm:py-20 lg:py-24">
         <div className="brand-glow pointer-events-none absolute inset-0 opacity-80" />
         <div className="relative mx-auto max-w-8xl px-5 sm:px-8 lg:px-10">
           <Reveal className="max-w-2xl">
