@@ -11,7 +11,8 @@ export interface TeamMember {
   name?: string
   /** Position or role — fill in as confirmed. */
   role?: string
-  photo: SiteImage
+  /** Optional — cards without a photo show a branded placeholder. */
+  photo?: SiteImage
 }
 
 export const TEAM_GROUP: SiteImage = {
@@ -28,4 +29,6 @@ export const TEAM: TeamMember[] = [
   { photo: { url: member3, alt: alt(3) } },
   { photo: { url: member4, alt: alt(4) } },
   { photo: { url: member5, alt: alt(5) } },
+  // Developer slot: add `name` and `photo` (import a file from src/assets/team) when ready.
+  { role: 'Lead Software Engineer' },
 ]
