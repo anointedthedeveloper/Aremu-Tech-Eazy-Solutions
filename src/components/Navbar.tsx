@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Link, useLocation } from 'react-router-dom'
 import Logo from './Logo'
 import ThemeToggle from './ThemeToggle'
 import { NAV_LINKS } from '../lib/constants'
 import { CONTACT } from '../lib/contact'
+import { SERVICES, serviceHref } from '../lib/services'
+import { IconArrowRight } from './icons'
 
 /** Three floating "islands": brand · links with a sliding highlight · actions. */
 const island =
@@ -25,9 +27,28 @@ export default function Navbar() {
   const [openPath, setOpenPath] = useState<string | null>(null)
   const open = openPath === pathname // closes automatically on navigation
   const [hovered, setHovered] = useState<string | null>(null)
+  const [menuFor, setMenuFor] = useState<string | null>(null) // pathname the services menu was opened on
+  const [mobileServices, setMobileServices] = useState(false)
+  const closeTimer = useRef<ReturnType<typeof setTimeout>>(undefined)
 
   const active = NAV_LINKS.find((l) => isCurrent(pathname, l.href))?.href ?? null
   const pillAt = hovered ?? active
+  const servicesOpen = menuFor === pathname // closes automatically on navigation
+
+  const openServices = () => {
+    clearTimeout(closeTimer.current)
+    setMenuFor(pathname)
+  }
+  const closeServices = () => {
+    clearTimeout(closeTimer.current)
+    closeTimer.current = setTimeout(() => setMenuFor(null), 120)
+  }
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setMenuFor(null)
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [])
 
   useEffect(() => {
     const onScroll = () => setSolid(window.scrollY > 12)
@@ -62,19 +83,24 @@ export default function Navbar() {
         <nav
           aria-label="Primary"
           onMouseLeave={() => setHovered(null)}
-          className={`${island} ${islandTone(solid || open)} hidden items-center gap-1 p-1.5 lg:flex`}
+          className={`${island} ${islandTone(solid || open)} relative hidden items-center gap-1 p-1.5 lg:flex`}
         >
           {NAV_LINKS.map((link) => {
             const lit = pillAt === link.href
-            return (
+            const hasMenu = link.href === '/services'
+            const anchor = (
               <Link
-                key={link.href}
                 to={link.href}
                 aria-current={active === link.href ? 'page' : undefined}
+                aria-haspopup={hasMenu ? 'true' : undefined}
+                aria-expanded={hasMenu ? servicesOpen : undefined}
                 onMouseEnter={() => setHovered(link.href)}
-                onFocus={() => setHovered(link.href)}
+                onFocus={() => {
+                  setHovered(link.href)
+                  if (hasMenu) openServices()
+                }}
                 onBlur={() => setHovered(null)}
-                className={`relative rounded-full px-4 py-2 text-[14px] font-medium transition-colors ${
+                className={`relative flex items-center gap-1 rounded-full px-4 py-2 text-[14px] font-medium transition-colors ${
                   lit ? 'text-white' : 'text-ink-600 dark:text-ink-300'
                 }`}
               >
@@ -82,11 +108,63 @@ export default function Navbar() {
                   <motion.span
                     layoutId="nav-pill"
                     transition={spring}
-                    className="absolute inset-0 rounded-full bg-violet-600 shadow-[0_4px_14px_-4px_rgba(106,43,168,0.7)] dark:bg-violet-600"
+                    className="absolute inset-0 rounded-full bg-violet-600 shadow-[0_4px_14px_-4px_rgba(106,43,168,0.7)]"
                   />
                 )}
                 <span className="relative">{link.label}</span>
+                {hasMenu && (
+                  <svg viewBox="0 0 12 12" aria-hidden="true" className={`relative h-3 w-3 transition-transform ${servicesOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M2.5 4.5 6 8l3.5-3.5" />
+                  </svg>
+                )}
               </Link>
+            )
+            if (!hasMenu) return <div key={link.href}>{anchor}</div>
+            return (
+              <div key={link.href} onMouseEnter={openServices} onMouseLeave={closeServices}>
+                {anchor}
+                <AnimatePresence>
+                  {servicesOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -6 }}
+                      transition={{ duration: 0.16 }}
+                      className="absolute top-full left-1/2 w-[min(760px,calc(100vw-3rem))] -translate-x-1/2 pt-3"
+                    >
+                      <div className="rounded-3xl border border-ink-200/80 bg-white p-3 shadow-lifted dark:border-white/10 dark:bg-ink-900">
+                        <ul className="grid grid-cols-2 gap-1">
+                          {SERVICES.map((svc) => (
+                            <li key={svc.slug}>
+                              <Link
+                                to={serviceHref(svc)}
+                                onClick={() => setMenuFor(null)}
+                                className="group flex items-start gap-3 rounded-2xl p-3 transition-colors hover:bg-violet-100/70 dark:hover:bg-white/5"
+                              >
+                                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-violet-100 text-violet-700 transition-colors group-hover:bg-violet-600 group-hover:text-white dark:bg-violet-500/15 dark:text-violet-300">
+                                  <svc.icon className="h-5 w-5" />
+                                </span>
+                                <span className="min-w-0">
+                                  <span className="block text-[14.5px] leading-tight font-semibold text-ink-950 dark:text-white">{svc.title}</span>
+                                  <span className="mt-1 line-clamp-1 text-[12.5px] text-ink-500 dark:text-ink-400">{svc.description}</span>
+                                </span>
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                        <div className="mt-2 flex items-center justify-between rounded-2xl bg-paper-dim px-4 py-3 dark:bg-white/5">
+                          <Link to="/services" onClick={() => setMenuFor(null)} className="inline-flex items-center gap-1.5 text-[13.5px] font-semibold text-violet-700 dark:text-violet-300">
+                            View all services <IconArrowRight className="h-3.5 w-3.5" />
+                          </Link>
+                          <Link to="/contact" onClick={() => setMenuFor(null)} className="text-[13.5px] font-semibold text-ink-700 hover:text-violet-700 dark:text-ink-300 dark:hover:text-white">
+                            Not sure? Contact Us
+                          </Link>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             )
           })}
         </nav>
@@ -137,14 +215,41 @@ export default function Navbar() {
               <ul>
                 {NAV_LINKS.map((link, i) => (
                   <li key={link.href} className="border-b border-ink-100 last:border-0 dark:border-white/10">
-                    <Link
-                      to={link.href}
-                      aria-current={active === link.href ? 'page' : undefined}
-                      className="flex items-baseline gap-4 py-3.5 font-display text-[22px] font-semibold text-ink-500 aria-[current=page]:text-ink-950 dark:text-ink-300 dark:aria-[current=page]:text-white"
-                    >
-                      <span className="w-6 text-[12px] font-medium text-violet-600 dark:text-violet-400">{String(i + 1).padStart(2, '0')}</span>
-                      {link.label}
-                    </Link>
+                    <div className="flex items-center">
+                      <Link
+                        to={link.href}
+                        aria-current={active === link.href ? 'page' : undefined}
+                        className="flex flex-1 items-baseline gap-4 py-3.5 font-display text-[22px] font-semibold text-ink-500 aria-[current=page]:text-ink-950 dark:text-ink-300 dark:aria-[current=page]:text-white"
+                      >
+                        <span className="w-6 text-[12px] font-medium text-violet-600 dark:text-violet-400">{String(i + 1).padStart(2, '0')}</span>
+                        {link.label}
+                      </Link>
+                      {link.href === '/services' && (
+                        <button
+                          type="button"
+                          onClick={() => setMobileServices((v) => !v)}
+                          aria-expanded={mobileServices}
+                          aria-label="Show services"
+                          className="flex h-10 w-10 items-center justify-center rounded-full text-ink-500 hover:bg-violet-100 dark:text-ink-300 dark:hover:bg-white/10"
+                        >
+                          <svg viewBox="0 0 12 12" aria-hidden="true" className={`h-4 w-4 transition-transform ${mobileServices ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M2.5 4.5 6 8l3.5-3.5" />
+                          </svg>
+                        </button>
+                      )}
+                    </div>
+                    {link.href === '/services' && mobileServices && (
+                      <ul className="mb-3 ml-10 space-y-0.5 border-l border-ink-200 pl-4 dark:border-white/10">
+                        {SERVICES.map((svc) => (
+                          <li key={svc.slug}>
+                            <Link to={serviceHref(svc)} className="flex items-center gap-2.5 py-2 text-[15px] font-medium text-ink-700 dark:text-ink-200">
+                              <svc.icon className="h-4 w-4 shrink-0 text-violet-600 dark:text-violet-400" />
+                              {svc.title}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </li>
                 ))}
               </ul>
