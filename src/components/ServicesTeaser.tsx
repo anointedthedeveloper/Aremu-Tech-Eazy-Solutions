@@ -6,9 +6,9 @@ import { SERVICES } from '../lib/constants'
 import { IMAGES } from '../lib/images'
 
 const FEATURED = [
-  { service: SERVICES[0], image: IMAGES.serviceSupport },
-  { service: SERVICES[3], image: IMAGES.serviceNetworking },
-  { service: SERVICES[5], image: IMAGES.serviceWeb },
+  { service: SERVICES[0], image: IMAGES.siteCrew },
+  { service: SERVICES[1], image: IMAGES.labTechnician },
+  { service: SERVICES[4], image: IMAGES.trunkingInstall },
 ]
 
 export default function ServicesTeaser() {
@@ -47,7 +47,7 @@ export default function ServicesTeaser() {
                   />
                 </div>
                 <div className="p-5">
-                  <span className="font-display text-[13px] font-semibold text-amber-600">
+                  <span className="font-display text-[13px] font-semibold text-violet-600">
                     {service.index}
                   </span>
                   <h3 className="mt-1.5 text-[17px] font-semibold text-ink-950">

@@ -23,7 +23,7 @@ export default function WhyChooseUs() {
           <div className="grid gap-x-10 gap-y-9 sm:grid-cols-2">
             {DIFFERENTIATORS.map((item, i) => (
               <Reveal key={item.title} delay={i * 0.06} className="border-t border-ink-200 pt-5">
-                <span className="font-display text-[13px] font-semibold text-amber-600">
+                <span className="font-display text-[13px] font-semibold text-violet-600">
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <h3 className="mt-2 text-[17px] font-semibold text-ink-950">{item.title}</h3>

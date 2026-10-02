@@ -24,7 +24,7 @@ export default function Capabilities() {
               {CAPABILITIES.map((item) => (
                 <li
                   key={item}
-                  className="rounded-full border border-ink-200 px-4 py-2 text-[13.5px] font-medium text-ink-700"
+                  className="rounded-full border border-violet-100 bg-violet-100/40 px-4 py-2 text-[13.5px] font-medium text-ink-700"
                 >
                   {item}
                 </li>

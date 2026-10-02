@@ -28,10 +28,10 @@ export default function CompanyIntro() {
         <div className="grid gap-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <Reveal className="relative">
             <div className="aspect-[4/5] overflow-hidden rounded-2xl border border-ink-200/70 shadow-[0_24px_70px_-30px_rgba(13,14,19,0.35)]">
-              <SmartImage image={IMAGES.aboutTeam} className="h-full w-full" />
+              <SmartImage image={IMAGES.labTechnician} className="h-full w-full" />
             </div>
             <div className="absolute -right-6 -bottom-10 hidden h-40 w-48 overflow-hidden rounded-xl border-4 border-paper shadow-[0_20px_50px_-20px_rgba(13,14,19,0.45)] sm:block lg:-right-10">
-              <SmartImage image={IMAGES.serviceSupport} className="h-full w-full" />
+              <SmartImage image={IMAGES.jambReadiness} className="h-full w-full" />
             </div>
           </Reveal>
 

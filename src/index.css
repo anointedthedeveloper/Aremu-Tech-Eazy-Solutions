@@ -2,37 +2,43 @@
 
 @theme {
   /* Brand palette — derived from the Aremu Tech Eazy Solutions mark */
-  --color-ink-950: #0d0e13;
-  --color-ink-900: #14161d;
-  --color-ink-800: #1d2029;
-  --color-ink-700: #2a2e3a;
-  --color-ink-600: #3c4152;
-  --color-ink-500: #565c70;
-  --color-ink-400: #767d92;
-  --color-ink-300: #a0a5b5;
-  --color-ink-200: #ccced9;
-  --color-ink-100: #e7e8ee;
-  --color-ink-50: #f4f4f7;
+  --color-ink-950: #0e0b1a;
+  --color-ink-900: #151226;
+  --color-ink-800: #1e1a33;
+  --color-ink-700: #2c2747;
+  --color-ink-600: #413b62;
+  --color-ink-500: #5c5780;
+  --color-ink-400: #7b7699;
+  --color-ink-300: #a5a2bb;
+  --color-ink-200: #cfcddd;
+  --color-ink-100: #e9e8f1;
+  --color-ink-50: #f5f4fa;
 
   --color-paper: #fbfaf7;
-  --color-paper-dim: #f2f0ea;
+  --color-paper-dim: #f3f0f8;
 
+  /* logo orange (right facet) */
   --color-amber-700: #b45a10;
-  --color-amber-600: #d66d14;
-  --color-amber-500: #ee8620;
-  --color-amber-400: #f6a04a;
-  --color-amber-300: #fbbc79;
-  --color-amber-100: #fde8cf;
+  --color-amber-600: #d9710f;
+  --color-amber-500: #f7931e;
+  --color-amber-400: #fbae4d;
+  --color-amber-300: #fcc47f;
+  --color-amber-200: #fddcaa;
+  --color-amber-100: #feeed7;
 
+  /* logo periwinkle (top facet) */
   --color-azure-600: #4d6cab;
-  --color-azure-500: #6e8fce;
+  --color-azure-500: #6c8fd6;
   --color-azure-400: #93aee0;
   --color-azure-100: #e4eaf7;
 
-  --color-violet-600: #7a5fc0;
-  --color-violet-500: #9a7fdb;
-  --color-violet-400: #b7a3e6;
-  --color-violet-100: #ece5f9;
+  /* logo purple (left facet + "TECH") */
+  --color-violet-800: #4a1d78;
+  --color-violet-700: #6a2ba8;
+  --color-violet-600: #8a3fd0;
+  --color-violet-500: #a566e6;
+  --color-violet-400: #bf94ee;
+  --color-violet-100: #efe4fb;
 
   --color-magenta-600: #a5378e;
   --color-magenta-500: #c04aa8;
@@ -69,7 +75,7 @@
   }
 
   ::selection {
-    background: var(--color-amber-200, #f8d3a1);
+    background: var(--color-amber-200);
     color: var(--color-ink-950);
   }
 
@@ -129,5 +135,19 @@
 
   .brand-underline {
     background: linear-gradient(90deg, var(--color-amber-500), var(--color-magenta-500) 60%, var(--color-azure-500));
+  }
+
+  .brand-gradient-text {
+    background-image: linear-gradient(100deg, var(--color-amber-400), var(--color-magenta-400) 55%, var(--color-violet-400));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .brand-glow {
+    background:
+      radial-gradient(60% 50% at 8% 0%, rgba(138, 63, 208, 0.45), transparent 70%),
+      radial-gradient(50% 50% at 100% 100%, rgba(247, 147, 30, 0.28), transparent 70%),
+      radial-gradient(40% 40% at 70% 10%, rgba(108, 143, 214, 0.22), transparent 70%);
   }
 }

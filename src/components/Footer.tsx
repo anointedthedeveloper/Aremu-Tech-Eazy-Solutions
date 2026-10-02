@@ -10,7 +10,7 @@ export default function Footer() {
     <footer className="relative overflow-hidden border-t border-ink-100 bg-ink-950">
       <div className="pointer-events-none absolute inset-0">
         <SmartImage
-          image={IMAGES.gallery[3]}
+          image={IMAGES.trunkingInstall}
           variant="dark"
           showLabel={false}
           className="h-full w-full opacity-[0.08]"

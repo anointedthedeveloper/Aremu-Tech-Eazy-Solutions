@@ -11,7 +11,7 @@ export default function ServicesPage() {
         eyebrow="Services"
         title="Practical tech support, from setup to sorted-out."
         description="These are the areas customers most often reach out about. If what you need doesn't fit neatly into a category, submit an enquiry anyway — that's what it's there for."
-        image={IMAGES.heroWorkspace}
+        image={IMAGES.trunkingInstall}
       />
       <Services />
       <Process />
