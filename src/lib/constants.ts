@@ -23,45 +23,51 @@ export interface Service {
 export const SERVICES: Service[] = [
   {
     index: '01',
-    title: 'CBT Centre Setup & Readiness',
+    title: 'ICT Centre & CBT Setup',
     description:
-      'Fitting out computer-based test centres end to end — cabling and trunking, cubicle and laptop installation, network setup, and system-readiness checks so exam day runs without surprises.',
+      'Procurement, installation and configuration of computer systems for ICT labs and JAMB-standard CBT centres — networking, cabling, CCTV and readiness checks included, so exam day runs without surprises.',
   },
   {
     index: '02',
-    title: 'IT Support & Troubleshooting',
+    title: 'Hardware Maintenance & Repair',
     description:
-      'Day-to-day technical problems sorted out — slow devices, error messages, account access issues, and the small breakdowns that stop work getting done.',
+      'Servicing, diagnostics, component replacement and upgrades for computers and office equipment — including long-term maintenance contracts for offices and schools.',
   },
   {
     index: '03',
-    title: 'Device Setup & Repair Guidance',
+    title: 'Software Installation & Configuration',
     description:
-      'Help getting computers, phones and office equipment set up correctly, configured, and running reliably, with guidance when something needs fixing.',
+      'Windows and Office suites, antivirus and security tools, educational software, design tools such as AutoCAD, CorelDRAW and Adobe, and custom business software.',
   },
   {
     index: '04',
-    title: 'Software Installation & Configuration',
+    title: 'Networking & Cabling',
     description:
-      'Installing, updating and configuring the software and systems a person or business actually needs — set up properly the first time.',
+      'Network infrastructure design, structured cabling and connectivity for offices, schools and homes, so teams stay online without constant disruption.',
   },
   {
     index: '05',
-    title: 'Networking & Connectivity',
+    title: 'CCTV Installation & Surveillance',
     description:
-      'Getting internet, Wi-Fi and office networks connected and working smoothly, so teams and households stay online without constant disruption.',
+      'Wired and wireless CCTV for homes, offices, schools, churches and government facilities, with remote monitoring and ongoing maintenance.',
   },
   {
     index: '06',
-    title: 'Tech Guidance & Consultation',
+    title: 'ICT Training & Computer Literacy',
     description:
-      'Plain-language advice on tech decisions — what to buy, what to fix, and what to change — from someone who explains it without the jargon.',
+      'Basic computer training, Microsoft Office proficiency, digital literacy for students and corporate staff training — plus apprenticeship and IT/SIWES/NYSC placements.',
   },
   {
     index: '07',
-    title: 'Digital & Web Solutions',
+    title: 'Software & Web Development',
     description:
-      'Support for the digital side of a business — from getting online to keeping everyday digital tools and platforms running as they should.',
+      'Computer-based exam software for schools, mobile and system apps, and websites built around what your organisation actually needs.',
+  },
+  {
+    index: '08',
+    title: 'Sale & Supply of Computers',
+    description:
+      'New and fairly used desktops, laptops and smart gadgets, plus office equipment — supplied, set up and supported at fair prices.',
   },
 ]
 
@@ -128,13 +134,42 @@ export const DIFFERENTIATORS: Differentiator[] = [
 
 export const CAPABILITIES = [
   'CBT labs & exam halls',
-  'Structured cabling',
   'Computers & laptops',
-  'Mobile devices',
-  'Office & home networks',
-  'Everyday business software',
-  'Operating systems',
+  'CCTV & surveillance',
+  'Networking & cabling',
+  'Software & web development',
+  'ICT training',
   'Printers & peripherals',
-  'Internet & connectivity',
-  'Basic web & digital platforms',
+  'Office equipment supply',
 ]
+
+export const CLIENTS = [
+  'ADEOLA International School',
+  'Capville Schools',
+  'Peter Harvard International Schools',
+  'JAMB FCT Zonal Office',
+  'Goshen High School',
+  'Sada, Idris & Co.',
+  'Amiable Academy',
+]
+
+export const TESTIMONIALS = [
+  {
+    quote: 'AREMU TECH EAZY SOLUTIONS currently manages our CBT Center and ensures everything runs smoothly during exams.',
+    by: 'Center Admin, ADEOLA International School',
+  },
+  {
+    quote: 'Professional and proactive service during our CBT exam sessions. Highly reliable team.',
+    by: 'Director, Capville Schools',
+  },
+  {
+    quote: 'They maintained our school’s ICT lab very professionally and timely!',
+    by: 'Principal, Goshen High School',
+  },
+  {
+    quote: 'The CCTV installation in our office has made our work environment more secure. I highly recommend.',
+    by: 'CEO, Jovik Global Services',
+  },
+]
+
+export const VALUES = ['Innovation', 'Integrity', 'Customer Satisfaction', 'Excellence', 'Continuous Improvement']

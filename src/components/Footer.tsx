@@ -3,6 +3,7 @@ import Logo from './Logo'
 import SmartImage from './SmartImage'
 import BrandTriangle from './BrandTriangle'
 import { NAV_LINKS, SERVICES } from '../lib/constants'
+import { CONTACT } from '../lib/contact'
 import { IMAGES } from '../lib/images'
 
 export default function Footer() {
@@ -30,8 +31,7 @@ export default function Footer() {
           <div>
             <Logo variant="light" />
             <p className="mt-5 max-w-sm text-[14.5px] leading-relaxed text-ink-300">
-              Practical technology support for individuals and small businesses —
-              devices, software, networks and digital tools, sorted properly.
+              Abuja-based ICT services and supplies — CBT centres, repairs, networking, CCTV, software and training. Empowering Your Tech Dreams.
             </p>
           </div>
 
@@ -75,10 +75,15 @@ export default function Footer() {
             <p className="text-[12.5px] font-semibold uppercase tracking-[0.12em] text-ink-400">
               Get In Touch
             </p>
-            <p className="mt-5 max-w-[16rem] text-[14px] leading-relaxed text-ink-300">
-              Have something that needs sorting out? Tell us about it and we&apos;ll
-              take it from there.
-            </p>
+            <ul className="mt-5 space-y-2.5 text-[14px] leading-relaxed text-ink-300">
+              {CONTACT.phones.map((p) => (
+                <li key={p.href}><a href={p.href} className="transition-colors hover:text-white">{p.label}</a></li>
+              ))}
+              <li><a href={CONTACT.whatsapp.href} className="transition-colors hover:text-white">WhatsApp: {CONTACT.whatsapp.label}</a></li>
+              <li><a href={`mailto:${CONTACT.email}`} className="break-all transition-colors hover:text-white">{CONTACT.email}</a></li>
+              <li>{CONTACT.addresses[0]}</li>
+              <li>Facebook &amp; Instagram: {CONTACT.social}</li>
+            </ul>
             <Link
               to="/contact"
               className="mt-4 inline-flex items-center gap-1.5 text-[14px] font-semibold text-amber-400 transition-colors hover:text-amber-300"

@@ -48,15 +48,15 @@ export default function CompanyIntro() {
 
             <Reveal delay={0.08}>
               <p className="mt-7 max-w-lg text-[16px] leading-relaxed text-ink-500 dark:text-ink-300">
-                Aremu Tech Eazy Solutions exists for the moments technology gets in
-                the way of what you&apos;re actually trying to do — a device that
-                won&apos;t behave, software that needs setting up, a connection that
-                keeps dropping. Rather than leaving you to work it out alone, we
-                take the request, work out what&apos;s needed, and see it through.
+                Aremu Tech Eazy Solutions is a frontline ICT services and supplies company
+                with offices in Abuja and operations nationwide. We service and repair
+                computers, supply and install systems, set up CBT centres, build networks,
+                install CCTV, develop software and websites, and run ICT training.
               </p>
               <p className="mt-4 max-w-lg text-[16px] leading-relaxed text-ink-500 dark:text-ink-300">
-                We work with individuals and small businesses who want technology
-                to simply work, without having to become experts in it themselves.
+                We&apos;re registered with the Corporate Affairs Commission (CAC) and serve
+                schools, private firms, government agencies, NGOs and religious
+                organisations — affordably, and without compromising on quality.
               </p>
             </Reveal>
 

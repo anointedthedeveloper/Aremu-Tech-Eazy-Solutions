@@ -9,6 +9,7 @@ import ServicesPage from './pages/ServicesPage'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import InternshipPage from './pages/InternshipPage'
+import Apply from './pages/Apply'
 import Projects from './pages/Projects'
 import { ThemeProvider } from './lib/theme'
 
@@ -29,6 +30,7 @@ function AnimatedRoutes() {
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/projects" element={<Projects />} />
+          <Route path="/apply" element={<Apply />} />
           <Route path="/internship" element={<InternshipPage />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
