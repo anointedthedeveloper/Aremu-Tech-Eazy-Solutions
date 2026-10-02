@@ -7,13 +7,21 @@ import EnquiryCTA from '../components/EnquiryCTA'
 import { IMAGES, VIDEOS } from '../lib/images'
 
 const STAGES = [
-  { n: '01', title: 'Cabling & trunking', text: 'Walls marked, trunking fitted and cable runs laid before any furniture arrives.', image: IMAGES.siteCrew },
+  { n: '01', title: 'Cabling & trunking', text: 'Walls marked, trunking fitted and cable runs laid before any furniture arrives.', image: IMAGES.measuringWall },
   { n: '02', title: 'Stations & laptops', text: 'Cubicles assembled, laptops installed and every station powered on.', image: IMAGES.labTechnician },
   { n: '03', title: 'Readiness testing', text: 'Each machine inspected against the exam software’s readiness checks.', image: IMAGES.jambReadiness },
   { n: '04', title: 'Exam-ready', text: 'A finished hall, tested station by station and handed over ready to use.', image: IMAGES.labWoodHall },
 ]
 
-const CLIPS = [VIDEOS.fieldTesting, VIDEOS.labOverview, VIDEOS.cubicleSetup, VIDEOS.laptopCheck]
+const CLIPS = [
+  VIDEOS.cablingInstall,
+  VIDEOS.trunkingFit,
+  VIDEOS.crewWiring,
+  VIDEOS.fieldTesting,
+  VIDEOS.labOverview,
+  VIDEOS.cubicleSetup,
+  VIDEOS.laptopCheck,
+]
 
 export default function Projects() {
   return (
@@ -60,7 +68,7 @@ export default function Projects() {
           <Reveal className="max-w-2xl">
             <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-amber-400">On Site</p>
             <h2 className="mt-4 text-balance text-3xl font-bold leading-tight text-white sm:text-[2.25rem]">Footage from the field.</h2>
-            <p className="mt-4 text-[16px] leading-relaxed text-ink-300">Sped-up clips from recent installs and readiness checks.</p>
+            <p className="mt-4 text-[16px] leading-relaxed text-ink-300">Sped-up clips from recent installs, cabling and readiness checks.</p>
           </Reveal>
           <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
             {CLIPS.map((clip, i) => (
