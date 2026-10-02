@@ -1,5 +1,5 @@
 import { useMemo, useRef, useState, type FormEvent } from 'react'
-import { SERVICES } from '../lib/constants'
+import { SERVICES } from '../lib/services'
 import { APPLICATION_ENDPOINT } from '../lib/applicationForm'
 import { EMAIL_RE, inputClass } from '../lib/formStyles'
 

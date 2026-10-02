@@ -2,13 +2,12 @@ import { Link } from 'react-router-dom'
 import Reveal from './Reveal'
 import SmartImage from './SmartImage'
 import { IconArrowRight } from './icons'
-import { SERVICES } from '../lib/constants'
-import { IMAGES } from '../lib/images'
+import { SERVICES, serviceHref } from '../lib/services'
 
 const FEATURED = [
-  { service: SERVICES[0], image: IMAGES.labWoodHall },
-  { service: SERVICES[1], image: IMAGES.labTechnician },
-  { service: SERVICES[3], image: IMAGES.trunkingInstall },
+  { service: SERVICES[0], image: SERVICES[0].image },
+  { service: SERVICES[1], image: SERVICES[1].image },
+  { service: SERVICES[4], image: SERVICES[4].image },
 ]
 
 export default function ServicesTeaser() {
@@ -37,7 +36,7 @@ export default function ServicesTeaser() {
           {FEATURED.map(({ service, image }, i) => (
             <Reveal key={service.index} delay={i * 0.08}>
               <Link
-                to="/services"
+                to={serviceHref(service)}
                 className="group block overflow-hidden rounded-2xl border border-ink-200/70 dark:border-white/10 bg-white dark:bg-ink-900 transition-shadow hover:shadow-[0_20px_45px_-25px_rgba(13,14,19,0.35)]"
               >
                 <div className="aspect-[4/3] overflow-hidden">

@@ -8,63 +8,6 @@ export const NAV_LINKS = [
   { label: 'About', href: '/about' },
 ]
 
-export interface Service {
-  index: string
-  title: string
-  description: string
-}
-
-export const SERVICES: Service[] = [
-  {
-    index: '01',
-    title: 'ICT Centre & CBT Setup',
-    description:
-      'Procurement, installation and configuration of computer systems for ICT labs and JAMB-standard CBT centres — networking, cabling, CCTV and readiness checks included, so exam day runs without surprises.',
-  },
-  {
-    index: '02',
-    title: 'Hardware Maintenance & Repair',
-    description:
-      'Servicing, diagnostics, component replacement and upgrades for computers and office equipment — including long-term maintenance contracts for offices and schools.',
-  },
-  {
-    index: '03',
-    title: 'Software Installation & Configuration',
-    description:
-      'Windows and Office suites, antivirus and security tools, educational software, design tools such as AutoCAD, CorelDRAW and Adobe, and custom business software.',
-  },
-  {
-    index: '04',
-    title: 'Networking & Cabling',
-    description:
-      'Network infrastructure design, structured cabling and connectivity for offices, schools and homes, so teams stay online without constant disruption.',
-  },
-  {
-    index: '05',
-    title: 'CCTV Installation & Surveillance',
-    description:
-      'Wired and wireless CCTV for homes, offices, schools, churches and government facilities, with remote monitoring and ongoing maintenance.',
-  },
-  {
-    index: '06',
-    title: 'ICT Training & Computer Literacy',
-    description:
-      'Basic computer training, Microsoft Office proficiency, digital literacy for students and corporate staff training — plus apprenticeship and IT/SIWES/NYSC placements.',
-  },
-  {
-    index: '07',
-    title: 'Software & Web Development',
-    description:
-      'Computer-based exam software for schools, mobile and system apps, and websites built around what your organisation actually needs.',
-  },
-  {
-    index: '08',
-    title: 'Sale & Supply of Computers',
-    description:
-      'New and fairly used desktops, laptops and smart gadgets, plus office equipment — supplied, set up and supported at fair prices.',
-  },
-]
-
 export interface ProcessStep {
   index: string
   title: string
