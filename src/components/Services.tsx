@@ -5,18 +5,20 @@ import {
   IconCompass,
   IconGlobe,
   IconLayers,
+  IconTarget,
   IconTools,
   IconWifi,
 } from './icons'
 import { SERVICES } from '../lib/constants'
 import { IMAGES } from '../lib/images'
 
-const ICONS = [IconTools, IconChip, IconLayers, IconWifi, IconCompass, IconGlobe]
+const ICONS = [IconTarget, IconTools, IconChip, IconLayers, IconWifi, IconCompass, IconGlobe]
 const THUMBS = [
-  IMAGES.serviceSupport,
+  IMAGES.siteCrew,
+  IMAGES.labTechnician,
   IMAGES.serviceDevices,
-  IMAGES.serviceSoftware,
-  IMAGES.serviceNetworking,
+  IMAGES.jambReadiness,
+  IMAGES.trunkingInstall,
   IMAGES.serviceConsulting,
   IMAGES.serviceWeb,
 ]
@@ -39,7 +41,7 @@ export default function Services() {
                   <div className="relative">
                     <span
                       aria-hidden="true"
-                      className="pointer-events-none absolute -top-16 -left-3 font-display text-[7rem] leading-none font-bold text-ink-100 select-none sm:-top-20 sm:text-[9rem] lg:-top-24"
+                      className="pointer-events-none absolute -top-16 -left-3 font-display text-[7rem] leading-none font-bold text-violet-100 select-none sm:-top-20 sm:text-[9rem] lg:-top-24"
                     >
                       {service.index}
                     </span>
@@ -56,7 +58,7 @@ export default function Services() {
                   </div>
 
                   <div className="relative">
-                    <p className="font-display text-[13px] font-semibold text-amber-600">
+                    <p className="font-display text-[13px] font-semibold text-violet-600">
                       Service {service.index}
                     </p>
                     <h3 className="mt-3 max-w-md text-balance font-display text-[28px] leading-[1.1] font-bold text-ink-950 sm:text-[34px]">
@@ -65,7 +67,7 @@ export default function Services() {
                     <p className="mt-4 max-w-lg text-[16px] leading-relaxed text-ink-500">
                       {service.description}
                     </p>
-                    <div className="mt-6 h-px w-16 bg-gradient-to-r from-amber-500 to-transparent transition-all duration-500 group-hover:w-28" />
+                    <div className="mt-6 h-px w-16 bg-gradient-to-r from-amber-500 via-violet-500 to-transparent transition-all duration-500 group-hover:w-28" />
                   </div>
                 </div>
               </Reveal>
