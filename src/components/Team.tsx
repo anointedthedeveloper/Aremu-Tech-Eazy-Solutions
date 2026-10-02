@@ -22,12 +22,22 @@ export default function Team() {
           </div>
         </Reveal>
 
-        <ul className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5 lg:grid-cols-5">
+        <ul className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5 lg:grid-cols-3 xl:grid-cols-6">
           {TEAM.map((member, i) => (
-            <Reveal key={member.photo.url} as="li" delay={(i % 5) * 0.05}>
+            <Reveal key={member.photo?.url ?? member.role ?? i} as="li" delay={(i % 6) * 0.05}>
               <figure className="overflow-hidden rounded-2xl border border-ink-200/70 bg-white dark:border-white/10 dark:bg-ink-900">
                 <div className="aspect-[4/5] overflow-hidden">
-                  <SmartImage image={member.photo} className="h-full w-full" />
+                  {member.photo ? (
+                    <SmartImage image={member.photo} className="h-full w-full" />
+                  ) : (
+                    <div
+                      role="img"
+                      aria-label={`${member.role ?? 'Team member'} — photo coming soon`}
+                      className="relative flex h-full w-full items-center justify-center bg-gradient-to-br from-violet-700 via-violet-600 to-amber-500"
+                    >
+                      <span className="font-display text-5xl font-bold tracking-tight text-white/90">&lt;/&gt;</span>
+                    </div>
+                  )}
                 </div>
                 <figcaption className="p-4">
                   <span className="mb-2.5 block h-0.5 w-8 rounded-full bg-gradient-to-r from-amber-500 to-violet-500" />
