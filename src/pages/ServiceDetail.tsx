@@ -6,7 +6,9 @@ import CallToAction from '../components/CallToAction'
 import { IconArrowRight, IconCheck } from '../components/icons'
 import { PROCESS_STEPS, TESTIMONIALS } from '../lib/constants'
 import { CONTACT } from '../lib/contact'
-import { SERVICES, getService, serviceHref } from '../lib/services'
+import WebProjectCard from '../components/WebProjectCard'
+import { getRelated, getService, serviceHref } from '../lib/services'
+import { getWebProjects } from '../lib/projects'
 import NotFound from './NotFound'
 
 const FAQ = [
@@ -25,8 +27,8 @@ export default function ServiceDetail() {
   const service = getService(slug)
   if (!service) return <NotFound />
 
-  const position = SERVICES.indexOf(service)
-  const others = [1, 2, 3].map((n) => SERVICES[(position + n) % SERVICES.length])
+  const related = getRelated(service)
+  const webProjects = getWebProjects(service.projectIds)
   const testimonial = service.testimonial !== undefined ? TESTIMONIALS[service.testimonial] : undefined
 
   return (
@@ -137,6 +139,23 @@ export default function ServiceDetail() {
         </section>
       )}
 
+      {webProjects.length > 0 && (
+        <section className="py-12 sm:py-16 lg:py-20">
+          <div className="mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
+            <Reveal>
+              <h2 className="text-2xl font-bold text-ink-950 dark:text-white sm:text-[1.9rem]">Completed project</h2>
+            </Reveal>
+            <div className="mt-6 space-y-6">
+              {webProjects.map((project) => (
+                <Reveal key={project.id}>
+                  <WebProjectCard project={project} />
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* how it works */}
       <section className="border-t border-ink-100 bg-paper-dim/60 py-12 dark:border-white/10 dark:bg-ink-900/50 sm:py-16 lg:py-20">
         <div className="mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
@@ -175,28 +194,35 @@ export default function ServiceDetail() {
         </div>
       </section>
 
-      {/* other services */}
+      {/* see also */}
       <section className="border-t border-ink-100 py-12 dark:border-white/10 sm:py-16">
         <div className="mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
           <Reveal className="flex items-end justify-between gap-4">
-            <h2 className="text-2xl font-bold text-ink-950 dark:text-white sm:text-[1.9rem]">Other services</h2>
+            <h2 className="text-2xl font-bold text-ink-950 dark:text-white sm:text-[1.9rem]">See also</h2>
             <Link to="/services" className="text-[14.5px] font-semibold text-violet-700 hover:underline dark:text-violet-400">All services</Link>
           </Reveal>
           <div className="mt-6 grid gap-4 sm:grid-cols-3">
-            {others.map((o) => (
+            {related.map((o) => (
               <Link
                 key={o.slug}
                 to={serviceHref(o)}
-                className="group rounded-2xl border border-ink-200/70 bg-white p-5 transition-shadow hover:shadow-lifted dark:border-white/10 dark:bg-ink-900"
+                className="group flex flex-col rounded-2xl border border-ink-200/70 bg-white p-5 transition-shadow hover:shadow-lifted dark:border-white/10 dark:bg-ink-900"
               >
                 <o.icon className="h-6 w-6 text-violet-600 dark:text-violet-400" />
                 <h3 className="mt-4 text-[16.5px] font-semibold text-ink-950 dark:text-white">{o.title}</h3>
-                <span className="mt-3 inline-flex items-center gap-1.5 text-[13.5px] font-semibold text-violet-700 dark:text-violet-400">
+                <p className="mt-2 flex-1 text-[14px] leading-relaxed text-ink-500 dark:text-ink-300">{o.description}</p>
+                <span className="mt-4 inline-flex items-center gap-1.5 text-[13.5px] font-semibold text-violet-700 dark:text-violet-400">
                   View details <IconArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                 </span>
               </Link>
             ))}
           </div>
+          <p className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-[14.5px] font-semibold">
+            <Link to="/projects" className="text-violet-700 hover:underline dark:text-violet-400">See our projects →</Link>
+            {service.applyCta && (
+              <Link to="/internship" className="text-violet-700 hover:underline dark:text-violet-400">How the internship works →</Link>
+            )}
+          </p>
         </div>
       </section>
 
