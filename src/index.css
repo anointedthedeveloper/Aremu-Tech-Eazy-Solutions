@@ -141,8 +141,8 @@
   }
 
   :root:not(.dark) .bg-deep {
-    --color-ink-950: #6a36bd;
-    --color-ink-900: #7a47cc;
+    --color-ink-950: #5b2eae;
+    --color-ink-900: #6a3dbd;
     --color-ink-800: #8a58d6;
     --color-ink-700: #9c70df;
     --color-ink-600: #b08ae8;
@@ -151,8 +151,8 @@
     --color-ink-300: #e6dbfa;
     --color-ink-200: #f2ebfd;
     --color-ink-100: #faf7ff;
-    background-color: #6a36bd;
-    background-image: linear-gradient(160deg, #6a36bd 0%, #7a46cf 100%);
+    background-color: #5b2eae;
+    background-image: linear-gradient(135deg, #52269f 0%, #6a38c2 55%, #7b4ad1 100%);
   }
 
   /* White cards sitting on a purple surface keep the normal (dark-on-light) text colours */

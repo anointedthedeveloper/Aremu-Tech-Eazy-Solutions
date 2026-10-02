@@ -35,7 +35,7 @@ export default function ServiceDetail() {
     <>
       {/* header */}
       <section className="bg-paper-dim/60 pt-28 pb-12 dark:bg-transparent sm:pt-32 sm:pb-16 lg:pt-36 lg:pb-20">
-        <div className="mx-auto grid max-w-[1240px] items-center gap-10 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 lg:px-8">
+        <div className="mx-auto grid max-w-[1600px] items-center gap-10 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 lg:px-8">
           <Reveal>
             <nav aria-label="Breadcrumb" className="text-[13px] text-ink-500 dark:text-ink-400">
               <Link to="/services" className="font-medium text-violet-700 hover:underline dark:text-violet-400">Services</Link>
@@ -65,7 +65,7 @@ export default function ServiceDetail() {
 
       {/* what's included */}
       <section className="py-12 sm:py-16 lg:py-20">
-        <div className="mx-auto grid max-w-[1240px] gap-10 px-4 sm:px-6 lg:grid-cols-[1.4fr_0.6fr] lg:gap-14 lg:px-8">
+        <div className="mx-auto grid max-w-[1600px] gap-10 px-4 sm:px-6 lg:grid-cols-[1.4fr_0.6fr] lg:gap-14 lg:px-8">
           <Reveal>
             <h2 className="text-2xl font-bold text-ink-950 dark:text-white sm:text-[1.9rem]">What&apos;s included</h2>
             <ul className="mt-6 grid gap-3 sm:grid-cols-2">
@@ -117,7 +117,7 @@ export default function ServiceDetail() {
       {/* media */}
       {(service.videos?.length || service.gallery?.length) && (
         <section className="py-12 sm:py-16 lg:py-20">
-          <div className="mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-10">
             <Reveal>
               <h2 className="text-2xl font-bold text-ink-950 dark:text-white sm:text-[1.9rem]">From the field</h2>
             </Reveal>
@@ -141,7 +141,7 @@ export default function ServiceDetail() {
 
       {webProjects.length > 0 && (
         <section className="py-12 sm:py-16 lg:py-20">
-          <div className="mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-10">
             <Reveal>
               <h2 className="text-2xl font-bold text-ink-950 dark:text-white sm:text-[1.9rem]">Completed project</h2>
             </Reveal>
@@ -158,7 +158,7 @@ export default function ServiceDetail() {
 
       {/* how it works */}
       <section className="border-t border-ink-100 bg-paper-dim/60 py-12 dark:border-white/10 dark:bg-ink-900/50 sm:py-16 lg:py-20">
-        <div className="mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-10">
           <Reveal>
             <h2 className="text-2xl font-bold text-ink-950 dark:text-white sm:text-[1.9rem]">How it works</h2>
           </Reveal>
@@ -196,7 +196,7 @@ export default function ServiceDetail() {
 
       {/* see also */}
       <section className="border-t border-ink-100 py-12 dark:border-white/10 sm:py-16">
-        <div className="mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-10">
           <Reveal className="flex items-end justify-between gap-4">
             <h2 className="text-2xl font-bold text-ink-950 dark:text-white sm:text-[1.9rem]">See also</h2>
             <Link to="/services" className="text-[14.5px] font-semibold text-violet-700 hover:underline dark:text-violet-400">All services</Link>

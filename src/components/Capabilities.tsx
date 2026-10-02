@@ -4,7 +4,7 @@ import { CAPABILITIES } from '../lib/constants'
 export default function Capabilities() {
   return (
     <section id="capabilities" className="py-16 sm:py-20 lg:py-24">
-      <div className="mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-10">
         <div className="grid gap-14 lg:grid-cols-2 lg:gap-16">
           <Reveal>
             <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-amber-600 dark:text-amber-400">

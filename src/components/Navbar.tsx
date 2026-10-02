@@ -11,8 +11,10 @@ import { IconArrowRight } from './icons'
 /** Three floating "islands": brand · links with a sliding highlight · actions. */
 const island =
   'pointer-events-auto rounded-full border backdrop-blur-xl transition-[background-color,box-shadow,border-color] duration-300'
-const islandTone = (solid: boolean) =>
-  solid
+const islandTone = (solid: boolean, onDark = false) =>
+  onDark
+    ? 'border-white/20 bg-black/25 shadow-[0_6px_24px_-14px_rgba(0,0,0,0.5)]'
+    : solid
     ? 'border-ink-200/80 bg-white/95 shadow-[0_10px_30px_-12px_rgba(70,35,130,0.35)] dark:border-white/10 dark:bg-ink-900/95'
     : 'border-white/50 bg-white/70 shadow-[0_6px_24px_-14px_rgba(70,35,130,0.3)] dark:border-white/10 dark:bg-ink-900/60'
 
@@ -33,6 +35,7 @@ export default function Navbar() {
 
   const active = NAV_LINKS.find((l) => isCurrent(pathname, l.href))?.href ?? null
   const pillAt = hovered ?? active
+  const onDark = pathname === '/' && !solid && !open // transparent glass over the home hero
   const servicesOpen = menuFor === pathname // closes automatically on navigation
 
   const openServices = () => {
@@ -68,22 +71,22 @@ export default function Navbar() {
 
   return (
     <header className="pointer-events-none fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6 sm:pt-4">
-      <div className="mx-auto flex max-w-[1240px] items-center justify-between gap-3">
+      <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-3">
         {/* brand island */}
         <Link
           to="/"
           aria-label="Aremu Tech Eazy Solutions — home"
-          className={`${island} ${islandTone(solid || open)} flex h-12 items-center pr-5 pl-3.5 sm:h-14`}
+          className={`${island} ${islandTone(solid || open, onDark)} flex h-12 items-center pr-5 pl-3.5 sm:h-14`}
         >
-          <span className="dark:hidden"><Logo variant="dark" /></span>
-          <span className="hidden dark:block"><Logo variant="light" /></span>
+          <span className={onDark ? 'hidden' : 'dark:hidden'}><Logo variant="dark" /></span>
+          <span className={onDark ? 'block' : 'hidden dark:block'}><Logo variant="light" /></span>
         </Link>
 
         {/* links island */}
         <nav
           aria-label="Primary"
           onMouseLeave={() => setHovered(null)}
-          className={`${island} ${islandTone(solid || open)} relative hidden items-center gap-1 p-1.5 lg:flex`}
+          className={`${island} ${islandTone(solid || open, onDark)} relative hidden items-center gap-1 p-1.5 lg:flex`}
         >
           {NAV_LINKS.map((link) => {
             const lit = pillAt === link.href
@@ -101,7 +104,7 @@ export default function Navbar() {
                 }}
                 onBlur={() => setHovered(null)}
                 className={`relative flex items-center gap-1 rounded-full px-4 py-2 text-[14px] font-medium transition-colors ${
-                  lit ? 'text-white' : 'text-ink-600 dark:text-ink-300'
+                  lit ? 'text-white' : onDark ? 'text-white/85' : 'text-ink-600 dark:text-ink-300'
                 }`}
               >
                 {lit && (
@@ -170,11 +173,11 @@ export default function Navbar() {
         </nav>
 
         {/* actions island */}
-        <div className={`${island} ${islandTone(solid || open)} flex items-center gap-1.5 p-1.5`}>
-          <ThemeToggle className="h-9 w-9 border-transparent bg-transparent dark:border-transparent dark:bg-transparent" />
+        <div className={`${island} ${islandTone(solid || open, onDark)} flex items-center gap-1.5 p-1.5`}>
+          <ThemeToggle className={`h-9 w-9 border-transparent bg-transparent dark:border-transparent dark:bg-transparent ${onDark ? 'text-white hover:bg-white/15' : ''}`} />
           <Link
             to="/apply"
-            className="hidden rounded-full px-4 py-2 text-[14px] font-semibold text-violet-700 transition-colors hover:bg-violet-100 sm:block dark:text-violet-300 dark:hover:bg-white/10"
+            className={`hidden rounded-full px-4 py-2 text-[14px] font-semibold transition-colors sm:block ${onDark ? 'text-white hover:bg-white/15' : 'text-violet-700 hover:bg-violet-100 dark:text-violet-300 dark:hover:bg-white/10'}`}
           >
             Apply
           </Link>
@@ -186,7 +189,7 @@ export default function Navbar() {
           </Link>
           <button
             type="button"
-            className="relative flex h-9 w-9 items-center justify-center rounded-full text-ink-900 hover:bg-violet-100 lg:hidden dark:text-white dark:hover:bg-white/10"
+            className={`relative flex h-9 w-9 items-center justify-center rounded-full lg:hidden ${onDark ? 'text-white hover:bg-white/15' : 'text-ink-900 hover:bg-violet-100 dark:text-white dark:hover:bg-white/10'}`}
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
             aria-controls="mobile-menu"

@@ -20,7 +20,7 @@ export default function Footer() {
       </div>
 
 
-      <div className="relative mx-auto max-w-[1240px] px-5 py-16 sm:px-8 lg:px-10 lg:py-20">
+      <div className="relative mx-auto max-w-[1600px] px-5 py-16 sm:px-8 lg:px-10 lg:py-20">
         <div className="grid gap-12 lg:grid-cols-[1.1fr_0.8fr_0.8fr_0.9fr] lg:gap-10">
           <div>
             <Logo variant="light" />

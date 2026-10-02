@@ -54,7 +54,7 @@ export default function InternshipPage() {
       </PageHeader>
 
       <section className="border-t border-ink-100 py-20 dark:border-white/10 sm:py-24 lg:py-28">
-        <div className="mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-10">
           <Reveal className="max-w-2xl">
             <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-violet-600 dark:text-violet-400">What You&apos;ll Learn</p>
             <h2 className="mt-4 text-balance text-3xl font-bold leading-tight text-ink-950 dark:text-white sm:text-[2.25rem]">
@@ -78,7 +78,7 @@ export default function InternshipPage() {
       </section>
 
       <section className="relative overflow-hidden bg-deep py-16 sm:py-20 lg:py-24">
-        <div className="relative mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
+        <div className="relative mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-10">
           <Reveal className="max-w-2xl">
             <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-amber-400">How It Works</p>
             <h2 className="mt-4 text-balance text-3xl font-bold leading-tight text-white sm:text-[2.25rem]">From application to your first install.</h2>
@@ -98,7 +98,7 @@ export default function InternshipPage() {
       </section>
 
       <section className="py-16 sm:py-20 lg:py-24">
-        <div className="mx-auto grid max-w-[1240px] items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-20 lg:px-10">
+        <div className="mx-auto grid max-w-[1600px] items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-20 lg:px-10">
           <Reveal>
             <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-amber-600 dark:text-amber-400">Who It&apos;s For</p>
             <h2 className="mt-4 text-balance text-3xl font-bold leading-tight text-ink-950 dark:text-white sm:text-[2.25rem]">

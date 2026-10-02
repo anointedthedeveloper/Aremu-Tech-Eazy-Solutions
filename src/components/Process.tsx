@@ -10,7 +10,7 @@ export default function Process() {
         <SmartImage image={IMAGES.siteCrew} variant="dark" showLabel={false} className="h-full w-full opacity-[0.16]" />
         <div className="absolute inset-0 bg-gradient-to-b from-ink-950 via-ink-950/95 to-ink-950" />
       </div>
-      <div className="relative mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-10">
         <Reveal className="max-w-2xl">
           <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-amber-400">
             How It Works
