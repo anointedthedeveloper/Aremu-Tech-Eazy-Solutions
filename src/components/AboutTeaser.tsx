@@ -5,7 +5,7 @@ import { IconArrowRight } from './icons'
 export default function AboutTeaser() {
   return (
     <section className="border-t border-ink-100 dark:border-white/10 py-14 sm:py-16 lg:py-20">
-      <div className="mx-auto max-w-8xl px-5 sm:px-8 lg:px-10">
+      <div className="mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
         <Reveal className="grid items-end gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <div>
             <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-amber-600 dark:text-amber-400">

@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import Reveal from './Reveal'
 import SmartImage from './SmartImage'
-import BrandTriangle from './BrandTriangle'
 import { IconArrowRight } from './icons'
 import { IMAGES } from '../lib/images'
 
@@ -15,16 +14,9 @@ const LEARNING = [
 export default function Internship() {
   return (
     <section id="internship" className="relative overflow-hidden bg-deep py-16 sm:py-20 lg:py-24">
-      <div className="brand-glow pointer-events-none absolute inset-0 opacity-80" />
-      <div className="relative mx-auto max-w-8xl px-5 sm:px-8 lg:px-10">
+      <div className="relative mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-[1fr_1fr] lg:gap-20">
           <Reveal className="relative">
-            <BrandTriangle
-              gradientId="internTri"
-              strokeWidth={2}
-              opacity={0.8}
-              className="pointer-events-none absolute -top-9 -left-4 z-10 h-24 w-24 sm:-left-8 sm:h-32 sm:w-32"
-            />
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/15 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.8)]">
               <SmartImage image={IMAGES.internWiring} variant="dark" showLabel={false} className="h-full w-full" />
               <div className="absolute inset-0 bg-gradient-to-t from-ink-950/70 via-transparent to-transparent" />
@@ -62,7 +54,7 @@ export default function Internship() {
             <div className="mt-9 flex flex-col gap-3.5 sm:flex-row sm:items-center">
               <Link
                 to="/internship"
-                className="group inline-flex items-center justify-center gap-2 rounded-full bg-amber-500 px-6 py-3.5 text-[15px] font-semibold text-ink-950 transition-colors hover:bg-amber-400"
+                className="group inline-flex items-center justify-center gap-2 rounded-full bg-amber-500 px-6 py-3.5 text-[15px] font-semibold text-[#1a1033] transition-colors hover:bg-amber-400"
               >
                 See how the internship works
                 <IconArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />

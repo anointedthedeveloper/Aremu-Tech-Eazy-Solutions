@@ -4,8 +4,7 @@ import { DIFFERENTIATORS } from '../lib/constants'
 export default function WhyChooseUs() {
   return (
     <section id="why-us" className="relative overflow-hidden py-16 sm:py-20 lg:py-24">
-      <div className="grid-lines pointer-events-none absolute inset-0 text-ink-100 dark:text-ink-800 [mask-image:radial-gradient(ellipse_50%_50%_at_100%_0%,black,transparent)]" />
-      <div className="relative mx-auto max-w-8xl px-5 sm:px-8 lg:px-10">
+      <div className="relative mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
           <Reveal>
             <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-amber-600 dark:text-amber-400">

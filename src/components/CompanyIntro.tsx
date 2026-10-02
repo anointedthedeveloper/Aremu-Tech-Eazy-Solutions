@@ -24,7 +24,7 @@ const POINTS = [
 export default function CompanyIntro() {
   return (
     <section className="border-t border-ink-100 dark:border-white/10 py-16 sm:py-20 lg:py-24">
-      <div className="mx-auto max-w-8xl px-5 sm:px-8 lg:px-10">
+      <div className="mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
         <div className="grid gap-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <Reveal className="relative">
             <div className="aspect-[4/5] overflow-hidden rounded-2xl border border-ink-200/70 dark:border-white/10 shadow-[0_24px_70px_-30px_rgba(13,14,19,0.35)]">
@@ -41,7 +41,7 @@ export default function CompanyIntro() {
                 Who We Are
               </p>
               <p className="mt-4 max-w-lg text-balance font-display text-[26px] leading-snug font-semibold text-ink-950 dark:text-white sm:text-[30px]">
-                We treat every enquiry like it&apos;s the only one that matters —
+                We treat every request like it&apos;s the only one that matters —
                 understood properly, explained clearly, resolved without drama.
               </p>
             </Reveal>

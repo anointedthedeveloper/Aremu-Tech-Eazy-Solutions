@@ -3,7 +3,7 @@ import Reveal from '../components/Reveal'
 import VideoCard from '../components/VideoCard'
 import SmartImage from '../components/SmartImage'
 import LabShowcase from '../components/LabShowcase'
-import EnquiryCTA from '../components/EnquiryCTA'
+import CallToAction from '../components/CallToAction'
 import { IMAGES, VIDEOS } from '../lib/images'
 
 const STAGES = [
@@ -34,7 +34,7 @@ export default function Projects() {
       />
 
       <section className="border-t border-ink-100 py-20 dark:border-white/10 sm:py-24 lg:py-28">
-        <div className="mx-auto max-w-8xl px-5 sm:px-8 lg:px-10">
+        <div className="mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
           <Reveal className="max-w-2xl">
             <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-violet-600 dark:text-violet-400">How A Lab Comes Together</p>
             <h2 className="mt-4 text-balance text-3xl font-bold leading-tight text-ink-950 dark:text-white sm:text-[2.25rem]">
@@ -63,8 +63,7 @@ export default function Projects() {
       <LabShowcase eyebrow="Finished Results" title="The labs, ready for exam day." text="Rows of cubicles, laptops in place, lighting and fans installed." />
 
       <section className="relative overflow-hidden bg-deep py-16 sm:py-20 lg:py-24">
-        <div className="brand-glow pointer-events-none absolute inset-0 opacity-80" />
-        <div className="relative mx-auto max-w-8xl px-5 sm:px-8 lg:px-10">
+        <div className="relative mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
           <Reveal className="max-w-2xl">
             <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-amber-400">On Site</p>
             <h2 className="mt-4 text-balance text-3xl font-bold leading-tight text-white sm:text-[2.25rem]">Footage from the field.</h2>
@@ -80,7 +79,7 @@ export default function Projects() {
         </div>
       </section>
 
-      <EnquiryCTA />
+      <CallToAction />
     </>
   )
 }

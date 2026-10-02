@@ -1,17 +1,19 @@
+import { Suspense, lazy } from 'react'
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
 import PageLoader from './components/PageLoader'
-import Home from './pages/Home'
-import ServicesPage from './pages/ServicesPage'
-import About from './pages/About'
-import Contact from './pages/Contact'
-import InternshipPage from './pages/InternshipPage'
-import Apply from './pages/Apply'
-import Projects from './pages/Projects'
+import { PageSkeleton } from './components/Skeleton'
 import { ThemeProvider } from './lib/theme'
+const Home = lazy(() => import('./pages/Home'))
+const ServicesPage = lazy(() => import('./pages/ServicesPage'))
+const About = lazy(() => import('./pages/About'))
+const Contact = lazy(() => import('./pages/Contact'))
+const InternshipPage = lazy(() => import('./pages/InternshipPage'))
+const Apply = lazy(() => import('./pages/Apply'))
+const Projects = lazy(() => import('./pages/Projects'))
 
 function AnimatedRoutes() {
   const location = useLocation()
@@ -26,6 +28,7 @@ function AnimatedRoutes() {
         exit={reduceMotion ? undefined : { opacity: 0 }}
         transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
       >
+        <Suspense fallback={<PageSkeleton />}>
         <Routes location={location}>
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<ServicesPage />} />
@@ -35,6 +38,7 @@ function AnimatedRoutes() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
+        </Suspense>
       </motion.div>
     </AnimatePresence>
   )

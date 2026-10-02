@@ -21,7 +21,7 @@ export default function LabShowcase({
 }: LabShowcaseProps) {
   return (
     <section className="border-t border-ink-100 py-20 dark:border-white/10 sm:py-24 lg:py-28">
-      <div className="mx-auto max-w-8xl px-5 sm:px-8 lg:px-10">
+      <div className="mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
         <Reveal className="max-w-2xl">
           <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-amber-600 dark:text-amber-400">{eyebrow}</p>
           <h2 className="mt-4 text-balance text-3xl font-bold leading-tight text-ink-950 dark:text-white sm:text-[2.25rem]">{title}</h2>

@@ -28,7 +28,7 @@ const THUMBS = [
 export default function Services() {
   return (
     <section className="border-t border-ink-100 dark:border-white/10 bg-paper dark:bg-ink-950 py-16 sm:py-20 lg:py-24">
-      <div className="mx-auto max-w-8xl px-5 sm:px-8 lg:px-10">
+      <div className="mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-20 sm:gap-24 lg:gap-28">
           {SERVICES.map((service, i) => {
             const Icon = ICONS[i % ICONS.length]

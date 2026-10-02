@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import PageHeader from '../components/PageHeader'
 import Reveal from '../components/Reveal'
 import SmartImage from '../components/SmartImage'
-import EnquiryCTA from '../components/EnquiryCTA'
+import CallToAction from '../components/CallToAction'
 import { IconArrowRight, IconChip, IconCheck, IconLayers, IconShieldCheck, IconTools, IconWifi } from '../components/icons'
 import { IMAGES } from '../lib/images'
 
@@ -29,9 +29,9 @@ const WHO = [
 ]
 
 const FAQ = [
-  { q: 'Do I need experience?', a: 'Curiosity and a willingness to learn matter most. Tell us your background in the enquiry and we’ll take it from there.' },
+  { q: 'Do I need experience?', a: 'Curiosity and a willingness to learn matter most. Tell us your background in your application and we’ll take it from there.' },
   { q: 'Where does the work happen?', a: 'On live project sites — computer labs and exam halls being fitted out — so expect to travel with the crew.' },
-  { q: 'Is the internship paid?', a: 'Arrangements are discussed individually. Mention what you’re looking for when you enquire.' },
+  { q: 'Is the internship paid?', a: 'Arrangements are discussed individually. Mention what you’re looking for when you apply.' },
   { q: 'How long does it run?', a: 'It depends on the projects running and your availability — we’ll agree this with you up front.' },
 ]
 
@@ -46,7 +46,7 @@ export default function InternshipPage() {
       >
         <Link
           to="/apply"
-          className="group mt-7 inline-flex items-center gap-2 rounded-full bg-amber-500 px-6 py-3.5 text-[15px] font-semibold text-ink-950 transition-colors hover:bg-amber-400"
+          className="group mt-7 inline-flex items-center gap-2 rounded-full bg-amber-500 px-6 py-3.5 text-[15px] font-semibold text-[#1a1033] transition-colors hover:bg-amber-400"
         >
           Apply now
           <IconArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
@@ -54,7 +54,7 @@ export default function InternshipPage() {
       </PageHeader>
 
       <section className="border-t border-ink-100 py-20 dark:border-white/10 sm:py-24 lg:py-28">
-        <div className="mx-auto max-w-8xl px-5 sm:px-8 lg:px-10">
+        <div className="mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
           <Reveal className="max-w-2xl">
             <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-violet-600 dark:text-violet-400">What You&apos;ll Learn</p>
             <h2 className="mt-4 text-balance text-3xl font-bold leading-tight text-ink-950 dark:text-white sm:text-[2.25rem]">
@@ -78,11 +78,10 @@ export default function InternshipPage() {
       </section>
 
       <section className="relative overflow-hidden bg-deep py-16 sm:py-20 lg:py-24">
-        <div className="brand-glow pointer-events-none absolute inset-0 opacity-80" />
-        <div className="relative mx-auto max-w-8xl px-5 sm:px-8 lg:px-10">
+        <div className="relative mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
           <Reveal className="max-w-2xl">
             <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-amber-400">How It Works</p>
-            <h2 className="mt-4 text-balance text-3xl font-bold leading-tight text-white sm:text-[2.25rem]">From enquiry to your first install.</h2>
+            <h2 className="mt-4 text-balance text-3xl font-bold leading-tight text-white sm:text-[2.25rem]">From application to your first install.</h2>
           </Reveal>
           <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
             {STEPS.map((step, i) => (
@@ -99,7 +98,7 @@ export default function InternshipPage() {
       </section>
 
       <section className="py-16 sm:py-20 lg:py-24">
-        <div className="mx-auto grid max-w-8xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:gap-20 lg:px-10">
+        <div className="mx-auto grid max-w-[1240px] items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-20 lg:px-10">
           <Reveal>
             <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-amber-600 dark:text-amber-400">Who It&apos;s For</p>
             <h2 className="mt-4 text-balance text-3xl font-bold leading-tight text-ink-950 dark:text-white sm:text-[2.25rem]">
@@ -128,7 +127,7 @@ export default function InternshipPage() {
       </section>
 
       <section className="border-t border-ink-100 bg-paper-dim/60 py-20 dark:border-white/10 dark:bg-ink-900/50 sm:py-24">
-        <div className="mx-auto max-w-3xl px-5 sm:px-8">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <Reveal>
             <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-violet-600 dark:text-violet-400">Questions</p>
             <h2 className="mt-4 text-3xl font-bold text-ink-950 dark:text-white sm:text-[2.25rem]">Before you apply.</h2>
@@ -147,7 +146,7 @@ export default function InternshipPage() {
         </div>
       </section>
 
-      <EnquiryCTA />
+      <CallToAction variant="apply" />
     </>
   )
 }

@@ -1,8 +1,3 @@
-export const ENQUIRY_FORM_URL =
-  'https://docs.google.com/forms/d/e/1FAIpQLScKwMM3OcD6H2yIfEEmFz2eTdlrljdfRiVbtXdHizm3S1BRBg/viewform'
-
-export const ENQUIRY_FORM_EMBED_URL = `${ENQUIRY_FORM_URL}?embedded=true`
-
 export const COMPANY_NAME = 'Aremu Tech Eazy Solutions'
 
 export const NAV_LINKS = [
@@ -11,7 +6,6 @@ export const NAV_LINKS = [
   { label: 'Projects', href: '/projects' },
   { label: 'Internship', href: '/internship' },
   { label: 'About', href: '/about' },
-  { label: 'Contact', href: '/contact' },
 ]
 
 export interface Service {
@@ -82,7 +76,7 @@ export const PROCESS_STEPS: ProcessStep[] = [
     index: '01',
     title: 'Tell us what you need',
     description:
-      'Submit an enquiry describing the problem or request. No technical jargon required — just what’s going on.',
+      'Contact us and describe the problem or request. No technical jargon required — just what’s going on.',
   },
   {
     index: '02',
@@ -123,7 +117,7 @@ export const DIFFERENTIATORS: Differentiator[] = [
   {
     title: 'Built around real requests',
     description:
-      'Every enquiry starts with understanding what you’re trying to get done, not fitting you into a fixed package.',
+      'Every request starts with understanding what you’re trying to get done, not fitting you into a fixed package.',
   },
   {
     title: 'Responsive follow-through',

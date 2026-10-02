@@ -6,7 +6,7 @@ import Capabilities from '../components/Capabilities'
 import Team from '../components/Team'
 import LabShowcase from '../components/LabShowcase'
 import VisionMission from '../components/VisionMission'
-import EnquiryCTA from '../components/EnquiryCTA'
+import CallToAction from '../components/CallToAction'
 import { IMAGES } from '../lib/images'
 
 export default function About() {
@@ -25,7 +25,7 @@ export default function About() {
       <Internship />
       <WhyChooseUs />
       <Capabilities />
-      <EnquiryCTA />
+      <CallToAction />
     </>
   )
 }
