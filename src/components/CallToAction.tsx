@@ -24,7 +24,7 @@ export default function CallToAction({ variant = 'contact' }: { variant?: keyof 
 
   return (
     <section className="py-12 sm:py-16 lg:py-20">
-      <div className="mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-10">
         <Reveal className="bg-deep relative overflow-hidden rounded-3xl px-6 py-12 sm:px-12 sm:py-14 lg:flex lg:items-center lg:justify-between lg:gap-12 lg:py-16">
           <div className="max-w-xl">
             <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-amber-400">{c.eyebrow}</p>

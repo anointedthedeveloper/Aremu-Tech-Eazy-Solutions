@@ -4,7 +4,7 @@ import { VALUES } from '../lib/constants'
 export default function VisionMission() {
   return (
     <section className="relative overflow-hidden bg-deep py-16 sm:py-20 lg:py-24">
-      <div className="relative mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-10">
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
           <Reveal>
             <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-amber-400">Our Vision</p>

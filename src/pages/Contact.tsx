@@ -14,7 +14,7 @@ export default function Contact() {
 
   return (
     <section className="bg-paper-dim/60 pt-28 pb-14 dark:bg-transparent sm:pt-32 lg:pt-36 lg:pb-20">
-      <div className="mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-10">
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
           <Reveal>
             <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-amber-600 dark:text-amber-400">Contact Us</p>

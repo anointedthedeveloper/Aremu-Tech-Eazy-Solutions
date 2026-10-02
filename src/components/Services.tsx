@@ -7,7 +7,7 @@ import { SERVICES, serviceHref } from '../lib/services'
 export default function Services() {
   return (
     <section className="py-12 sm:py-16 lg:py-20">
-      <div className="mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-10">
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
           {SERVICES.map((service, i) => (
             <Reveal key={service.slug} delay={(i % 3) * 0.06}>

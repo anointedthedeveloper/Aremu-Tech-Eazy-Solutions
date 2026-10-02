@@ -7,6 +7,7 @@ interface SmartImageProps {
   loading?: 'lazy' | 'eager'
   variant?: 'light' | 'dark'
   showLabel?: boolean
+  objectPosition?: string
 }
 
 export default function SmartImage({
@@ -15,6 +16,7 @@ export default function SmartImage({
   loading = 'lazy',
   variant = 'light',
   showLabel = true,
+  objectPosition,
 }: SmartImageProps) {
   const [failed, setFailed] = useState(false)
   const [loaded, setLoaded] = useState(false)
@@ -40,6 +42,7 @@ export default function SmartImage({
         alt={image.alt}
         loading={loading}
         decoding="async"
+        style={objectPosition ? { objectPosition } : undefined}
         onLoad={() => setLoaded(true)}
         onError={() => setFailed(true)}
         className={`h-full w-full object-cover transition-opacity duration-500 ${loaded ? 'opacity-100' : 'opacity-0'}`}

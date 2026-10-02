@@ -5,7 +5,7 @@ import { TEAM, TEAM_GROUP } from '../lib/team'
 export default function Team() {
   return (
     <section id="team" className="border-t border-ink-100 bg-paper-dim/60 py-12 dark:border-white/10 dark:bg-ink-900/50 sm:py-16 lg:py-20">
-      <div className="mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-10">
         <Reveal className="max-w-2xl">
           <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-violet-600 dark:text-violet-400">The Team</p>
           <h2 className="mt-3 text-balance text-3xl font-bold leading-tight text-ink-950 dark:text-white sm:text-[2.25rem]">

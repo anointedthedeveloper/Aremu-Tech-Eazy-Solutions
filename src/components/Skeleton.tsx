@@ -7,7 +7,7 @@ export function PageSkeleton() {
   return (
     <div role="status" aria-label="Loading page" className="pt-28 pb-16 sm:pt-32">
       <span className="sr-only">Loading…</span>
-      <div className="mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-10">
         <Skeleton className="h-3.5 w-28" />
         <Skeleton className="mt-5 h-10 w-full max-w-xl sm:h-14" />
         <Skeleton className="mt-3 h-10 w-3/4 max-w-md sm:h-14" />

@@ -14,7 +14,7 @@ const LEARNING = [
 export default function Internship() {
   return (
     <section id="internship" className="relative overflow-hidden bg-deep py-16 sm:py-20 lg:py-24">
-      <div className="relative mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-10">
         <div className="grid items-center gap-12 lg:grid-cols-[1fr_1fr] lg:gap-20">
           <Reveal className="relative">
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/15 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.8)]">

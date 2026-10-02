@@ -4,6 +4,7 @@ import trunkingInstall from '../assets/photos/trunking-install.jpg'
 import labTechnician from '../assets/photos/lab-technician.jpg'
 import jambReadiness from '../assets/photos/jamb-readiness.jpg'
 import measuringWall from '../assets/photos/measuring-wall.jpg'
+import heroTeam from '../assets/photos/hero-team.jpg'
 import etakTravels from '../assets/photos/etak-travels.jpg'
 import labWoodRows from '../assets/photos/lab-wood-rows.jpg'
 import labWoodDesk from '../assets/photos/lab-wood-desk.jpg'
@@ -83,6 +84,10 @@ export const IMAGES = {
   jambReadiness: {
     url: jambReadiness,
     alt: 'Laptop showing the JAMB Test system readiness inspection passing',
+  },
+  heroTeam: {
+    url: heroTeam,
+    alt: 'The Aremu Tech Eazy Solutions team in branded hi-vis vests inside a CBT centre',
   },
   etakTravels: {
     url: etakTravels,

@@ -13,7 +13,7 @@ const FEATURED = [
 export default function ServicesTeaser() {
   return (
     <section className="border-t border-ink-100 dark:border-white/10 bg-paper-dim/50 dark:bg-ink-900/50 py-16 sm:py-20 lg:py-24">
-      <div className="mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-10">
         <Reveal className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-amber-600 dark:text-amber-400">
