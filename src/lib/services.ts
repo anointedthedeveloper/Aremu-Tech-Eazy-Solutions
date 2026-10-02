@@ -29,6 +29,10 @@ export interface Service {
   testimonial?: number
   /** Training also has an application route. */
   applyCta?: boolean
+  /** Slugs shown in the page's "See also" section. */
+  related: string[]
+  /** Completed web projects to feature (ids from lib/projects). */
+  projectIds?: string[]
 }
 
 export const SERVICES: Service[] = [
@@ -56,6 +60,7 @@ export const SERVICES: Service[] = [
     gallery: [IMAGES.labWoodRows, IMAGES.labWoodDesk, IMAGES.siteCrew, IMAGES.jambReadiness],
     videos: [VIDEOS.cubicleSetup, VIDEOS.labOverview, VIDEOS.fieldTesting],
     testimonial: 0,
+    related: ['networking-cabling', 'cctv-surveillance', 'computer-sales-supply'],
   },
   {
     index: '02',
@@ -78,6 +83,7 @@ export const SERVICES: Service[] = [
     image: IMAGES.labTechnician,
     icon: IconTools,
     testimonial: 2,
+    related: ['software-installation', 'computer-sales-supply', 'networking-cabling'],
   },
   {
     index: '03',
@@ -97,6 +103,7 @@ export const SERVICES: Service[] = [
     bestFor: ['Schools', 'Design and engineering firms', 'Offices', 'Individuals'],
     image: IMAGES.jambReadiness,
     icon: IconLayers,
+    related: ['hardware-maintenance-repair', 'ict-training', 'computer-sales-supply'],
   },
   {
     index: '04',
@@ -118,6 +125,7 @@ export const SERVICES: Service[] = [
     icon: IconWifi,
     videos: [VIDEOS.cablingInstall, VIDEOS.trunkingFit],
     gallery: [IMAGES.measuringWall],
+    related: ['cctv-surveillance', 'cbt-ict-centre-setup', 'hardware-maintenance-repair'],
   },
   {
     index: '05',
@@ -137,6 +145,7 @@ export const SERVICES: Service[] = [
     image: IMAGES.serviceCctv,
     icon: IconShieldCheck,
     testimonial: 3,
+    related: ['networking-cabling', 'cbt-ict-centre-setup', 'hardware-maintenance-repair'],
   },
   {
     index: '06',
@@ -159,6 +168,7 @@ export const SERVICES: Service[] = [
     icon: IconCompass,
     videos: [VIDEOS.crewWiring],
     applyCta: true,
+    related: ['software-installation', 'cbt-ict-centre-setup', 'software-web-development'],
   },
   {
     index: '07',
@@ -177,6 +187,8 @@ export const SERVICES: Service[] = [
     bestFor: ['Schools', 'Businesses', 'Travel and service companies', 'Organisations going digital'],
     image: IMAGES.serviceWeb,
     icon: IconGlobe,
+    related: ['software-installation', 'ict-training', 'cbt-ict-centre-setup'],
+    projectIds: ['etak-travels'],
   },
   {
     index: '08',
@@ -196,11 +208,16 @@ export const SERVICES: Service[] = [
     bestFor: ['Individuals', 'Offices', 'Schools', 'CBT centre owners'],
     image: IMAGES.serviceDevices,
     icon: IconChip,
+    related: ['hardware-maintenance-repair', 'software-installation', 'cbt-ict-centre-setup'],
   },
 ]
 
 export function getService(slug: string | undefined) {
   return SERVICES.find((s) => s.slug === slug)
+}
+
+export function getRelated(service: Service) {
+  return service.related.map((slug) => getService(slug)).filter((s): s is Service => Boolean(s))
 }
 
 export function serviceHref(service: Service) {

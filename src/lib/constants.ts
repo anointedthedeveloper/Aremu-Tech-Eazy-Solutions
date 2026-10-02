@@ -88,6 +88,7 @@ export const CLIENTS = [
   'Goshen High School',
   'Sada, Idris & Co.',
   'Amiable Academy',
+  'Etak Travels & Tours Expert Limited',
 ]
 
 export const TESTIMONIALS = [
