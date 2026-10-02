@@ -3,7 +3,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import VideoCard from './VideoCard'
 import SmartImage from './SmartImage'
-import { IconArrowRight } from './icons'
+import { IconArrowRight, IconCheck } from './icons'
 import { IMAGES, VIDEOS, type SiteImage, type SiteVideo } from '../lib/images'
 
 interface Cta {
@@ -15,6 +15,7 @@ interface BaseSlide {
   kicker: string
   title: string
   text: string
+  points: string[]
   primary: Cta
   secondary: Cta
 }
@@ -37,6 +38,7 @@ const SLIDES: Slide[] = [
     kicker: 'ICT services & CBT centres · Abuja, Nigeria',
     title: 'We keep your technology working, so you don’t have to.',
     text: 'An ICT services and supplies company serving clients nationwide — from a single laptop to a full CBT exam hall.',
+    points: ['CBT centres, ICT labs and school setups', 'Repairs, networking, CCTV and software', 'Fair prices, on-site and remote support'],
     primary: { to: '/contact', label: 'Contact Us' },
     secondary: { to: '/services', label: 'Our services' },
   },
@@ -46,6 +48,7 @@ const SLIDES: Slide[] = [
     kicker: 'CBT centre setup',
     title: 'Every station tested before exam day.',
     text: 'We set up, configure and check each machine — so candidates sit down to a system that just works.',
+    points: ['Cabling, cubicles and laptops installed', 'Station-by-station readiness checks', 'Ongoing management after launch'],
     primary: { to: '/services/cbt-ict-centre-setup', label: 'See CBT setup' },
     secondary: { to: '/projects', label: 'Our projects' },
   },
@@ -56,6 +59,7 @@ const SLIDES: Slide[] = [
     kicker: 'Completed labs',
     title: 'From an empty room to an exam-ready hall.',
     text: 'Cubicles, laptops, lighting and cabling — fitted out and handed over ready to use.',
+    points: ['Wooden cubicles, lighting and fans fitted', 'Every laptop configured and tested', 'Handed over ready for exam day'],
     primary: { to: '/projects', label: 'See our work' },
     secondary: { to: '/contact', label: 'Contact Us' },
   },
@@ -65,6 +69,7 @@ const SLIDES: Slide[] = [
     kicker: 'Networking, cabling & CCTV',
     title: 'Cabling and networks, done properly.',
     text: 'Structured cabling, trunking, CCTV and connectivity for offices, schools and homes.',
+    points: ['Structured cabling and neat trunking', 'Wired and wireless CCTV', 'Office, school and home networks'],
     primary: { to: '/services/networking-cabling', label: 'Networking & cabling' },
     secondary: { to: '/services/cctv-surveillance', label: 'CCTV' },
   },
@@ -75,6 +80,7 @@ const SLIDES: Slide[] = [
     kicker: 'Internship & training',
     title: 'Learn the trade on real projects.',
     text: 'Apprenticeships and IT/SIWES/NYSC placements working alongside our crews on live installations.',
+    points: ['Apprenticeship and IT/SIWES/NYSC', 'Work with real crews on live sites', 'Upload your documents online'],
     primary: { to: '/apply', label: 'Apply Now' },
     secondary: { to: '/internship', label: 'How it works' },
   },
@@ -180,12 +186,22 @@ export default function Hero() {
               eager
               className="aspect-[9/16] h-[min(76svh,780px)] rounded-3xl border border-white/20 shadow-[0_40px_90px_-30px_rgba(0,0,0,0.9)]"
             />
+            <span className="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 px-3 py-1.5 text-[12px] font-semibold text-white backdrop-blur-md">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-500 opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500" />
+              </span>
+              On site · sped up
+            </span>
+            <p className="absolute right-4 bottom-4 left-4 rounded-2xl bg-black/55 px-4 py-3 text-[13px] leading-snug text-white backdrop-blur-md">
+              {slide.video.alt}
+            </p>
           </motion.div>
         )}
       </AnimatePresence>
 
       {/* copy */}
-      <div className="relative z-20 mx-auto flex h-full max-w-[1600px] flex-col justify-end px-4 pt-28 pb-24 sm:px-6 sm:pb-28 lg:px-10">
+      <div className={`relative z-20 mx-auto flex h-full max-w-[1600px] flex-col justify-end px-4 pt-28 pb-24 sm:px-6 sm:pb-28 lg:px-10 ${slide.kind === 'video' ? 'lg:justify-center lg:pb-24' : ''}`}>
         <AnimatePresence mode="wait">
           <motion.div
             key={index}
@@ -201,6 +217,16 @@ export default function Hero() {
               {slide.title}
             </h1>
             <p className="mt-4 max-w-lg text-[16px] leading-relaxed text-white/85 sm:text-[17.5px]">{slide.text}</p>
+            <ul className="mt-5 hidden space-y-2 sm:block">
+              {slide.points.map((pt) => (
+                <li key={pt} className="flex items-center gap-2.5 text-[14.5px] text-white/90">
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-amber-400/20 text-amber-300">
+                    <IconCheck className="h-3 w-3" />
+                  </span>
+                  {pt}
+                </li>
+              ))}
+            </ul>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Link to={slide.primary.to} className={`${btn} group bg-amber-500 text-[#1a1033] hover:bg-amber-400`}>
                 {slide.primary.label}
@@ -243,7 +269,15 @@ export default function Hero() {
               </li>
             ))}
           </ol>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
+            <p className="hidden text-right text-[12.5px] leading-tight text-white/80 lg:block">
+              <span className="block text-[11px] tracking-[0.12em] text-white/60 uppercase">Next up</span>
+              <span className="font-semibold text-white">{SLIDES[(index + 1) % count].kicker}</span>
+            </p>
+            <span className="font-display text-[15px] font-semibold text-white tabular-nums">
+              {String(index + 1).padStart(2, '0')}
+              <span className="text-white/50"> / {String(count).padStart(2, '0')}</span>
+            </span>
             <button type="button" onClick={() => go(index - 1)} aria-label="Previous slide" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-white/10 text-white backdrop-blur-sm transition-colors hover:bg-white/25">
               <IconArrowRight className="h-4 w-4 rotate-180" />
             </button>

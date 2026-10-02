@@ -5,7 +5,6 @@ import {
   APPLICATION_ENDPOINT,
   BRANCHES,
   FORM_NAME,
-  FORM_TITLE,
   MAX_FILE_MB,
   MODE_FIELD,
   PAGE_ONE,
@@ -17,7 +16,11 @@ import {
 import { IconArrowRight, IconCheck } from './icons'
 import { EMAIL_RE, inputClass } from '../lib/formStyles'
 
-const STEP_LABELS = ['Rules', 'Details', 'Documents']
+const STEP_LABELS = ['Rules', 'About you', 'Training', 'Documents']
+const LAST_STEP = STEP_LABELS.length - 1
+const PAGE_ABOUT = PAGE_TWO.slice(0, 9) // surname … phone
+const PAGE_TRAINING = PAGE_TWO.slice(9) // education … mode of training
+const WIDE = ['Residential Address', 'Reason for Applying', 'Any health challenge? If yes what']
 
 
 function fieldId(label: string) {
@@ -57,6 +60,7 @@ export default function ApplicationForm() {
   const [files, setFiles] = useState<Record<string, string>>({})
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [submitting, setSubmitting] = useState(false)
+  const bodyRef = useRef<HTMLDivElement>(null)
 
   const mode = values[MODE_FIELD] ?? ''
   const branchFields = BRANCHES[mode]
@@ -96,13 +100,13 @@ export default function ApplicationForm() {
       need('Email', EMAIL_RE.test(email), email ? 'Enter a valid email address.' : 'Email is required.')
       need(AGREE_FIELD, values[AGREE_FIELD] === AGREE_YES, 'You must agree to the requirements to continue.')
     }
-    if (target === 1) {
-      for (const f of PAGE_TWO) {
+    if (target === 1 || target === 2) {
+      for (const f of target === 1 ? PAGE_ABOUT : PAGE_TRAINING) {
         const v = (values[f.label] ?? '').trim()
         if (f.required && !v) found[f.label] = f.type === 'dropdown' || f.type === 'radio' ? 'Please choose an option.' : 'This field is required.'
       }
     }
-    if (target === 2) {
+    if (target === 3) {
       for (const f of branchFields ?? []) {
         const input = document.getElementById(fieldId(`${mode} ${f.label}`)) as HTMLInputElement | null
         if (f.required && !input?.files?.length) found[f.label] = 'Please upload this document.'
@@ -119,23 +123,22 @@ export default function ApplicationForm() {
       return
     }
     setStep((s) => s + 1)
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    bodyRef.current?.scrollTo({ top: 0 })
   }
 
   const goBack = () => {
     setStep((s) => Math.max(0, s - 1))
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    bodyRef.current?.scrollTo({ top: 0 })
   }
 
   const onSubmit = (event: FormEvent) => {
     event.preventDefault()
-    if (step < 2) return goNext()
-    const found = { ...validate(0), ...validate(1), ...validate(2) }
+    if (step < LAST_STEP) return goNext()
+    const checks = [0, 1, 2, 3].map(validate)
+    const found = Object.assign({}, ...checks)
     setErrors(found)
     if (Object.keys(found).length) {
-      const firstLabel = Object.keys(found)[0]
-      const inEarlierStep = firstLabel in validate(0) ? 0 : firstLabel in validate(1) ? 1 : 2
-      setStep(inEarlierStep)
+      setStep(checks.findIndex((c) => Object.keys(c).length > 0))
       requestAnimationFrame(() => document.querySelector<HTMLElement>('section:not(.hidden) [aria-invalid="true"]')?.focus())
       return
     }
@@ -257,7 +260,7 @@ export default function ApplicationForm() {
       encType="multipart/form-data"
       noValidate
       onSubmit={onSubmit}
-      className="light-surface overflow-hidden rounded-2xl border border-ink-200/70 bg-white shadow-lifted dark:border-white/10 dark:bg-ink-900"
+      className="light-surface flex h-full min-h-0 flex-col overflow-hidden rounded-3xl border border-ink-200/70 bg-white shadow-lifted dark:border-white/10 dark:bg-ink-900"
     >
       <input type="hidden" name="_subject" value={`New application: ${values['First name'] ?? ''} ${values.Surname ?? ''} (${mode || 'no mode'})`} />
       <input type="hidden" name="_next" value={nextUrl} />
@@ -265,30 +268,34 @@ export default function ApplicationForm() {
       <input type="hidden" name="_template" value="table" />
       <input type="text" name="_honey" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
 
-      <header className="border-b border-ink-100 bg-paper-dim/60 px-5 py-5 dark:border-white/10 dark:bg-white/5 sm:px-8">
-        <p className="font-display text-[13px] font-bold tracking-[0.14em] text-violet-700 dark:text-violet-400">{FORM_TITLE}</p>
-        <h2 className="mt-1 font-display text-[22px] font-bold text-ink-950 dark:text-white sm:text-[26px]">{FORM_NAME}</h2>
-        <ol className="mt-5 grid grid-cols-3 gap-2" aria-label="Progress">
+      <header className="shrink-0 border-b border-ink-100 px-5 py-4 dark:border-white/10 sm:px-8">
+        <div className="flex items-baseline justify-between gap-3">
+          <h2 className="font-display text-[17px] font-bold text-ink-950 dark:text-white sm:text-[19px]">{FORM_NAME}</h2>
+          <p className="shrink-0 text-[12.5px] font-semibold text-violet-700 dark:text-violet-400">
+            Step {step + 1} of {STEP_LABELS.length}
+          </p>
+        </div>
+        <ol className="mt-3 grid grid-cols-4 gap-2" aria-label="Progress">
           {STEP_LABELS.map((label, i) => (
             <li key={label} aria-current={i === step ? 'step' : undefined}>
               <span className={`block h-1.5 rounded-full transition-colors ${i <= step ? 'bg-gradient-to-r from-amber-500 to-violet-500' : 'bg-ink-100 dark:bg-white/10'}`} />
-              <span className={`mt-2 flex items-center gap-1.5 text-[12px] font-semibold sm:text-[13px] ${i === step ? 'text-ink-950 dark:text-white' : 'text-ink-400'}`}>
-                {i < step ? <IconCheck className="h-3.5 w-3.5 text-emerald-500" /> : <span>{i + 1}.</span>}
-                {label}
+              <span className={`mt-1.5 flex items-center gap-1 text-[11.5px] font-semibold sm:text-[12.5px] ${i === step ? 'text-ink-950 dark:text-white' : 'text-ink-400'}`}>
+                {i < step && <IconCheck className="h-3 w-3 text-emerald-500" />}
+                <span className="truncate">{label}</span>
               </span>
             </li>
           ))}
         </ol>
       </header>
 
-      <div className="px-5 py-7 sm:px-8 sm:py-9">
+      <div ref={bodyRef} className="min-h-0 flex-1 overflow-y-auto px-5 py-5 sm:px-8 sm:py-6">
         {/* Page 1 */}
-        <section className={step === 0 ? 'space-y-7' : 'hidden'} aria-hidden={step !== 0}>
+        <section className={step === 0 ? 'space-y-5' : 'hidden'} aria-hidden={step !== 0}>
           {PAGE_ONE.map((f) => renderField(f))}
 
           <div>
             <h3 className="font-display text-[17px] font-bold text-ink-950 dark:text-white">REQUIREMENTS</h3>
-            <ol className="mt-3 max-h-72 list-decimal space-y-2.5 overflow-y-auto rounded-xl border border-ink-200 bg-paper-dim/60 py-4 pr-4 pl-9 text-[14.5px] leading-relaxed text-ink-700 dark:border-white/10 dark:bg-white/5 dark:text-ink-200">
+            <ol className="mt-3 max-h-[30svh] list-decimal space-y-2.5 overflow-y-auto rounded-xl border border-ink-200 bg-paper-dim/60 py-4 pr-4 pl-9 text-[14.5px] leading-relaxed text-ink-700 dark:border-white/10 dark:bg-white/5 dark:text-ink-200">
               {REQUIREMENTS.map((rule) => (
                 <li key={rule}>{rule}</li>
               ))}
@@ -330,25 +337,31 @@ export default function ApplicationForm() {
           </div>
         </section>
 
-        {/* Page 2 */}
-        <section className={step === 1 ? 'grid gap-x-6 gap-y-6 sm:grid-cols-2' : 'hidden'} aria-hidden={step !== 1}>
-          {PAGE_TWO.map((f) => {
-            const wide = f.type === 'radio' || ['Residential Address', 'Reason for Applying', 'Any health challenge? If yes what', 'Skills/Experience (if any)', 'Educational Background'].includes(f.label)
-            return (
-              <div key={f.label} className={wide ? 'sm:col-span-2' : ''}>
-                {renderField(f)}
-              </div>
-            )
-          })}
+        {/* Page 2: about you */}
+        <section className={step === 1 ? 'grid gap-x-5 gap-y-5 sm:grid-cols-2' : 'hidden'} aria-hidden={step !== 1}>
+          {PAGE_ABOUT.map((f) => (
+            <div key={f.label} className={WIDE.includes(f.label) ? 'sm:col-span-2' : ''}>
+              {renderField(f)}
+            </div>
+          ))}
+        </section>
+
+        {/* Page 2 (continued): training */}
+        <section className={step === 2 ? 'grid gap-x-5 gap-y-5 sm:grid-cols-2' : 'hidden'} aria-hidden={step !== 2}>
+          {PAGE_TRAINING.map((f) => (
+            <div key={f.label} className={WIDE.includes(f.label) || f.label === MODE_FIELD ? 'sm:col-span-2' : ''}>
+              {renderField(f)}
+            </div>
+          ))}
         </section>
 
         {/* Page 3 / 4: branch by Mode of Training — both stay mounted so selected files are submitted */}
-        <section className={step === 2 ? 'space-y-6' : 'hidden'} aria-hidden={step !== 2}>
+        <section className={step === 3 ? 'space-y-5' : 'hidden'} aria-hidden={step !== 3}>
           <div className="rounded-xl border border-violet-100 bg-violet-100/40 px-4 py-3 text-[14px] text-violet-900 dark:border-white/10 dark:bg-violet-500/10 dark:text-ink-200">
             Documents for <strong>{mode || 'your chosen mode'}</strong>. Each file can be up to {MAX_FILE_MB} MB.
           </div>
           {Object.entries(BRANCHES).map(([name, fields]) => (
-            <fieldset key={name} disabled={mode !== name} className={mode === name ? 'space-y-6' : 'hidden'}>
+            <fieldset key={name} disabled={mode !== name} className={mode === name ? 'grid gap-x-5 gap-y-5 sm:grid-cols-2' : 'hidden'}>
               <legend className="sr-only">{name} documents</legend>
               {fields.map((f) => renderField(f, name))}
             </fieldset>
@@ -356,7 +369,7 @@ export default function ApplicationForm() {
         </section>
       </div>
 
-      <footer className="flex items-center justify-between gap-3 border-t border-ink-100 bg-paper-dim/60 px-5 py-4 dark:border-white/10 dark:bg-white/5 sm:px-8">
+      <footer className="flex shrink-0 items-center justify-between gap-3 border-t border-ink-100 bg-paper-dim/60 px-5 py-3.5 dark:border-white/10 dark:bg-white/5 sm:px-8">
         <button
           type="button"
           onClick={goBack}
@@ -364,7 +377,7 @@ export default function ApplicationForm() {
         >
           Back
         </button>
-        {step < 2 ? (
+        {step < LAST_STEP ? (
           <button
             type="button"
             onClick={goNext}
