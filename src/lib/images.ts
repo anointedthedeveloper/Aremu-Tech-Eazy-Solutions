@@ -3,6 +3,9 @@ import siteCrew from '../assets/photos/site-crew.jpg'
 import trunkingInstall from '../assets/photos/trunking-install.jpg'
 import labTechnician from '../assets/photos/lab-technician.jpg'
 import jambReadiness from '../assets/photos/jamb-readiness.jpg'
+import labWoodRows from '../assets/photos/lab-wood-rows.jpg'
+import labWoodDesk from '../assets/photos/lab-wood-desk.jpg'
+import labWoodHall from '../assets/photos/lab-wood-hall.jpg'
 
 export interface SiteImage {
   url: string
@@ -63,6 +66,18 @@ export const IMAGES = {
   jambReadiness: {
     url: jambReadiness,
     alt: 'Laptop showing the JAMB Test system readiness inspection passing',
+  },
+  labWoodRows: {
+    url: labWoodRows,
+    alt: 'Completed computer lab with rows of wooden cubicles and laptops under ceiling fans',
+  },
+  labWoodDesk: {
+    url: labWoodDesk,
+    alt: 'Laptop set up in a wooden exam cubicle with more cubicles stretching into the hall',
+  },
+  labWoodHall: {
+    url: labWoodHall,
+    alt: 'Large exam hall with dozens of wooden cubicles, each with a laptop installed',
   },
   serviceWeb: {
     url: unsplash('photo-1547658719-da2b51169166', 900),

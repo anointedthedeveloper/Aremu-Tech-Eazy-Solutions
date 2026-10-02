@@ -20,13 +20,13 @@ export default function PageHeader({ eyebrow, title, description, image, childre
       </div>
       <div className="mx-auto grid max-w-8xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10 lg:px-10">
         <Reveal>
-          <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-amber-600">
+          <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-amber-600 dark:text-amber-400">
             {eyebrow}
           </p>
-          <h1 className="mt-4 text-balance text-[2.25rem] font-bold leading-[1.1] tracking-tight text-ink-950 sm:text-5xl">
+          <h1 className="mt-4 text-balance text-[2.25rem] font-bold leading-[1.1] tracking-tight text-ink-950 dark:text-white sm:text-5xl">
             {title}
           </h1>
-          <p className="mt-5 max-w-xl text-balance text-[16.5px] leading-relaxed text-ink-500 sm:text-[17px]">
+          <p className="mt-5 max-w-xl text-balance text-[16.5px] leading-relaxed text-ink-500 dark:text-ink-300 sm:text-[17px]">
             {description}
           </p>
           {children}
@@ -41,7 +41,7 @@ export default function PageHeader({ eyebrow, title, description, image, childre
           />
           <SmartImage
             image={image}
-            className="aspect-[4/3] w-full rounded-2xl border border-ink-200/70 shadow-[0_20px_60px_-25px_rgba(13,14,19,0.35)]"
+            className="aspect-[4/3] w-full rounded-2xl border border-ink-200/70 dark:border-white/10 shadow-[0_20px_60px_-25px_rgba(13,14,19,0.35)]"
           />
         </Reveal>
       </div>

@@ -8,6 +8,8 @@ export const COMPANY_NAME = 'Aremu Tech Eazy Solutions'
 export const NAV_LINKS = [
   { label: 'Home', href: '/' },
   { label: 'Services', href: '/services' },
+  { label: 'Projects', href: '/projects' },
+  { label: 'Internship', href: '/internship' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ]

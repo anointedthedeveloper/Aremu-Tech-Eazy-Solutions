@@ -8,13 +8,13 @@ export default function Capabilities() {
       <div className="mx-auto max-w-8xl px-5 sm:px-8 lg:px-10">
         <div className="grid gap-14 lg:grid-cols-2 lg:gap-16">
           <Reveal>
-            <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-amber-600">
+            <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-amber-600 dark:text-amber-400">
               What We Work With
             </p>
-            <h2 className="mt-4 text-balance text-3xl font-bold leading-tight text-ink-950 sm:text-[2.25rem]">
+            <h2 className="mt-4 text-balance text-3xl font-bold leading-tight text-ink-950 dark:text-white sm:text-[2.25rem]">
               Everyday technology, across the board.
             </h2>
-            <p className="mt-5 max-w-md text-[15.5px] leading-relaxed text-ink-500">
+            <p className="mt-5 max-w-md text-[15.5px] leading-relaxed text-ink-500 dark:text-ink-300">
               We&apos;re not tied to one brand or system. Most requests fall into one of
               these areas — if yours doesn&apos;t, tell us anyway and we&apos;ll let you know
               whether it&apos;s something we can take on.
@@ -24,7 +24,7 @@ export default function Capabilities() {
               {CAPABILITIES.map((item) => (
                 <li
                   key={item}
-                  className="rounded-full border border-violet-100 bg-violet-100/40 px-4 py-2 text-[13.5px] font-medium text-ink-700"
+                  className="rounded-full border border-violet-100 dark:border-white/10 bg-violet-100/40 dark:bg-white/5 px-4 py-2 text-[13.5px] font-medium text-ink-700 dark:text-ink-200"
                 >
                   {item}
                 </li>

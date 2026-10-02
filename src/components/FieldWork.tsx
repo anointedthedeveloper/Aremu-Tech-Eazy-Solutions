@@ -46,16 +46,16 @@ const TILES: Tile[] = [
 
 export default function FieldWork() {
   return (
-    <section className="relative overflow-hidden border-t border-ink-100 bg-paper-dim/60 py-20 sm:py-24 lg:py-28">
+    <section className="relative overflow-hidden border-t border-ink-100 dark:border-white/10 bg-paper-dim/60 dark:bg-ink-900/50 py-20 sm:py-24 lg:py-28">
       <div className="mx-auto max-w-8xl px-5 sm:px-8 lg:px-10">
         <Reveal className="max-w-2xl">
-          <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-violet-600">
+          <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-violet-600 dark:text-violet-400">
             In The Field
           </p>
-          <h2 className="mt-4 text-balance text-3xl font-bold leading-tight text-ink-950 sm:text-[2.25rem]">
+          <h2 className="mt-4 text-balance text-3xl font-bold leading-tight text-ink-950 dark:text-white sm:text-[2.25rem]">
             What the work actually looks like.
           </h2>
-          <p className="mt-4 max-w-xl text-[16px] leading-relaxed text-ink-500">
+          <p className="mt-4 max-w-xl text-[16px] leading-relaxed text-ink-500 dark:text-ink-300">
             Real installs and checks from our recent CBT centre projects — not stock photos.
           </p>
         </Reveal>
@@ -63,7 +63,7 @@ export default function FieldWork() {
         <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 lg:auto-rows-[250px] lg:grid-cols-4 lg:gap-5">
           {TILES.map((tile, i) => (
             <Reveal key={tile.title} delay={i * 0.05} className={tile.className}>
-              <figure className="group relative h-full w-full overflow-hidden rounded-2xl border border-ink-200/70 bg-ink-900 shadow-soft">
+              <figure className="group relative h-full w-full overflow-hidden rounded-2xl border border-ink-200/70 dark:border-white/10 bg-ink-900 shadow-soft">
                 {tile.media.kind === 'video' ? (
                   <VideoCard video={tile.media.video} className="h-full w-full" />
                 ) : (

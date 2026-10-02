@@ -3,6 +3,8 @@ import Internship from '../components/Internship'
 import CompanyIntro from '../components/CompanyIntro'
 import WhyChooseUs from '../components/WhyChooseUs'
 import Capabilities from '../components/Capabilities'
+import Team from '../components/Team'
+import LabShowcase from '../components/LabShowcase'
 import EnquiryCTA from '../components/EnquiryCTA'
 import { IMAGES } from '../lib/images'
 
@@ -16,6 +18,8 @@ export default function About() {
         image={IMAGES.siteCrew}
       />
       <CompanyIntro />
+      <LabShowcase />
+      <Team />
       <Internship />
       <WhyChooseUs />
       <Capabilities />
