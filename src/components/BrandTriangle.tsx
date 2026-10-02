@@ -15,9 +15,9 @@ export default function BrandTriangle({
     <svg viewBox="0 0 200 180" aria-hidden="true" className={className}>
       <defs>
         <linearGradient id={gradientId} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#9a7fdb" />
-          <stop offset="55%" stopColor="#c04aa8" />
-          <stop offset="100%" stopColor="#ee8620" />
+          <stop offset="0%" stopColor="#6c8fd6" />
+          <stop offset="55%" stopColor="#a566e6" />
+          <stop offset="100%" stopColor="#f7931e" />
         </linearGradient>
       </defs>
       <path

@@ -1,7 +1,8 @@
 import Hero from '../components/Hero'
 import AboutTeaser from '../components/AboutTeaser'
 import ServicesTeaser from '../components/ServicesTeaser'
-import GallerySection from '../components/GallerySection'
+import FieldWork from '../components/FieldWork'
+import Internship from '../components/Internship'
 import WhyChooseUs from '../components/WhyChooseUs'
 import EnquiryCTA from '../components/EnquiryCTA'
 
@@ -11,7 +12,8 @@ export default function Home() {
       <Hero />
       <AboutTeaser />
       <ServicesTeaser />
-      <GallerySection />
+      <Internship />
+      <FieldWork />
       <WhyChooseUs />
       <EnquiryCTA />
     </>
