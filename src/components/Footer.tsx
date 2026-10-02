@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import Logo from './Logo'
 import SmartImage from './SmartImage'
-import BrandTriangle from './BrandTriangle'
 import { NAV_LINKS, SERVICES } from '../lib/constants'
 import { CONTACT } from '../lib/contact'
 import { IMAGES } from '../lib/images'
@@ -19,14 +18,8 @@ export default function Footer() {
         <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/95 to-ink-950/80" />
       </div>
 
-      <BrandTriangle
-        gradientId="footerTri"
-        strokeWidth={1.5}
-        opacity={0.4}
-        className="pointer-events-none absolute -top-10 -right-6 hidden h-52 w-52 sm:block"
-      />
 
-      <div className="relative mx-auto max-w-8xl px-5 py-16 sm:px-8 lg:px-10 lg:py-20">
+      <div className="relative mx-auto max-w-[1240px] px-5 py-16 sm:px-8 lg:px-10 lg:py-20">
         <div className="grid gap-12 lg:grid-cols-[1.1fr_0.8fr_0.8fr_0.9fr] lg:gap-10">
           <div>
             <Logo variant="light" />
@@ -84,12 +77,14 @@ export default function Footer() {
               <li>{CONTACT.addresses[0]}</li>
               <li>Facebook &amp; Instagram: {CONTACT.social}</li>
             </ul>
-            <Link
-              to="/contact"
-              className="mt-4 inline-flex items-center gap-1.5 text-[14px] font-semibold text-amber-400 transition-colors hover:text-amber-300"
-            >
-              Submit an Enquiry →
-            </Link>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <Link to="/contact" className="rounded-full bg-amber-500 px-4 py-2 text-[13.5px] font-semibold text-[#1a1033] transition-colors hover:bg-amber-400">
+                Contact Us
+              </Link>
+              <Link to="/apply" className="rounded-full border border-white/25 px-4 py-2 text-[13.5px] font-semibold text-white transition-colors hover:bg-white/10">
+                Apply
+              </Link>
+            </div>
           </div>
         </div>
 

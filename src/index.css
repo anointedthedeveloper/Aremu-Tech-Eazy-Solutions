@@ -16,8 +16,8 @@
   --color-ink-100: #e9e8f1;
   --color-ink-50: #f5f4fa;
 
-  --color-paper: #fbfaf7;
-  --color-paper-dim: #f5f0fd;
+  --color-paper: #fcfbff;
+  --color-paper-dim: #f4f1fb;
 
   /* logo orange (right facet) */
   --color-amber-700: #b45a10;
@@ -137,7 +137,7 @@
 
   /* Dark brand surfaces. Dark theme: near-black purple. Light theme: a bright, airy purple. */
   .bg-deep {
-    background-color: var(--color-ink-950);
+    background-color: #1b1535;
   }
 
   :root:not(.dark) .bg-deep {
@@ -151,10 +151,8 @@
     --color-ink-300: #e6dbfa;
     --color-ink-200: #f2ebfd;
     --color-ink-100: #faf7ff;
-    background-image:
-      radial-gradient(70% 60% at 100% 100%, rgba(247, 147, 30, 0.35), transparent 70%),
-      radial-gradient(60% 60% at 0% 0%, rgba(150, 190, 255, 0.28), transparent 70%),
-      linear-gradient(135deg, #6a36bd 0%, #7e48d0 55%, #9a63e2 100%);
+    background-color: #6a36bd;
+    background-image: linear-gradient(160deg, #6a36bd 0%, #7a46cf 100%);
   }
 
   /* White cards sitting on a purple surface keep the normal (dark-on-light) text colours */
@@ -175,8 +173,24 @@
     background-image: linear-gradient(100deg, #ffd08a, #ffe9cf 50%, #fff);
   }
 
-  :root:not(.dark) .bg-deep .brand-glow {
-    opacity: 0.35;
+  .skeleton {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--color-ink-100);
+  }
+  .skeleton::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background-image: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+    animation: shimmer 1.4s infinite;
+  }
+  .dark .skeleton {
+    background-color: var(--color-ink-800);
+  }
+  .dark .skeleton::after {
+    background-image: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.07), transparent);
   }
 
   .brand-underline {
@@ -195,5 +209,17 @@
       radial-gradient(60% 50% at 8% 0%, rgba(138, 63, 208, 0.45), transparent 70%),
       radial-gradient(50% 50% at 100% 100%, rgba(247, 147, 30, 0.28), transparent 70%),
       radial-gradient(40% 40% at 70% 10%, rgba(108, 143, 214, 0.22), transparent 70%);
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton::after {
+    animation: none;
   }
 }

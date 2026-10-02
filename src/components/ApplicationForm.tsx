@@ -15,12 +15,10 @@ import {
   type FormField,
 } from '../lib/applicationForm'
 import { IconArrowRight, IconCheck } from './icons'
+import { EMAIL_RE, inputClass } from '../lib/formStyles'
 
-const STEP_LABELS = ['Requirements', 'Your details', 'Documents']
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+const STEP_LABELS = ['Rules', 'Details', 'Documents']
 
-const inputClass =
-  'w-full rounded-xl border bg-white px-4 py-3 text-[15px] text-ink-900 outline-none transition-colors placeholder:text-ink-400 focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 dark:bg-ink-900 dark:text-white'
 
 function fieldId(label: string) {
   return 'f-' + label.toLowerCase().replace(/[^a-z0-9]+/g, '-')
@@ -370,7 +368,7 @@ export default function ApplicationForm() {
           <button
             type="button"
             onClick={goNext}
-            className="group inline-flex items-center gap-2 rounded-full bg-amber-500 px-6 py-3 text-[15px] font-semibold text-ink-950 transition-colors hover:bg-amber-400"
+            className="group inline-flex items-center gap-2 rounded-full bg-amber-500 px-6 py-3 text-[15px] font-semibold text-[#1a1033] transition-colors hover:bg-amber-400"
           >
             Next
             <IconArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
@@ -379,9 +377,9 @@ export default function ApplicationForm() {
           <button
             type="submit"
             disabled={submitting}
-            className="inline-flex items-center gap-2 rounded-full bg-amber-500 px-6 py-3 text-[15px] font-semibold text-ink-950 transition-colors hover:bg-amber-400 disabled:opacity-60"
+            className="inline-flex items-center gap-2 rounded-full bg-amber-500 px-6 py-3 text-[15px] font-semibold text-[#1a1033] transition-colors hover:bg-amber-400 disabled:opacity-60"
           >
-            {submitting ? 'Submitting…' : 'Submit application'}
+            {submitting ? 'Sending…' : 'Send application'}
           </button>
         )}
       </footer>

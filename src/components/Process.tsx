@@ -10,13 +10,13 @@ export default function Process() {
         <SmartImage image={IMAGES.siteCrew} variant="dark" showLabel={false} className="h-full w-full opacity-[0.16]" />
         <div className="absolute inset-0 bg-gradient-to-b from-ink-950 via-ink-950/95 to-ink-950" />
       </div>
-      <div className="relative mx-auto max-w-8xl px-5 sm:px-8 lg:px-10">
+      <div className="relative mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
         <Reveal className="max-w-2xl">
           <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-amber-400">
             How It Works
           </p>
           <h2 className="mt-4 text-balance text-3xl font-bold leading-tight text-white sm:text-[2.25rem]">
-            From enquiry to resolved — a straightforward process.
+            From first contact to resolved — a straightforward process.
           </h2>
         </Reveal>
 
