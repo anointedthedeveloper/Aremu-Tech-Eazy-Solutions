@@ -16,7 +16,7 @@ const LEARN = [
 ]
 
 const STEPS = [
-  { title: 'Send an enquiry', text: 'Use the enquiry form and tell us a little about yourself and what you want to learn.' },
+  { title: 'Submit the application', text: 'Fill in the online application form and upload your documents — apprenticeship, or IT/SIWES/NYSC.' },
   { title: 'We get in touch', text: 'We reply to talk through fit, availability and what the internship involves.' },
   { title: 'Join a crew', text: 'You’re paired with an experienced technician on a real project.' },
   { title: 'Take on more', text: 'As you gain confidence you’re given more responsibility on each install.' },
@@ -45,10 +45,10 @@ export default function InternshipPage() {
         image={IMAGES.internWiring}
       >
         <Link
-          to="/contact"
+          to="/apply"
           className="group mt-7 inline-flex items-center gap-2 rounded-full bg-amber-500 px-6 py-3.5 text-[15px] font-semibold text-ink-950 transition-colors hover:bg-amber-400"
         >
-          Apply via enquiry
+          Apply now
           <IconArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
         </Link>
       </PageHeader>

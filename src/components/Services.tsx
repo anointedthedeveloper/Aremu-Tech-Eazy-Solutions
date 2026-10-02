@@ -5,6 +5,7 @@ import {
   IconCompass,
   IconGlobe,
   IconLayers,
+  IconShieldCheck,
   IconTarget,
   IconTools,
   IconWifi,
@@ -12,15 +13,16 @@ import {
 import { SERVICES } from '../lib/constants'
 import { IMAGES } from '../lib/images'
 
-const ICONS = [IconTarget, IconTools, IconChip, IconLayers, IconWifi, IconCompass, IconGlobe]
+const ICONS = [IconTarget, IconTools, IconLayers, IconWifi, IconShieldCheck, IconCompass, IconGlobe, IconChip]
 const THUMBS = [
   IMAGES.labWoodHall,
   IMAGES.labTechnician,
-  IMAGES.serviceDevices,
   IMAGES.jambReadiness,
   IMAGES.trunkingInstall,
-  IMAGES.serviceConsulting,
+  IMAGES.serviceCctv,
+  IMAGES.internWiring,
   IMAGES.serviceWeb,
+  IMAGES.serviceDevices,
 ]
 
 export default function Services() {

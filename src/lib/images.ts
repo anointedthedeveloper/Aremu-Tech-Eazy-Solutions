@@ -79,6 +79,10 @@ export const IMAGES = {
     url: labWoodHall,
     alt: 'Large exam hall with dozens of wooden cubicles, each with a laptop installed',
   },
+  serviceCctv: {
+    url: unsplash('photo-1557597774-9d273605dfa9', 900),
+    alt: 'Security camera mounted on a wall',
+  },
   serviceWeb: {
     url: unsplash('photo-1547658719-da2b51169166', 900),
     alt: 'Website design mockups displayed on a monitor',

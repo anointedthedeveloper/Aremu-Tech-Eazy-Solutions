@@ -32,7 +32,7 @@ export default function Hero() {
             className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-[13px] font-medium text-white backdrop-blur-sm"
           >
             <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
-            IT support, networks &amp; CBT centre setup
+            ICT services, CBT centres &amp; CCTV · Abuja
           </motion.p>
 
           <motion.h1
@@ -47,9 +47,9 @@ export default function Hero() {
             {...rise(0.15)}
             className="mt-6 max-w-lg text-balance text-[17px] leading-relaxed text-ink-200 sm:text-[18px]"
           >
-            From a single laptop to a full exam hall, Aremu Tech Eazy Solutions
-            handles the devices, cabling, software and networks that get in the
-            way of your day — set up properly and explained in plain language.
+            An ICT services and supplies company based in Abuja, serving clients nationwide —
+            from a single laptop to a full CBT exam hall. Set up properly, supported
+            reliably, and explained in plain language.
           </motion.p>
 
           <motion.div {...rise(0.22)} className="mt-7 flex flex-col gap-3.5 sm:flex-row sm:items-center">

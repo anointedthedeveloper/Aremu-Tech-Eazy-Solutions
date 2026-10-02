@@ -17,10 +17,10 @@ export default function AboutTeaser() {
           </div>
           <div>
             <p className="max-w-xl text-[16px] leading-relaxed text-ink-500 dark:text-ink-300">
-              We work with individuals and small businesses who want technology to
-              simply work, without having to become experts in it themselves. Every
-              enquiry is understood properly, explained clearly, and resolved without
-              unnecessary back-and-forth.
+              Registered with the CAC since October 2023, we serve schools, private firms,
+              government offices and SMEs from our base in Kubwa, Abuja — setting up CBT
+              centres, repairing and supplying computers, installing networks and CCTV, and
+              training the next generation of ICT professionals.
             </p>
             <Link
               to="/about"

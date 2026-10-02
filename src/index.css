@@ -157,6 +157,20 @@
       linear-gradient(135deg, #6a36bd 0%, #7e48d0 55%, #9a63e2 100%);
   }
 
+  /* White cards sitting on a purple surface keep the normal (dark-on-light) text colours */
+  :root:not(.dark) .bg-deep .light-surface {
+    --color-ink-950: #0e0b1a;
+    --color-ink-900: #151226;
+    --color-ink-800: #1e1a33;
+    --color-ink-700: #2c2747;
+    --color-ink-600: #413b62;
+    --color-ink-500: #5c5780;
+    --color-ink-400: #7b7699;
+    --color-ink-300: #a5a2bb;
+    --color-ink-200: #cfcddd;
+    --color-ink-100: #e9e8f1;
+  }
+
   :root:not(.dark) .bg-deep .brand-gradient-text {
     background-image: linear-gradient(100deg, #ffd08a, #ffe9cf 50%, #fff);
   }

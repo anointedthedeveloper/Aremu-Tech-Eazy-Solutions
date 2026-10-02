@@ -5,6 +5,7 @@ import WhyChooseUs from '../components/WhyChooseUs'
 import Capabilities from '../components/Capabilities'
 import Team from '../components/Team'
 import LabShowcase from '../components/LabShowcase'
+import VisionMission from '../components/VisionMission'
 import EnquiryCTA from '../components/EnquiryCTA'
 import { IMAGES } from '../lib/images'
 
@@ -18,6 +19,7 @@ export default function About() {
         image={IMAGES.siteCrew}
       />
       <CompanyIntro />
+      <VisionMission />
       <LabShowcase />
       <Team />
       <Internship />

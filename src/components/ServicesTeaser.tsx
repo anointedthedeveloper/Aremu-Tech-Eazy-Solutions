@@ -8,7 +8,7 @@ import { IMAGES } from '../lib/images'
 const FEATURED = [
   { service: SERVICES[0], image: IMAGES.labWoodHall },
   { service: SERVICES[1], image: IMAGES.labTechnician },
-  { service: SERVICES[4], image: IMAGES.trunkingInstall },
+  { service: SERVICES[3], image: IMAGES.trunkingInstall },
 ]
 
 export default function ServicesTeaser() {
