@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Link, NavLink } from 'react-router-dom'
 import Logo from './Logo'
+import ThemeToggle from './ThemeToggle'
 import { IconArrowRight } from './icons'
 import { NAV_LINKS } from '../lib/constants'
 
@@ -81,7 +82,7 @@ export default function Navbar() {
           </motion.span>
         </Link>
 
-        <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
           {NAV_LINKS.map((link) => (
             <NavLink
               key={link.href}
@@ -105,7 +106,8 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <div className="hidden lg:block">
+        <div className="hidden items-center gap-3 lg:flex">
+          <ThemeToggle />
           <MotionLink
             to="/contact"
             whileHover={{ scale: 1.03 }}
@@ -118,9 +120,11 @@ export default function Navbar() {
           </MotionLink>
         </div>
 
+        <div className="relative z-10 flex items-center gap-1.5 lg:hidden">
+        <ThemeToggle className="h-9 w-9 border-transparent bg-transparent" />
         <button
           type="button"
-          className="relative z-10 flex h-10 w-10 items-center justify-center rounded-full text-white lg:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-full text-white"
           aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
           aria-controls="mobile-menu"
@@ -128,6 +132,7 @@ export default function Navbar() {
         >
           <MenuIcon open={open} />
         </button>
+        </div>
       </div>
 
       <AnimatePresence>

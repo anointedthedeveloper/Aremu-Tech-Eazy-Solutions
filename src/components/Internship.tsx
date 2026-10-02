@@ -59,13 +59,21 @@ export default function Internship() {
               ))}
             </ul>
 
-            <Link
-              to="/contact"
-              className="group mt-9 inline-flex items-center gap-2 rounded-full bg-amber-500 px-6 py-3.5 text-[15px] font-semibold text-ink-950 transition-colors hover:bg-amber-400"
-            >
-              Ask about the internship
-              <IconArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-            </Link>
+            <div className="mt-9 flex flex-col gap-3.5 sm:flex-row sm:items-center">
+              <Link
+                to="/internship"
+                className="group inline-flex items-center justify-center gap-2 rounded-full bg-amber-500 px-6 py-3.5 text-[15px] font-semibold text-ink-950 transition-colors hover:bg-amber-400"
+              >
+                See how the internship works
+                <IconArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              </Link>
+              <Link
+                to="/contact"
+                className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/5 px-6 py-3.5 text-[15px] font-semibold text-white transition-colors hover:border-white/50 hover:bg-white/10"
+              >
+                Apply via enquiry
+              </Link>
+            </div>
           </Reveal>
         </div>
       </div>

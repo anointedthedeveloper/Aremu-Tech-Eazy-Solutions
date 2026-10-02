@@ -8,6 +8,9 @@ import Home from './pages/Home'
 import ServicesPage from './pages/ServicesPage'
 import About from './pages/About'
 import Contact from './pages/Contact'
+import InternshipPage from './pages/InternshipPage'
+import Projects from './pages/Projects'
+import { ThemeProvider } from './lib/theme'
 
 function AnimatedRoutes() {
   const location = useLocation()
@@ -25,6 +28,8 @@ function AnimatedRoutes() {
         <Routes location={location}>
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<ServicesPage />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/internship" element={<InternshipPage />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
@@ -35,10 +40,11 @@ function AnimatedRoutes() {
 
 function App() {
   return (
+    <ThemeProvider>
     <BrowserRouter>
       <PageLoader />
       <ScrollToTop />
-      <div className="min-h-screen bg-paper">
+      <div className="min-h-screen bg-paper dark:bg-ink-950">
         <Navbar />
         <main>
           <AnimatedRoutes />
@@ -46,6 +52,7 @@ function App() {
         <Footer />
       </div>
     </BrowserRouter>
+    </ThemeProvider>
   )
 }
 
