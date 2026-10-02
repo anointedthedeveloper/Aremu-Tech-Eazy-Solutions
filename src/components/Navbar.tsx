@@ -68,8 +68,8 @@ export default function Navbar() {
       <div
         className={`mx-auto flex max-w-8xl items-center justify-between rounded-2xl border transition-all duration-300 ${
           scrolled || open
-            ? 'h-14 border-white/10 bg-ink-950/90 px-4 shadow-[0_16px_40px_-16px_rgba(0,0,0,0.55)] backdrop-blur-xl sm:h-16 sm:px-6'
-            : 'h-16 border-white/10 bg-ink-950/75 px-4 shadow-[0_8px_24px_-16px_rgba(0,0,0,0.4)] backdrop-blur-xl sm:h-[4.5rem] sm:px-6'
+            ? 'h-14 border-ink-200/70 bg-white/90 px-4 shadow-[0_16px_40px_-20px_rgba(76,40,140,0.35)] backdrop-blur-xl sm:h-16 sm:px-6 dark:border-white/10 dark:bg-ink-950/90 dark:shadow-[0_16px_40px_-16px_rgba(0,0,0,0.55)]'
+            : 'h-16 border-ink-200/60 bg-white/80 px-4 shadow-[0_8px_24px_-18px_rgba(76,40,140,0.3)] backdrop-blur-xl sm:h-[4.5rem] sm:px-6 dark:border-white/10 dark:bg-ink-950/75 dark:shadow-[0_8px_24px_-16px_rgba(0,0,0,0.4)]'
         }`}
       >
         <Link to="/" className="group relative z-10 shrink-0" onClick={() => setOpen(false)}>
@@ -78,7 +78,8 @@ export default function Navbar() {
             whileHover={{ rotate: -6, scale: 1.06 }}
             transition={{ type: 'spring', stiffness: 400, damping: 15 }}
           >
-            <Logo variant="light" />
+            <span className="dark:hidden"><Logo variant="dark" /></span>
+            <span className="hidden dark:block"><Logo variant="light" /></span>
           </motion.span>
         </Link>
 
@@ -88,7 +89,7 @@ export default function Navbar() {
               key={link.href}
               to={link.href}
               end={link.href === '/'}
-              className="relative py-2 text-[14.5px] font-medium text-ink-200 transition-colors hover:text-white aria-[current=page]:text-white"
+              className="relative py-2 text-[14.5px] font-medium text-ink-600 transition-colors hover:text-ink-950 aria-[current=page]:text-ink-950 dark:text-ink-200 dark:hover:text-white dark:aria-[current=page]:text-white"
             >
               {({ isActive }) => (
                 <>
@@ -121,10 +122,10 @@ export default function Navbar() {
         </div>
 
         <div className="relative z-10 flex items-center gap-1.5 lg:hidden">
-        <ThemeToggle className="h-9 w-9 border-transparent bg-transparent" />
+        <ThemeToggle className="h-9 w-9" />
         <button
           type="button"
-          className="flex h-10 w-10 items-center justify-center rounded-full text-white"
+          className="flex h-10 w-10 items-center justify-center rounded-full text-ink-900 dark:text-white"
           aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
           aria-controls="mobile-menu"
@@ -143,7 +144,7 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-40 bg-ink-950/98 backdrop-blur-2xl lg:hidden"
+            className="fixed inset-0 z-40 bg-white/98 backdrop-blur-2xl dark:bg-ink-950/98 lg:hidden"
           >
             <motion.nav
               className="flex h-full flex-col justify-center gap-1 px-8 pb-16"
@@ -153,12 +154,12 @@ export default function Navbar() {
               animate="visible"
             >
               {NAV_LINKS.map((link) => (
-                <motion.div key={link.href} variants={mobileItemVariants} className="overflow-hidden border-b border-white/10 py-4">
+                <motion.div key={link.href} variants={mobileItemVariants} className="overflow-hidden border-b border-ink-200 py-4 dark:border-white/10">
                   <NavLink
                     to={link.href}
                     end={link.href === '/'}
                     onClick={() => setOpen(false)}
-                    className="flex items-center gap-3 font-display text-[32px] font-semibold text-ink-200 aria-[current=page]:text-white"
+                    className="flex items-center gap-3 font-display text-[32px] font-semibold text-ink-500 aria-[current=page]:text-ink-950 dark:text-ink-200 dark:aria-[current=page]:text-white"
                   >
                     {({ isActive }) => (
                       <>

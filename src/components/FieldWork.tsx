@@ -46,7 +46,7 @@ const TILES: Tile[] = [
 
 export default function FieldWork() {
   return (
-    <section className="relative overflow-hidden border-t border-ink-100 dark:border-white/10 bg-paper-dim/60 dark:bg-ink-900/50 py-20 sm:py-24 lg:py-28">
+    <section className="relative overflow-hidden border-t border-ink-100 dark:border-white/10 bg-paper-dim/60 dark:bg-ink-900/50 py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-8xl px-5 sm:px-8 lg:px-10">
         <Reveal className="max-w-2xl">
           <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-violet-600 dark:text-violet-400">

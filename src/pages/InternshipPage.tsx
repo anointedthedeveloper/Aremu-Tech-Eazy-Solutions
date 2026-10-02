@@ -77,7 +77,7 @@ export default function InternshipPage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-ink-950 py-20 sm:py-24 lg:py-28">
+      <section className="relative overflow-hidden bg-deep py-16 sm:py-20 lg:py-24">
         <div className="brand-glow pointer-events-none absolute inset-0 opacity-80" />
         <div className="relative mx-auto max-w-8xl px-5 sm:px-8 lg:px-10">
           <Reveal className="max-w-2xl">
@@ -98,7 +98,7 @@ export default function InternshipPage() {
         </div>
       </section>
 
-      <section className="py-20 sm:py-24 lg:py-28">
+      <section className="py-16 sm:py-20 lg:py-24">
         <div className="mx-auto grid max-w-8xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:gap-20 lg:px-10">
           <Reveal>
             <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-amber-600 dark:text-amber-400">Who It&apos;s For</p>

@@ -28,7 +28,7 @@ export default function Contact() {
   const [iframeLoaded, setIframeLoaded] = useState(false)
 
   return (
-    <section className="relative bg-ink-950 pt-32 pb-20 sm:pt-36 lg:pt-40 lg:pb-28">
+    <section className="relative bg-deep pt-32 pb-20 sm:pt-36 lg:pt-40 lg:pb-28">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <SmartImage
           image={IMAGES.siteCrew}

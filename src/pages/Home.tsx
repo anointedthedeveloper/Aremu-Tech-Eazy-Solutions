@@ -1,4 +1,5 @@
 import Hero from '../components/Hero'
+import CapabilityStrip from '../components/CapabilityStrip'
 import AboutTeaser from '../components/AboutTeaser'
 import ServicesTeaser from '../components/ServicesTeaser'
 import FieldWork from '../components/FieldWork'
@@ -10,6 +11,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <CapabilityStrip />
       <AboutTeaser />
       <ServicesTeaser />
       <Internship />

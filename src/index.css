@@ -17,7 +17,7 @@
   --color-ink-50: #f5f4fa;
 
   --color-paper: #fbfaf7;
-  --color-paper-dim: #f3f0f8;
+  --color-paper-dim: #f5f0fd;
 
   /* logo orange (right facet) */
   --color-amber-700: #b45a10;
@@ -133,6 +133,36 @@
     opacity: 0.5;
     mix-blend-mode: overlay;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Dark brand surfaces. Dark theme: near-black purple. Light theme: a bright, airy purple. */
+  .bg-deep {
+    background-color: var(--color-ink-950);
+  }
+
+  :root:not(.dark) .bg-deep {
+    --color-ink-950: #6a36bd;
+    --color-ink-900: #7a47cc;
+    --color-ink-800: #8a58d6;
+    --color-ink-700: #9c70df;
+    --color-ink-600: #b08ae8;
+    --color-ink-500: #c4a8f0;
+    --color-ink-400: #d6c3f5;
+    --color-ink-300: #e6dbfa;
+    --color-ink-200: #f2ebfd;
+    --color-ink-100: #faf7ff;
+    background-image:
+      radial-gradient(70% 60% at 100% 100%, rgba(247, 147, 30, 0.35), transparent 70%),
+      radial-gradient(60% 60% at 0% 0%, rgba(150, 190, 255, 0.28), transparent 70%),
+      linear-gradient(135deg, #6a36bd 0%, #7e48d0 55%, #9a63e2 100%);
+  }
+
+  :root:not(.dark) .bg-deep .brand-gradient-text {
+    background-image: linear-gradient(100deg, #ffd08a, #ffe9cf 50%, #fff);
+  }
+
+  :root:not(.dark) .bg-deep .brand-glow {
+    opacity: 0.35;
   }
 
   .brand-underline {
