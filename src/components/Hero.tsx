@@ -49,7 +49,7 @@ const SLIDES: Slide[] = [
   {
     kind: 'video',
     video: VIDEOS.fieldTesting,
-    backImage: IMAGES.labWoodRows,
+    backImage: IMAGES.heroHall,
     kicker: 'CBT centre setup',
     title: 'Every station tested before exam day.',
     text: 'We set up, configure and check each machine — so candidates sit down to a system that just works.',
@@ -59,7 +59,7 @@ const SLIDES: Slide[] = [
   },
   {
     kind: 'photo',
-    image: IMAGES.labWoodRows,
+    image: IMAGES.heroLabs,
     position: '50% 60%',
     kicker: 'Completed labs',
     title: 'From an empty room to an exam-ready hall.',
@@ -71,7 +71,7 @@ const SLIDES: Slide[] = [
   {
     kind: 'video',
     video: VIDEOS.cablingInstall,
-    backImage: IMAGES.siteCrew,
+    backImage: IMAGES.heroCrew,
     kicker: 'Networking, cabling & CCTV',
     title: 'Cabling and networks, done properly.',
     text: 'Structured cabling, trunking, CCTV and connectivity for offices, schools and homes.',
@@ -81,7 +81,7 @@ const SLIDES: Slide[] = [
   },
   {
     kind: 'photo',
-    image: IMAGES.internWiring,
+    image: IMAGES.heroIntern,
     position: '50% 40%',
     kicker: 'Internship & training',
     title: 'Learn the trade on real projects.',
@@ -192,7 +192,7 @@ export default function Hero() {
                     loading="eager"
                     variant="dark"
                     showLabel={false}
-                    className="h-full w-full scale-105 blur-[2px]"
+                    className="h-full w-full"
                   />
                   <div className="absolute inset-0 bg-[radial-gradient(60%_70%_at_82%_45%,rgba(122,71,207,0.35),transparent_70%)]" />
                 </div>
@@ -207,7 +207,7 @@ export default function Hero() {
 
       {/* readability overlays */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-950/90 via-ink-950/25 to-ink-950/10" />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink-950/55 via-transparent to-transparent" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink-950/80 via-ink-950/35 to-transparent" />
 
       {/* large framed video (desktop) */}
       <AnimatePresence initial={false}>
