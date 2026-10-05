@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import Logo from './Logo'
+import SocialLinks from './SocialLinks'
 import SectionBackground from './SectionBackground'
 import { NAV_LINKS } from '../lib/constants'
 import { SERVICES, serviceHref } from '../lib/services'
@@ -18,6 +19,7 @@ export default function Footer() {
             <p className="mt-5 max-w-sm text-[14.5px] leading-relaxed text-ink-300">
               Abuja-based ICT services and supplies — CBT centres, repairs, networking, CCTV, software and training. Empowering Your Tech Dreams.
             </p>
+            <SocialLinks className="mt-6" />
           </div>
 
           <div>
@@ -67,7 +69,6 @@ export default function Footer() {
               <li><a href={CONTACT.whatsapp.href} className="transition-colors hover:text-white">WhatsApp: {CONTACT.whatsapp.label}</a></li>
               <li><a href={`mailto:${CONTACT.email}`} className="break-all transition-colors hover:text-white">{CONTACT.email}</a></li>
               <li>{CONTACT.addresses[0]}</li>
-              <li>Facebook &amp; Instagram: {CONTACT.social}</li>
             </ul>
             <div className="mt-5 flex flex-wrap gap-3">
               <Link to="/contact" className="rounded-full bg-amber-500 px-4 py-2 text-[13.5px] font-semibold text-[#1a1033] transition-colors hover:bg-amber-400">

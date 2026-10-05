@@ -136,3 +136,48 @@ export function IconCheck(props: IconProps) {
     </svg>
   )
 }
+
+const solid = { fill: 'currentColor', viewBox: '0 0 24 24' }
+
+export function IconFacebook(props: IconProps) {
+  return (
+    <svg {...solid} {...props}>
+      <path d="M13.5 21v-7.6h2.6l.4-3h-3V8.5c0-.9.3-1.5 1.5-1.5h1.6V4.3c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21h3.1Z" />
+    </svg>
+  )
+}
+
+export function IconInstagram(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" />
+    </svg>
+  )
+}
+
+export function IconWhatsApp(props: IconProps) {
+  return (
+    <svg {...solid} {...props}>
+      <path d="M12 2.5a9.4 9.4 0 0 0-8 14.3L2.6 21.4l4.7-1.2A9.4 9.4 0 1 0 12 2.5Zm0 1.8a7.6 7.6 0 1 1-3.9 14.1l-.3-.2-2.8.7.8-2.7-.2-.3A7.6 7.6 0 0 1 12 4.3Zm-2.7 3.8c-.2 0-.5.1-.7.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.2 2.4.9 2.9.7 3.4.7.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.7-.4-.4-.2-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.7.1-.4-.2-1.5-.6-2.9-1.8-1-1-1.7-2.1-1.9-2.5-.2-.4 0-.6.1-.7l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.1c-.2-.5-.4-.5-.7-.5Z" />
+    </svg>
+  )
+}
+
+export function IconMail(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <rect x="3" y="5.5" width="18" height="13" rx="2.5" />
+      <path d="m4 7.5 8 6 8-6" />
+    </svg>
+  )
+}
+
+export function IconPhone(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M5 4.5h3.2l1.6 4-2 1.3a11 11 0 0 0 5.4 5.4l1.3-2 4 1.6V18a1.5 1.5 0 0 1-1.6 1.5C10.6 19 5 13.4 4.5 6.1A1.5 1.5 0 0 1 5 4.5Z" />
+    </svg>
+  )
+}

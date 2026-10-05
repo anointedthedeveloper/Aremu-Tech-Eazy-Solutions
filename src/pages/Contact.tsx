@@ -4,6 +4,7 @@ import ContactForm from '../components/ContactForm'
 import { IconArrowRight } from '../components/icons'
 import SuccessBurst from '../components/SuccessBurst'
 import { CONTACT } from '../lib/contact'
+import SocialLinks from '../components/SocialLinks'
 
 const row = 'flex flex-col gap-0.5 border-b border-ink-100 py-4 last:border-0 dark:border-white/10'
 const rowLabel = 'text-[12px] font-semibold uppercase tracking-[0.12em] text-violet-600 dark:text-violet-400'
@@ -48,6 +49,8 @@ export default function Contact() {
                 ))}
               </div>
             </address>
+
+            <SocialLinks tone="light" className="mt-6" />
 
             <p className="mt-6 text-[14.5px] text-ink-500 dark:text-ink-300">
               Looking to train with us instead?{' '}
