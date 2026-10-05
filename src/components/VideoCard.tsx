@@ -7,7 +7,7 @@ interface VideoCardProps {
   video: SiteVideo
   className?: string
   eager?: boolean
-  /** Download and play only after the visitor taps. Always on for Data Saver / slow connections and reduced motion. */
+  /** Download and play only after the visitor taps. Always on for Data Saver / 2G connections and reduced motion. */
   playOnTap?: boolean
 }
 
@@ -15,7 +15,7 @@ interface VideoCardProps {
  * Muted looping clip that is easy on data:
  *  - the file is only requested when the clip nears the viewport (or immediately when `eager`);
  *  - it plays only while on screen;
- *  - with `playOnTap`, Data Saver, a slow connection or reduced motion it shows the poster and
+ *  - with `playOnTap`, Data Saver, a 2G connection or reduced motion it shows the poster and
  *    downloads nothing until the visitor taps play.
  */
 export default function VideoCard({ video, className = '', eager = false, playOnTap = false }: VideoCardProps) {
