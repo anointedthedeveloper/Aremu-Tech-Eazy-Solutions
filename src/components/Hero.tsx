@@ -5,6 +5,7 @@ import VideoCard from './VideoCard'
 import SmartImage from './SmartImage'
 import { IconArrowRight, IconCheck } from './icons'
 import { IMAGES, VIDEOS, type SiteImage, type SiteVideo } from '../lib/images'
+import { useMediaQuery } from '../lib/network'
 
 interface Cta {
   to: string
@@ -92,6 +93,7 @@ const btn =
 
 export default function Hero() {
   const reduceMotion = useReducedMotion()
+  const isDesktop = useMediaQuery('(min-width: 1024px)')
   const [index, setIndex] = useState(0)
   const [paused, setPaused] = useState(false)
   const touchX = useRef<number | null>(null)
@@ -177,15 +179,18 @@ export default function Hero() {
             </motion.div>
           ) : (
             <>
-              {/* phones: full-bleed portrait footage */}
-              <VideoCard video={slide.video} eager className="h-full w-full lg:hidden" />
-              {/* desktop: blurred backdrop + large framed clip on the right */}
-              <img
-                src={slide.video.poster}
-                alt=""
-                aria-hidden="true"
-                className="absolute inset-0 hidden h-full w-full scale-125 object-cover blur-3xl lg:block"
-              />
+              {isDesktop ? (
+                /* desktop: blurred backdrop + large framed clip on the right (below) */
+                <img
+                  src={slide.video.poster}
+                  alt=""
+                  aria-hidden="true"
+                  className="absolute inset-0 h-full w-full scale-125 object-cover blur-3xl"
+                />
+              ) : (
+                /* phones: full-bleed portrait footage */
+                <VideoCard video={slide.video} eager className="h-full w-full" />
+              )}
             </>
           )}
         </motion.div>
@@ -197,7 +202,7 @@ export default function Hero() {
 
       {/* large framed video (desktop) */}
       <AnimatePresence initial={false}>
-        {slide.kind === 'video' && (
+        {slide.kind === 'video' && isDesktop && (
           <motion.div
             key={`v-${index}`}
             initial={{ opacity: 0, x: 40 }}

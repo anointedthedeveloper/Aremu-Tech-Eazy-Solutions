@@ -92,7 +92,7 @@ export default function Projects() {
           <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
             {CLIPS.map((clip, i) => (
               <Reveal key={clip.src} delay={i * 0.06}>
-                <VideoCard video={clip} className="aspect-[9/16] w-full rounded-2xl border border-white/15" />
+                <VideoCard video={clip} playOnTap className="aspect-[9/16] w-full rounded-2xl border border-white/15" />
               </Reveal>
             ))}
           </div>
