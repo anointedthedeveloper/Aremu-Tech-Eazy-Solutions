@@ -26,7 +26,8 @@ export interface SiteVideo {
 }
 
 function unsplash(id: string, w: number) {
-  return `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=75`
+  // always request a large, high-quality rendition; browsers scale it down as needed
+  return `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${Math.max(w, 1600)}&q=85`
 }
 
 /** Real project footage — sped up and trimmed, served from /public/media */

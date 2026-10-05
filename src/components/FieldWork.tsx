@@ -62,7 +62,7 @@ export default function FieldWork() {
 
         <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 lg:auto-rows-[250px] lg:grid-cols-4 lg:gap-5">
           {TILES.map((tile, i) => (
-            <Reveal key={tile.title} delay={i * 0.05} className={tile.className}>
+            <Reveal key={tile.title} direction="scale" delay={i * 0.07} className={tile.className}>
               <figure className="group relative h-full w-full overflow-hidden rounded-2xl border border-ink-200/70 dark:border-white/10 bg-ink-900 shadow-soft">
                 {tile.media.kind === 'video' ? (
                   <VideoCard video={tile.media.video} className="h-full w-full" />
