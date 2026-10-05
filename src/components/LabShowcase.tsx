@@ -30,7 +30,7 @@ export default function LabShowcase({
 
         <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5 sm:auto-rows-[280px] lg:auto-rows-[320px]">
           {SHOTS.map((shot, i) => (
-            <Reveal key={shot.label} delay={i * 0.07} className={shot.className}>
+            <Reveal key={shot.label} direction="scale" delay={i * 0.08} className={shot.className}>
               <figure className="group relative h-full w-full overflow-hidden rounded-2xl border border-ink-200/70 bg-ink-900 shadow-soft dark:border-white/10">
                 <SmartImage image={shot.image} className="h-full w-full transition-transform duration-700 ease-out group-hover:scale-105" />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-950/80 via-transparent to-transparent" />

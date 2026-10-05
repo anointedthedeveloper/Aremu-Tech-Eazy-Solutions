@@ -1,5 +1,6 @@
 import Reveal from './Reveal'
 import SmartImage from './SmartImage'
+import ParallaxImage from './ParallaxImage'
 import { TEAM, TEAM_GROUP } from '../lib/team'
 
 export default function Team() {
@@ -16,15 +17,15 @@ export default function Team() {
           </p>
         </Reveal>
 
-        <Reveal delay={0.05} className="mt-8">
+        <Reveal direction="scale" delay={0.05} className="mt-8">
           <div className="aspect-[3/2] overflow-hidden rounded-2xl border border-ink-200/70 shadow-soft dark:border-white/10 sm:aspect-[2/1] lg:aspect-[16/7]">
-            <SmartImage image={TEAM_GROUP} className="h-full w-full [&_img]:object-[50%_15%]" />
+            <ParallaxImage image={TEAM_GROUP} strength={5} className="h-full w-full" />
           </div>
         </Reveal>
 
         <ul className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4">
           {TEAM.map((member, i) => (
-            <Reveal key={member.photo?.url ?? member.role ?? i} as="li" className="flex" delay={(i % 4) * 0.05}>
+            <Reveal key={member.photo?.url ?? member.role ?? i} as="li" direction="scale" className="flex" delay={(i % 4) * 0.05}>
               <figure className="flex w-full flex-col overflow-hidden rounded-2xl border border-ink-200/70 bg-white dark:border-white/10 dark:bg-ink-900">
                 <div className="aspect-[4/5] overflow-hidden">
                   {member.photo ? (

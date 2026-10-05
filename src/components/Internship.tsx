@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import Reveal from './Reveal'
 import SmartImage from './SmartImage'
+import ParallaxImage from './ParallaxImage'
 import { IconArrowRight } from './icons'
 import { IMAGES } from '../lib/images'
 
@@ -16,9 +17,9 @@ export default function Internship() {
     <section id="internship" className="relative overflow-hidden bg-deep py-16 sm:py-20 lg:py-24">
       <div className="relative mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-10">
         <div className="grid items-center gap-12 lg:grid-cols-[1fr_1fr] lg:gap-20">
-          <Reveal className="relative">
+          <Reveal direction="left" className="relative">
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/15 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.8)]">
-              <SmartImage image={IMAGES.internWiring} variant="dark" showLabel={false} className="h-full w-full" />
+              <ParallaxImage image={IMAGES.internWiring} className="h-full w-full" />
               <div className="absolute inset-0 bg-gradient-to-t from-ink-950/70 via-transparent to-transparent" />
               <p className="absolute bottom-4 left-4 rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-[12.5px] font-medium text-white backdrop-blur-md">
                 Intern on a live lab installation
@@ -29,7 +30,7 @@ export default function Internship() {
             </div>
           </Reveal>
 
-          <Reveal delay={0.08}>
+          <Reveal direction="right" delay={0.1}>
             <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-amber-400">
               Internship &amp; Training
             </p>

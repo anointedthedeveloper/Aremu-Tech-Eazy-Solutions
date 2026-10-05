@@ -27,7 +27,7 @@ export default function Clients() {
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2">
           {TESTIMONIALS.map((t, i) => (
-            <Reveal key={t.by} delay={i * 0.06}>
+            <Reveal key={t.by} direction={i % 2 === 0 ? 'left' : 'right'} delay={i * 0.06}>
               <figure className="h-full rounded-2xl border border-ink-200/70 bg-white p-6 dark:border-white/10 dark:bg-ink-900 sm:p-7">
                 <span aria-hidden="true" className="font-display text-5xl leading-none text-amber-500">&ldquo;</span>
                 <blockquote className="-mt-2 text-[16px] leading-relaxed text-ink-700 dark:text-ink-200">{t.quote}</blockquote>

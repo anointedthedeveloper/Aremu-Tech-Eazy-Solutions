@@ -23,8 +23,14 @@ interface BaseSlide {
 }
 interface PhotoSlide extends BaseSlide {
   kind: 'photo'
+  /** Full-bleed image (phones, and desktop unless `frame` is set). */
   image: SiteImage
   position?: string
+  /**
+   * For photos whose resolution is too low to stretch across a wide screen: on desktop show the
+   * original, crisp, in a frame over a blurred copy of itself.
+   */
+  frame?: { image: SiteImage; className: string }
 }
 interface VideoSlide extends BaseSlide {
   kind: 'video'
@@ -61,6 +67,7 @@ const SLIDES: Slide[] = [
     kind: 'photo',
     image: IMAGES.heroLabs,
     position: '50% 60%',
+    frame: { image: IMAGES.labWoodRows, className: 'aspect-[4/3] w-[min(42vw,640px)]' },
     kicker: 'Completed labs',
     title: 'From an empty room to an exam-ready hall.',
     text: 'Cubicles, laptops, lighting and cabling — fitted out and handed over ready to use.',
@@ -83,6 +90,7 @@ const SLIDES: Slide[] = [
     kind: 'photo',
     image: IMAGES.heroIntern,
     position: '50% 40%',
+    frame: { image: IMAGES.internWiring, className: 'aspect-video w-[min(46vw,760px)]' },
     kicker: 'Internship & training',
     title: 'Learn the trade on real projects.',
     text: 'Apprenticeships and IT/SIWES/NYSC placements working alongside our crews on live installations.',
@@ -104,6 +112,7 @@ export default function Hero() {
   const touchX = useRef<number | null>(null)
   const count = SLIDES.length
   const slide = SLIDES[index]
+  const framePhoto = slide.kind === 'photo' && isDesktop ? slide.frame : undefined
 
   const [progress, setProgress] = useState(0) // 0..1 through the current slide
   const elapsed = useRef(0)
@@ -166,7 +175,12 @@ export default function Hero() {
           exit={{ opacity: 0 }}
           transition={{ duration: reduceMotion ? 0 : 0.9 }}
         >
-          {slide.kind === 'photo' ? (
+          {framePhoto && slide.kind === 'photo' ? (
+            <div className="absolute inset-0 bg-[#1b1535]">
+              <SmartImage image={framePhoto.image} loading="eager" variant="dark" showLabel={false} className="h-full w-full scale-125 opacity-45 blur-2xl" />
+              <div className="absolute inset-0 bg-[radial-gradient(60%_70%_at_82%_45%,rgba(122,71,207,0.4),transparent_70%),radial-gradient(60%_60%_at_0%_100%,rgba(247,147,30,0.22),transparent_70%)]" />
+            </div>
+          ) : slide.kind === 'photo' ? (
             <motion.div
               className="h-full w-full"
               initial={{ scale: 1 }}
@@ -211,7 +225,7 @@ export default function Hero() {
 
       {/* large framed video (desktop) */}
       <AnimatePresence initial={false}>
-        {slide.kind === 'video' && isDesktop && (
+        {(framePhoto || (slide.kind === 'video' && isDesktop)) && (
           <motion.div
             key={`v-${index}`}
             initial={{ opacity: 0, x: 40 }}
@@ -220,6 +234,16 @@ export default function Hero() {
             transition={{ duration: reduceMotion ? 0 : 0.7 }}
             className="absolute top-1/2 right-[9%] z-10 hidden -translate-y-[46%] lg:block"
           >
+            {framePhoto ? (
+              <SmartImage
+                image={framePhoto.image}
+                loading="eager"
+                variant="dark"
+                showLabel={false}
+                className={`${framePhoto.className} rounded-3xl border border-white/25 shadow-[0_40px_90px_-30px_rgba(0,0,0,0.9)]`}
+              />
+            ) : slide.kind === 'video' ? (
+              <>
             <VideoCard
               video={slide.video}
               eager
@@ -235,12 +259,14 @@ export default function Hero() {
             <p className="absolute right-4 bottom-4 left-4 rounded-2xl bg-black/55 px-4 py-3 text-[13px] leading-snug text-white backdrop-blur-md">
               {slide.video.alt}
             </p>
+              </>
+            ) : null}
           </motion.div>
         )}
       </AnimatePresence>
 
       {/* copy */}
-      <div className={`relative z-20 mx-auto flex h-full max-w-[1600px] flex-col justify-end px-4 pt-28 pb-24 sm:px-6 sm:pb-28 lg:px-10 [@media(min-height:700px)]:sm:pb-40 ${slide.kind === 'video' ? 'lg:justify-center lg:pb-24' : ''}`}>
+      <div className={`relative z-20 mx-auto flex h-full max-w-[1600px] flex-col justify-end px-4 pt-28 pb-24 sm:px-6 sm:pb-28 lg:px-10 [@media(min-height:700px)]:sm:pb-40 ${slide.kind === 'video' || framePhoto ? 'lg:justify-center lg:pb-24' : ''}`}>
         <AnimatePresence mode="wait">
           <motion.div
             key={index}
