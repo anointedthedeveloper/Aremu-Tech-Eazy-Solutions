@@ -1,20 +1,19 @@
 import Reveal from './Reveal'
-import BrandTriangle from './BrandTriangle'
 import { CAPABILITIES } from '../lib/constants'
 
 export default function Capabilities() {
   return (
-    <section id="capabilities" className="py-20 sm:py-24 lg:py-28">
-      <div className="mx-auto max-w-8xl px-5 sm:px-8 lg:px-10">
+    <section id="capabilities" className="py-16 sm:py-20 lg:py-24">
+      <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-10">
         <div className="grid gap-14 lg:grid-cols-2 lg:gap-16">
           <Reveal>
-            <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-amber-600">
+            <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-amber-600 dark:text-amber-400">
               What We Work With
             </p>
-            <h2 className="mt-4 text-balance text-3xl font-bold leading-tight text-ink-950 sm:text-[2.25rem]">
+            <h2 className="mt-4 text-balance text-3xl font-bold leading-tight text-ink-950 dark:text-white sm:text-[2.25rem]">
               Everyday technology, across the board.
             </h2>
-            <p className="mt-5 max-w-md text-[15.5px] leading-relaxed text-ink-500">
+            <p className="mt-5 max-w-md text-[15.5px] leading-relaxed text-ink-500 dark:text-ink-300">
               We&apos;re not tied to one brand or system. Most requests fall into one of
               these areas — if yours doesn&apos;t, tell us anyway and we&apos;ll let you know
               whether it&apos;s something we can take on.
@@ -24,7 +23,7 @@ export default function Capabilities() {
               {CAPABILITIES.map((item) => (
                 <li
                   key={item}
-                  className="rounded-full border border-violet-100 bg-violet-100/40 px-4 py-2 text-[13.5px] font-medium text-ink-700"
+                  className="rounded-full border border-violet-100 dark:border-white/10 bg-violet-100/40 dark:bg-white/5 px-4 py-2 text-[13.5px] font-medium text-ink-700 dark:text-ink-200"
                 >
                   {item}
                 </li>
@@ -33,14 +32,8 @@ export default function Capabilities() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <div className="relative overflow-hidden rounded-2xl bg-ink-950 p-8 sm:p-10">
-              <div className="dot-grid absolute inset-0 text-ink-800 opacity-60 [mask-image:radial-gradient(ellipse_65%_65%_at_30%_20%,black,transparent)]" />
+            <div className="relative overflow-hidden rounded-2xl bg-deep p-8 sm:p-10">
 
-              <BrandTriangle
-                gradientId="capTri"
-                strokeWidth={3}
-                className="relative h-24 w-24 sm:h-28 sm:w-28"
-              />
 
               <p className="relative mt-7 max-w-xs font-display text-[21px] font-semibold leading-snug text-white sm:text-[23px]">
                 No brand lock-in. No platform bias.

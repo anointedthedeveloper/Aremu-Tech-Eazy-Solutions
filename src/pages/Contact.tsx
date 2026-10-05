@@ -1,131 +1,83 @@
-import { useState } from 'react'
+import { Link, useSearchParams } from 'react-router-dom'
 import Reveal from '../components/Reveal'
-import SmartImage from '../components/SmartImage'
-import BrandTriangle from '../components/BrandTriangle'
-import { IconArrowRight, IconClock, IconMessageCheck, IconShieldCheck } from '../components/icons'
-import { ENQUIRY_FORM_EMBED_URL, ENQUIRY_FORM_URL } from '../lib/constants'
-import { IMAGES } from '../lib/images'
+import ContactForm from '../components/ContactForm'
+import { IconArrowRight, IconCheck } from '../components/icons'
+import { CONTACT } from '../lib/contact'
 
-const POINTS = [
-  {
-    icon: IconMessageCheck,
-    title: 'Just describe the problem',
-    text: 'No technical jargon required — tell us what’s going on in your own words.',
-  },
-  {
-    icon: IconClock,
-    title: 'Takes about a minute',
-    text: 'A handful of short questions. No account or sign-up needed.',
-  },
-  {
-    icon: IconShieldCheck,
-    title: 'No obligation',
-    text: 'Submitting an enquiry doesn’t commit you to anything.',
-  },
-]
+const row = 'flex flex-col gap-0.5 border-b border-ink-100 py-4 last:border-0 dark:border-white/10'
+const rowLabel = 'text-[12px] font-semibold uppercase tracking-[0.12em] text-violet-600 dark:text-violet-400'
+const rowLink = 'text-[16px] font-medium text-ink-950 transition-colors hover:text-violet-700 dark:text-white dark:hover:text-violet-400'
 
 export default function Contact() {
-  const [iframeLoaded, setIframeLoaded] = useState(false)
+  const [params] = useSearchParams()
+  const sent = params.get('sent') === '1'
 
   return (
-    <section className="relative bg-ink-950 pt-32 pb-20 sm:pt-36 lg:pt-40 lg:pb-28">
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <SmartImage
-          image={IMAGES.siteCrew}
-          variant="dark"
-          showLabel={false}
-          className="h-full w-full opacity-[0.18]"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-ink-950/60 via-ink-950/90 to-ink-950" />
-        <div className="grid-lines absolute inset-0 text-white/[0.04]" />
-      </div>
-
-      <BrandTriangle
-        gradientId="contactTri"
-        strokeWidth={1.5}
-        opacity={0.5}
-        className="pointer-events-none absolute top-16 right-8 hidden h-36 w-36 sm:block lg:right-16"
-      />
-
-      <div className="relative mx-auto max-w-8xl px-5 sm:px-8 lg:px-10">
-        <div className="grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
-          {/* left: pitch + contact context */}
+    <section className="bg-paper-dim/60 pt-28 pb-14 dark:bg-transparent sm:pt-32 lg:pt-36 lg:pb-20">
+      <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-10">
+        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
           <Reveal>
-            <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-amber-400">
-              Contact
-            </p>
-            <h1 className="mt-4 text-balance font-display text-[2.25rem] leading-[1.08] font-bold text-white sm:text-5xl">
-              Tell us what you need.
+            <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-amber-600 dark:text-amber-400">Contact Us</p>
+            <h1 className="mt-3 text-balance font-display text-[2.25rem] leading-[1.08] font-bold text-ink-950 dark:text-white sm:text-5xl">
+              Let&apos;s talk about your project.
             </h1>
-            <p className="mt-5 max-w-md text-balance text-[16.5px] leading-relaxed text-ink-300">
-              Describe the problem below and we&apos;ll work out how to help — the
-              same enquiry form, presented right here on the site.
+            <p className="mt-5 max-w-md text-[16.5px] leading-relaxed text-ink-500 dark:text-ink-300">
+              CBT and ICT centre setup, repairs, networking, CCTV, software or supplies — send us a message or reach us directly.
             </p>
 
-            <ul className="mt-10 space-y-6 border-t border-white/10 pt-8">
-              {POINTS.map((point) => (
-                <li key={point.title} className="flex gap-3.5">
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-amber-500/15 text-amber-300">
-                    <point.icon className="h-4 w-4" />
-                  </span>
-                  <div>
-                    <p className="text-[14.5px] font-semibold text-white">{point.title}</p>
-                    <p className="mt-1 text-[13.5px] leading-relaxed text-ink-400">{point.text}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
+            <address className="mt-8 rounded-2xl border border-ink-200/70 bg-white px-5 py-2 not-italic dark:border-white/10 dark:bg-ink-900">
+              <div className={row}>
+                <span className={rowLabel}>Phone</span>
+                {CONTACT.phones.map((p) => (
+                  <a key={p.href} href={p.href} className={rowLink}>{p.label}</a>
+                ))}
+              </div>
+              <div className={row}>
+                <span className={rowLabel}>WhatsApp</span>
+                <a href={CONTACT.whatsapp.href} target="_blank" rel="noopener noreferrer" className={rowLink}>{CONTACT.whatsapp.label}</a>
+              </div>
+              <div className={row}>
+                <span className={rowLabel}>Email</span>
+                <a href={`mailto:${CONTACT.email}`} className={`${rowLink} break-all`}>{CONTACT.email}</a>
+              </div>
+              <div className={row}>
+                <span className={rowLabel}>Offices</span>
+                {CONTACT.addresses.map((a) => (
+                  <span key={a} className="text-[15px] text-ink-700 dark:text-ink-200">{a}</span>
+                ))}
+              </div>
+            </address>
 
-            <a
-              href={ENQUIRY_FORM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group mt-10 inline-flex items-center gap-1.5 text-[14px] font-semibold text-ink-300 transition-colors hover:text-white"
-            >
-              Prefer the form in its own tab? Open it directly
-              <IconArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-            </a>
+            <p className="mt-6 text-[14.5px] text-ink-500 dark:text-ink-300">
+              Looking to train with us instead?{' '}
+              <Link to="/apply" className="font-semibold text-violet-700 underline decoration-amber-500 underline-offset-4 dark:text-violet-400">
+                Apply here
+              </Link>
+              .
+            </p>
           </Reveal>
 
-          {/* right: floating form panel */}
-          <Reveal delay={0.1}>
-            <div className="overflow-hidden rounded-2xl border border-white/10 bg-paper shadow-[0_32px_80px_-24px_rgba(0,0,0,0.6)]">
-              <div className="flex items-center justify-between border-b border-ink-100 bg-white px-5 py-4">
-                <p className="text-[13px] font-semibold uppercase tracking-[0.1em] text-ink-500">
-                  Enquiry form
-                </p>
-                <span className="inline-flex items-center gap-1.5 text-[12px] font-medium text-ink-400">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                  Live
+          <Reveal delay={0.08}>
+            {sent ? (
+              <div className="rounded-2xl border border-ink-200/70 bg-white p-8 text-center shadow-soft dark:border-white/10 dark:bg-ink-900 sm:p-12">
+                <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-500/15">
+                  <IconCheck className="h-7 w-7" />
                 </span>
-              </div>
-
-              <div className="relative max-h-[640px] overflow-y-auto">
-                {!iframeLoaded && (
-                  <div className="absolute inset-0 z-10 animate-pulse space-y-4 bg-white p-6">
-                    <div className="h-4 w-1/3 rounded bg-ink-100" />
-                    <div className="h-10 w-full rounded-lg bg-ink-50" />
-                    <div className="h-4 w-1/4 rounded bg-ink-100" />
-                    <div className="h-10 w-full rounded-lg bg-ink-50" />
-                    <div className="h-4 w-1/3 rounded bg-ink-100" />
-                    <div className="h-24 w-full rounded-lg bg-ink-50" />
-                    <div className="h-10 w-32 rounded-full bg-ink-100" />
-                  </div>
-                )}
-                <iframe
-                  src={ENQUIRY_FORM_EMBED_URL}
-                  title="Aremu Tech Eazy Solutions enquiry form"
-                  className="h-[1400px] w-full"
-                  loading="lazy"
-                  onLoad={() => setIframeLoaded(true)}
+                <h2 className="mt-6 font-display text-[26px] font-bold text-ink-950 dark:text-white">Message sent</h2>
+                <p className="mx-auto mt-3 max-w-md text-[15.5px] leading-relaxed text-ink-500 dark:text-ink-300">
+                  Thanks for reaching out. We&apos;ll get back to you shortly. For anything urgent, call or WhatsApp us.
+                </p>
+                <Link
+                  to="/"
+                  className="group mt-8 inline-flex items-center gap-2 rounded-full bg-amber-500 px-6 py-3 text-[15px] font-semibold text-[#1a1033] transition-colors hover:bg-amber-400"
                 >
-                  Loading enquiry form…
-                </iframe>
+                  Back to home
+                  <IconArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                </Link>
               </div>
-              <p className="border-t border-ink-100 bg-white px-5 py-3 text-center text-[12px] text-ink-400">
-                Scroll within the form to see every question
-              </p>
-            </div>
+            ) : (
+              <ContactForm />
+            )}
           </Reveal>
         </div>
       </div>

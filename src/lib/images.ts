@@ -3,6 +3,12 @@ import siteCrew from '../assets/photos/site-crew.jpg'
 import trunkingInstall from '../assets/photos/trunking-install.jpg'
 import labTechnician from '../assets/photos/lab-technician.jpg'
 import jambReadiness from '../assets/photos/jamb-readiness.jpg'
+import measuringWall from '../assets/photos/measuring-wall.jpg'
+import heroTeam from '../assets/photos/hero-team.jpg'
+import etakTravels from '../assets/photos/etak-travels.jpg'
+import labWoodRows from '../assets/photos/lab-wood-rows.jpg'
+import labWoodDesk from '../assets/photos/lab-wood-desk.jpg'
+import labWoodHall from '../assets/photos/lab-wood-hall.jpg'
 
 export interface SiteImage {
   url: string
@@ -41,6 +47,21 @@ export const VIDEOS = {
     poster: '/media/laptop-check.jpg',
     alt: 'Technician checking numbered laptop stations along an exam hall',
   },
+  cablingInstall: {
+    src: '/media/cabling-install.mp4',
+    poster: '/media/cabling-install.jpg',
+    alt: 'Branded footage of technicians running cables and fixing network points in a new computer lab',
+  },
+  crewWiring: {
+    src: '/media/crew-wiring.mp4',
+    poster: '/media/crew-wiring.jpg',
+    alt: 'The crew wiring and terminating cables inside a lab under construction',
+  },
+  trunkingFit: {
+    src: '/media/trunking-fit.mp4',
+    poster: '/media/trunking-fit.jpg',
+    alt: 'Two technicians fitting cable trunking and feeding cables along a wall',
+  },
 } satisfies Record<string, SiteVideo>
 
 export const IMAGES = {
@@ -63,6 +84,34 @@ export const IMAGES = {
   jambReadiness: {
     url: jambReadiness,
     alt: 'Laptop showing the JAMB Test system readiness inspection passing',
+  },
+  heroTeam: {
+    url: heroTeam,
+    alt: 'The Aremu Tech Eazy Solutions team in branded hi-vis vests inside a CBT centre',
+  },
+  etakTravels: {
+    url: etakTravels,
+    alt: 'Etak Travels & Tours website — Your reliable travel bridge to the world',
+  },
+  measuringWall: {
+    url: measuringWall,
+    alt: 'Technician on a stool measuring a wall for trunking before installation',
+  },
+  labWoodRows: {
+    url: labWoodRows,
+    alt: 'Completed computer lab with rows of wooden cubicles and laptops under ceiling fans',
+  },
+  labWoodDesk: {
+    url: labWoodDesk,
+    alt: 'Laptop set up in a wooden exam cubicle with more cubicles stretching into the hall',
+  },
+  labWoodHall: {
+    url: labWoodHall,
+    alt: 'Large exam hall with dozens of wooden cubicles, each with a laptop installed',
+  },
+  serviceCctv: {
+    url: unsplash('photo-1557597774-9d273605dfa9', 900),
+    alt: 'Security camera mounted on a wall',
   },
   serviceWeb: {
     url: unsplash('photo-1547658719-da2b51169166', 900),

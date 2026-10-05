@@ -3,7 +3,10 @@ import Internship from '../components/Internship'
 import CompanyIntro from '../components/CompanyIntro'
 import WhyChooseUs from '../components/WhyChooseUs'
 import Capabilities from '../components/Capabilities'
-import EnquiryCTA from '../components/EnquiryCTA'
+import Team from '../components/Team'
+import LabShowcase from '../components/LabShowcase'
+import VisionMission from '../components/VisionMission'
+import CallToAction from '../components/CallToAction'
 import { IMAGES } from '../lib/images'
 
 export default function About() {
@@ -16,10 +19,13 @@ export default function About() {
         image={IMAGES.siteCrew}
       />
       <CompanyIntro />
+      <VisionMission />
+      <LabShowcase />
+      <Team />
       <Internship />
       <WhyChooseUs />
       <Capabilities />
-      <EnquiryCTA />
+      <CallToAction />
     </>
   )
 }

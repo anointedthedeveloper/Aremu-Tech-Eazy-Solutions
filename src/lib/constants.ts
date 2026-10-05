@@ -1,66 +1,11 @@
-export const ENQUIRY_FORM_URL =
-  'https://docs.google.com/forms/d/e/1FAIpQLScKwMM3OcD6H2yIfEEmFz2eTdlrljdfRiVbtXdHizm3S1BRBg/viewform'
-
-export const ENQUIRY_FORM_EMBED_URL = `${ENQUIRY_FORM_URL}?embedded=true`
-
 export const COMPANY_NAME = 'Aremu Tech Eazy Solutions'
 
 export const NAV_LINKS = [
   { label: 'Home', href: '/' },
   { label: 'Services', href: '/services' },
+  { label: 'Projects', href: '/projects' },
+  { label: 'Internship', href: '/internship' },
   { label: 'About', href: '/about' },
-  { label: 'Contact', href: '/contact' },
-]
-
-export interface Service {
-  index: string
-  title: string
-  description: string
-}
-
-export const SERVICES: Service[] = [
-  {
-    index: '01',
-    title: 'CBT Centre Setup & Readiness',
-    description:
-      'Fitting out computer-based test centres end to end — cabling and trunking, cubicle and laptop installation, network setup, and system-readiness checks so exam day runs without surprises.',
-  },
-  {
-    index: '02',
-    title: 'IT Support & Troubleshooting',
-    description:
-      'Day-to-day technical problems sorted out — slow devices, error messages, account access issues, and the small breakdowns that stop work getting done.',
-  },
-  {
-    index: '03',
-    title: 'Device Setup & Repair Guidance',
-    description:
-      'Help getting computers, phones and office equipment set up correctly, configured, and running reliably, with guidance when something needs fixing.',
-  },
-  {
-    index: '04',
-    title: 'Software Installation & Configuration',
-    description:
-      'Installing, updating and configuring the software and systems a person or business actually needs — set up properly the first time.',
-  },
-  {
-    index: '05',
-    title: 'Networking & Connectivity',
-    description:
-      'Getting internet, Wi-Fi and office networks connected and working smoothly, so teams and households stay online without constant disruption.',
-  },
-  {
-    index: '06',
-    title: 'Tech Guidance & Consultation',
-    description:
-      'Plain-language advice on tech decisions — what to buy, what to fix, and what to change — from someone who explains it without the jargon.',
-  },
-  {
-    index: '07',
-    title: 'Digital & Web Solutions',
-    description:
-      'Support for the digital side of a business — from getting online to keeping everyday digital tools and platforms running as they should.',
-  },
 ]
 
 export interface ProcessStep {
@@ -74,7 +19,7 @@ export const PROCESS_STEPS: ProcessStep[] = [
     index: '01',
     title: 'Tell us what you need',
     description:
-      'Submit an enquiry describing the problem or request. No technical jargon required — just what’s going on.',
+      'Contact us and describe the problem or request. No technical jargon required — just what’s going on.',
   },
   {
     index: '02',
@@ -115,7 +60,7 @@ export const DIFFERENTIATORS: Differentiator[] = [
   {
     title: 'Built around real requests',
     description:
-      'Every enquiry starts with understanding what you’re trying to get done, not fitting you into a fixed package.',
+      'Every request starts with understanding what you’re trying to get done, not fitting you into a fixed package.',
   },
   {
     title: 'Responsive follow-through',
@@ -126,13 +71,43 @@ export const DIFFERENTIATORS: Differentiator[] = [
 
 export const CAPABILITIES = [
   'CBT labs & exam halls',
-  'Structured cabling',
   'Computers & laptops',
-  'Mobile devices',
-  'Office & home networks',
-  'Everyday business software',
-  'Operating systems',
+  'CCTV & surveillance',
+  'Networking & cabling',
+  'Software & web development',
+  'ICT training',
   'Printers & peripherals',
-  'Internet & connectivity',
-  'Basic web & digital platforms',
+  'Office equipment supply',
 ]
+
+export const CLIENTS = [
+  'ADEOLA International School',
+  'Capville Schools',
+  'Peter Harvard International Schools',
+  'JAMB FCT Zonal Office',
+  'Goshen High School',
+  'Sada, Idris & Co.',
+  'Amiable Academy',
+  'Etak Travels & Tours Expert Limited',
+]
+
+export const TESTIMONIALS = [
+  {
+    quote: 'AREMU TECH EAZY SOLUTIONS currently manages our CBT Center and ensures everything runs smoothly during exams.',
+    by: 'Center Admin, ADEOLA International School',
+  },
+  {
+    quote: 'Professional and proactive service during our CBT exam sessions. Highly reliable team.',
+    by: 'Director, Capville Schools',
+  },
+  {
+    quote: 'They maintained our school’s ICT lab very professionally and timely!',
+    by: 'Principal, Goshen High School',
+  },
+  {
+    quote: 'The CCTV installation in our office has made our work environment more secure. I highly recommend.',
+    by: 'CEO, Jovik Global Services',
+  },
+]
+
+export const VALUES = ['Innovation', 'Integrity', 'Customer Satisfaction', 'Excellence', 'Continuous Improvement']
