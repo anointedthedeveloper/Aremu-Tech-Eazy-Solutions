@@ -8,6 +8,8 @@ import heroCrew from '../assets/photos/hero-crew.jpg'
 import heroLabs from '../assets/photos/hero-labs.jpg'
 import heroIntern from '../assets/photos/hero-intern.jpg'
 import heroTeam from '../assets/photos/hero-team.jpg'
+import hardwareDiagnostics from '../assets/photos/hardware-diagnostics.jpg'
+import laptopStation from '../assets/photos/laptop-station.jpg'
 import etakTravels from '../assets/photos/etak-travels.jpg'
 import labWoodRows from '../assets/photos/lab-wood-rows.jpg'
 import labWoodDesk from '../assets/photos/lab-wood-desk.jpg'
@@ -22,11 +24,6 @@ export interface SiteVideo {
   src: string
   poster: string
   alt: string
-}
-
-function unsplash(id: string, w: number) {
-  // always request a large, high-quality rendition; browsers scale it down as needed
-  return `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${Math.max(w, 1600)}&q=85`
 }
 
 /** Real project footage — sped up and trimmed, served from /public/media */
@@ -105,6 +102,14 @@ export const IMAGES = {
     url: heroTeam,
     alt: 'The Aremu Tech Eazy Solutions team in branded hi-vis vests inside a CBT centre',
   },
+  hardwareDiagnostics: {
+    url: hardwareDiagnostics,
+    alt: 'Technician running diagnostics on a Dell laptop at an exam station',
+  },
+  laptopStation: {
+    url: laptopStation,
+    alt: 'Laptop set up and running Windows in a green exam cubicle',
+  },
   etakTravels: {
     url: etakTravels,
     alt: 'Etak Travels & Tours website — Your reliable travel bridge to the world',
@@ -124,29 +129,5 @@ export const IMAGES = {
   labWoodHall: {
     url: labWoodHall,
     alt: 'Large exam hall with dozens of wooden cubicles, each with a laptop installed',
-  },
-  serviceCctv: {
-    url: unsplash('photo-1557597774-9d273605dfa9', 900),
-    alt: 'Security camera mounted on a wall',
-  },
-  serviceHardware: {
-    url: unsplash('photo-1581091226825-a6a2a5aee158', 1600),
-    alt: 'Technician working on an open desktop computer',
-  },
-  serviceWeb: {
-    url: unsplash('photo-1547658719-da2b51169166', 900),
-    alt: 'Website design mockups displayed on a monitor',
-  },
-  capabilitiesOffice: {
-    url: unsplash('photo-1573164713988-8665fc963095', 1100),
-    alt: 'Modern office desk with a laptop, notebook and coffee',
-  },
-  serviceConsulting: {
-    url: unsplash('photo-1552664730-d307ca884978', 900),
-    alt: 'Two people in a discussion over a laptop at a desk',
-  },
-  serviceDevices: {
-    url: unsplash('photo-1517430816045-df4b7de11d1d', 900),
-    alt: 'Smartphone and laptop side by side on a desk',
   },
 } satisfies Record<string, SiteImage>
