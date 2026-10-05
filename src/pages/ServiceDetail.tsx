@@ -57,7 +57,7 @@ export default function ServiceDetail() {
           </Reveal>
           <Reveal delay={0.08}>
             <div className="aspect-[4/3] overflow-hidden rounded-2xl border border-ink-200/70 shadow-lifted dark:border-white/10">
-              <SmartImage image={service.image} loading="eager" className="h-full w-full" />
+              <SmartImage image={service.image} loading="eager" fit="auto" className="h-full w-full" />
             </div>
           </Reveal>
         </div>
