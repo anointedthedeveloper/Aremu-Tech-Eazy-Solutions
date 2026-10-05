@@ -1,8 +1,7 @@
-import { useMemo, useRef, useState, type ChangeEvent, type FormEvent } from 'react'
+import { useRef, useState, type ChangeEvent, type FormEvent } from 'react'
 import {
   AGREE_FIELD,
   AGREE_YES,
-  APPLICATION_ENDPOINT,
   BRANCHES,
   FORM_NAME,
   MAX_FILE_MB,
@@ -15,6 +14,8 @@ import {
 } from '../lib/applicationForm'
 import { IconArrowRight, IconCheck } from './icons'
 import SendingOverlay from './SendingOverlay'
+import { useNavigate } from 'react-router-dom'
+import { api, uploadDocument } from '../lib/api'
 import { EMAIL_RE, inputClass } from '../lib/formStyles'
 
 const STEP_LABELS = ['Rules', 'About you', 'Training', 'Documents']
@@ -65,7 +66,9 @@ export default function ApplicationForm() {
 
   const mode = values[MODE_FIELD] ?? ''
   const branchFields = BRANCHES[mode]
-  const nextUrl = useMemo(() => `${window.location.origin}/apply?submitted=1`, [])
+  const navigate = useNavigate()
+  const [sendError, setSendError] = useState('')
+  const [sendStatus, setSendStatus] = useState('')
 
   const set = (label: string, value: string) => {
     setValues((v) => ({ ...v, [label]: value }))
@@ -143,9 +146,40 @@ export default function ApplicationForm() {
       requestAnimationFrame(() => document.querySelector<HTMLElement>('section:not(.hidden) [aria-invalid="true"]')?.focus())
       return
     }
-    setSubmitting(true)
-    formRef.current?.submit()
+    void send()
   }
+
+  const send = async () => {
+    setSendError('')
+    setSubmitting(true)
+    try {
+      const docs = branchFields ?? []
+      const uploaded: { label: string; id: string }[] = []
+      for (const [i, f] of docs.entries()) {
+        setSendStatus(`Uploading document ${i + 1} of ${docs.length}…`)
+        const input = document.getElementById(fieldId(`${mode} ${f.label}`)) as HTMLInputElement | null
+        const file = input?.files?.[0]
+        if (!file) throw new Error(`Please choose a file for "${f.label}".`)
+        const res = await uploadDocument(file)
+        uploaded.push({ label: f.label, id: res.id })
+      }
+      setSendStatus('Sending your application…')
+      const honey = (formRef.current?.elements.namedItem('website') as HTMLInputElement | null)?.value ?? ''
+      const fields = Object.fromEntries(PAGE_TWO.map((f) => [f.label, values[f.label] ?? '']))
+      const result = await api.post<{ emailSent: boolean; existingAccount: boolean }>('/api/applications', {
+        email: (values.Email ?? '').trim(),
+        agreed: values[AGREE_FIELD] === AGREE_YES,
+        fields,
+        files: uploaded,
+        website: honey,
+      })
+      navigate('/apply?submitted=1', { state: { emailSent: result.emailSent, existingAccount: result.existingAccount, email: values.Email } })
+    } catch (err) {
+      setSendError(err instanceof Error ? err.message : 'Something went wrong. Please try again.')
+      setSubmitting(false)
+    }
+  }
+
 
   const renderField = (field: FormField, branch?: string) => {
     const disabled = Boolean(branch) && mode !== branch
@@ -256,20 +290,13 @@ export default function ApplicationForm() {
   return (
     <form
       ref={formRef}
-      method="POST"
-      action={APPLICATION_ENDPOINT}
-      encType="multipart/form-data"
       noValidate
       onSubmit={onSubmit}
       className="light-surface relative flex h-full min-h-0 flex-col overflow-hidden rounded-3xl border border-ink-200/70 bg-white shadow-lifted dark:border-white/10 dark:bg-ink-900"
     >
-      <input type="hidden" name="_subject" value={`New application: ${values['First name'] ?? ''} ${values.Surname ?? ''} (${mode || 'no mode'})`} />
-      <input type="hidden" name="_next" value={nextUrl} />
-      <input type="hidden" name="_captcha" value="false" />
-      <input type="hidden" name="_template" value="table" />
-      <input type="text" name="_honey" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
+      <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
 
-      {submitting && <SendingOverlay title="Sending your application…" text="Uploading your details and documents. Please keep this page open." />}
+      {submitting && <SendingOverlay title="Sending your application…" text={sendStatus || 'Please keep this page open.'} />}
 
       <header className="shrink-0 border-b border-ink-100 px-5 py-4 dark:border-white/10 sm:px-8">
         <div className="flex items-baseline justify-between gap-3">
@@ -371,6 +398,12 @@ export default function ApplicationForm() {
           ))}
         </section>
       </div>
+
+      {sendError && (
+        <p role="alert" className="shrink-0 border-t border-red-200 bg-red-50 px-5 py-3 text-[13.5px] font-medium text-red-700 dark:border-red-500/30 dark:bg-red-500/10 dark:text-red-300 sm:px-8">
+          {sendError}
+        </p>
+      )}
 
       <footer className="flex shrink-0 items-center justify-between gap-3 border-t border-ink-100 bg-paper-dim/60 px-5 py-3.5 dark:border-white/10 dark:bg-white/5 sm:px-8">
         <button

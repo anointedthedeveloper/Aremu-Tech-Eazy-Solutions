@@ -3,6 +3,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Link, useLocation } from 'react-router-dom'
 import Logo from './Logo'
 import ThemeToggle from './ThemeToggle'
+import { useAuth } from '../lib/useAuth'
 import { NAV_LINKS } from '../lib/constants'
 import { CONTACT } from '../lib/contact'
 import { SERVICES, serviceHref } from '../lib/services'
@@ -25,6 +26,9 @@ function isCurrent(pathname: string, href: string) {
 export default function Navbar() {
   const { pathname } = useLocation()
   const reduceMotion = useReducedMotion()
+  const { user } = useAuth()
+  const accountTo = user ? (user.role === 'admin' ? '/admin' : '/dashboard') : '/login'
+  const accountLabel = user ? (user.role === 'admin' ? 'Admin' : 'Dashboard') : 'Login'
   const [solid, setSolid] = useState(false)
   const [openPath, setOpenPath] = useState<string | null>(null)
   const open = openPath === pathname // closes automatically on navigation
@@ -176,6 +180,12 @@ export default function Navbar() {
         <div className={`${island} ${islandTone(solid || open, onDark)} flex items-center gap-1.5 p-1.5`}>
           <ThemeToggle className={`h-9 w-9 border-transparent bg-transparent dark:border-transparent dark:bg-transparent ${onDark ? 'text-white hover:bg-white/15' : ''}`} />
           <Link
+            to={accountTo}
+            className={`hidden rounded-full px-3.5 py-2 text-[14px] font-semibold transition-colors lg:block ${onDark ? 'text-white/90 hover:bg-white/15' : 'text-ink-600 hover:bg-violet-100 dark:text-ink-300 dark:hover:bg-white/10'}`}
+          >
+            {accountLabel}
+          </Link>
+          <Link
             to="/apply"
             className={`hidden rounded-full px-4 py-2 text-[14px] font-semibold transition-colors sm:block ${onDark ? 'text-white hover:bg-white/15' : 'text-violet-700 hover:bg-violet-100 dark:text-violet-300 dark:hover:bg-white/10'}`}
           >
@@ -257,7 +267,11 @@ export default function Navbar() {
                 ))}
               </ul>
             </nav>
-            <div className="mt-5 grid grid-cols-2 gap-3">
+            <Link to={accountTo} className="mt-4 flex items-center justify-between rounded-2xl border border-ink-200 px-4 py-3 text-[15px] font-semibold text-ink-800 dark:border-white/10 dark:text-ink-100">
+              {user ? `${accountLabel} (${user.email})` : 'Applicant login'}
+              <span aria-hidden="true">→</span>
+            </Link>
+            <div className="mt-3 grid grid-cols-2 gap-3">
               <Link to="/contact" className="rounded-full bg-amber-500 px-5 py-3.5 text-center text-[15px] font-semibold text-[#1a1033]">Contact Us</Link>
               <Link to="/apply" className="rounded-full border border-violet-300 px-5 py-3.5 text-center text-[15px] font-semibold text-violet-700 dark:border-white/20 dark:text-white">Apply</Link>
             </div>

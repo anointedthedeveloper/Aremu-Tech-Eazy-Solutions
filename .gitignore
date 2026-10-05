@@ -24,3 +24,7 @@ dist-ssr
 *.sw?
 
 dist.zip
+
+.env
+.env.*
+!.env.example

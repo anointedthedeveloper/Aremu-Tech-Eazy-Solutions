@@ -1,7 +1,8 @@
-import { useMemo, useRef, useState, type FormEvent } from 'react'
+import { useState, type FormEvent } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { api } from '../lib/api'
 import { SERVICES } from '../lib/services'
 import SendingOverlay from './SendingOverlay'
-import { APPLICATION_ENDPOINT } from '../lib/applicationForm'
 import { EMAIL_RE, inputClass } from '../lib/formStyles'
 
 const OTHER = 'Something else'
@@ -10,12 +11,12 @@ const SERVICE_OPTIONS = [...SERVICES.map((s) => s.title), OTHER]
 type Errors = Partial<Record<'Name' | 'Email' | 'Phone' | 'Service' | 'Message', string>>
 
 export default function ContactForm() {
-  const formRef = useRef<HTMLFormElement>(null)
   const [errors, setErrors] = useState<Errors>({})
   const [sending, setSending] = useState(false)
-  const nextUrl = useMemo(() => `${window.location.origin}/contact?sent=1`, [])
+  const navigate = useNavigate()
+  const [sendError, setSendError] = useState('')
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
     const get = (k: string) => String(data.get(k) ?? '').trim()
@@ -32,7 +33,22 @@ export default function ContactForm() {
       return
     }
     setSending(true)
-    formRef.current?.submit()
+    setSendError('')
+    try {
+      await api.post('/api/enquiries', {
+        name: get('Name'),
+        phone: get('Phone'),
+        email: get('Email'),
+        service: get('Service'),
+        organisation: get('Organisation'),
+        message: get('Message'),
+        website: get('website'),
+      })
+      navigate('/contact?sent=1')
+    } catch (err) {
+      setSendError(err instanceof Error ? err.message : 'Something went wrong. Please try again.')
+      setSending(false)
+    }
   }
 
   const field = (name: keyof Errors) => ({
@@ -53,18 +69,11 @@ export default function ContactForm() {
 
   return (
     <form
-      ref={formRef}
-      method="POST"
-      action={APPLICATION_ENDPOINT}
       noValidate
       onSubmit={onSubmit}
       className="relative overflow-hidden rounded-2xl border border-ink-200/70 bg-white p-5 shadow-soft dark:border-white/10 dark:bg-ink-900 sm:p-8"
     >
-      <input type="hidden" name="_subject" value="New business enquiry from the website" />
-      <input type="hidden" name="_next" value={nextUrl} />
-      <input type="hidden" name="_captcha" value="false" />
-      <input type="hidden" name="_template" value="table" />
-      <input type="text" name="_honey" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
+      <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
 
       {sending && <SendingOverlay title="Sending your message…" text="This only takes a moment." />}
 
@@ -118,6 +127,11 @@ export default function ContactForm() {
         {sending && <span aria-hidden="true" className="h-4 w-4 animate-spin rounded-full border-2 border-ink-950/30 border-t-ink-950" />}
         {sending ? 'Sending…' : 'Send message'}
       </button>
+      {sendError && (
+        <p role="alert" className="mt-4 text-[13.5px] font-medium text-red-600 dark:text-red-400">
+          {sendError}
+        </p>
+      )}
     </form>
   )
 }
