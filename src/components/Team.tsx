@@ -22,9 +22,9 @@ export default function Team() {
           </div>
         </Reveal>
 
-        <ul className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5 lg:grid-cols-3 xl:grid-cols-6">
+        <ul className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4">
           {TEAM.map((member, i) => (
-            <Reveal key={member.photo?.url ?? member.role ?? i} as="li" className="flex" delay={(i % 6) * 0.05}>
+            <Reveal key={member.photo?.url ?? member.role ?? i} as="li" className="flex" delay={(i % 4) * 0.05}>
               <figure className="flex w-full flex-col overflow-hidden rounded-2xl border border-ink-200/70 bg-white dark:border-white/10 dark:bg-ink-900">
                 <div className="aspect-[4/5] overflow-hidden">
                   {member.photo ? (
