@@ -30,6 +30,15 @@ React + Vite front end with serverless API routes (`/api`) backed by MongoDB.
 
 If SMTP is not set up the site still works: applications are saved, and in the admin page **Reset & resend login** shows the new password on screen so you can give it to the applicant.
 
+## Two ways to host it
+
+The same API code runs in both, so pick whichever you like:
+
+- **Vercel** (default): `/api/*.ts` become serverless functions automatically. Just add the environment variables.
+- **Standalone Node server** (Render, Railway, a VPS…): `npm run build && npm start` serves the website *and* the API from one address (no CORS setup). On Render, create a **Blueprint** from this repo (`render.yaml`) and fill in the variables it asks for. Health check: `/healthz`.
+
+In MongoDB Atlas, open **Network Access** and allow `0.0.0.0/0` so Vercel/Render can connect.
+
 ## Notes
 
 - Uploads are limited to 4 MB per file (large photos are shrunk in the browser first), because serverless requests are capped at ~4.5 MB.

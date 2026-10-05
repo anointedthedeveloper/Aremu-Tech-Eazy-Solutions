@@ -1,0 +1,36 @@
+# One-click deploy on Render (https://render.com): New → Blueprint → pick this repo.
+services:
+  - type: web
+    name: aremu-tech
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_DB
+        value: aremutech
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD_HASH
+        sync: false
+      - key: SMTP_HOST
+        value: smtp.gmail.com
+      - key: SMTP_PORT
+        value: "465"
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: MAIL_FROM
+        sync: false
+      - key: ADMIN_NOTIFY_EMAIL
+        sync: false
+      - key: SITE_URL
+        sync: false

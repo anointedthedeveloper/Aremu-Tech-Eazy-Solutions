@@ -8,7 +8,8 @@
     "build": "tsc -b && tsc -p api/tsconfig.json && vite build && node scripts/zip-dist.mjs",
     "lint": "oxlint",
     "preview": "vite preview",
-    "hash-password": "node scripts/hash-password.mjs"
+    "hash-password": "node scripts/hash-password.mjs",
+    "start": "tsx server/index.ts"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
@@ -20,7 +21,8 @@
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-router-dom": "^7.18.4",
-    "tailwindcss": "^4.3.3"
+    "tailwindcss": "^4.3.3",
+    "tsx": "^4.23.15"
   },
   "devDependencies": {
     "@types/node": "^24.19.1",
