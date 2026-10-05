@@ -78,6 +78,9 @@ export default function Footer() {
                 Apply
               </Link>
             </div>
+            <p className="mt-4 text-[13.5px]">
+              <Link to="/login" className="text-ink-300 underline-offset-4 transition-colors hover:text-white hover:underline">Applicant login</Link>
+            </p>
           </div>
         </div>
 

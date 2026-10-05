@@ -78,8 +78,4 @@ export const BRANCHES: Record<string, FormField[]> = {
 }
 
 /** Largest single upload accepted by the form, in megabytes. */
-export const MAX_FILE_MB = 5
-
-/** Where the finished application is sent. Override with VITE_APPLICATION_ENDPOINT. */
-export const APPLICATION_ENDPOINT =
-  import.meta.env.VITE_APPLICATION_ENDPOINT ?? 'https://formsubmit.co/aremutecheazysolutions@gmail.com'
+export const MAX_FILE_MB = 4
