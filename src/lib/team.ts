@@ -26,12 +26,17 @@ const photo = (url: string, name: string): SiteImage => ({
 
 const MEMBER = 'Team Member'
 
-/** Display order: department heads, lead software engineer, then the rest of the team. */
+/** Display order: general manager, department heads, lead software engineer, then the team. */
 export const TEAM: TeamMember[] = [
+  {
+    name: 'Engr Ahmed Olamilekan Ajao',
+    role: 'General Manager',
+    photo: photo(member1, 'Engr Ahmed Olamilekan Ajao'),
+  },
   {
     name: 'Engr Abdullateef Ayomipo Aliyu',
     role: 'Head of Networking & CCTV Department',
-    photo: photo(member1, 'Engr Abdullateef Ayomipo Aliyu'),
+    photo: photo(member4, 'Engr Abdullateef Ayomipo Aliyu'),
   },
   {
     name: 'Engr Joseph Idoko',
@@ -39,9 +44,9 @@ export const TEAM: TeamMember[] = [
     photo: photo(member2, 'Engr Joseph Idoko'),
   },
   {
+    // Add `photo: photo(<imported file>, name)` here once a photo is available.
     name: 'Engr Anointed Agunloye',
     role: 'Lead Software Engineer',
-    photo: photo(member4, 'Engr Anointed Agunloye'),
   },
   {
     name: 'Engr Oladeyinde Ayomide',
