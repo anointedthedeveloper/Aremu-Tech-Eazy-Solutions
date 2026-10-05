@@ -5,24 +5,33 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && node scripts/zip-dist.mjs",
+    "build": "tsc -b && tsc -p api/tsconfig.json && vite build && node scripts/zip-dist.mjs",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "hash-password": "node scripts/hash-password.mjs",
+    "start": "tsx server/index.ts"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
+    "bcryptjs": "^3.0.3",
     "framer-motion": "^13.4.2",
+    "jose": "^6.2.12",
+    "mongodb": "^7.7.0",
+    "nodemailer": "^10.0.15",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-router-dom": "^7.18.4",
-    "tailwindcss": "^4.3.3"
+    "tailwindcss": "^4.3.3",
+    "tsx": "^4.23.15"
   },
   "devDependencies": {
-    "@types/node": "^24.13.3",
+    "@types/node": "^24.19.1",
+    "@types/nodemailer": "^8.0.2",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.7",
     "@vitejs/plugin-react": "^6.1.1",
     "adm-zip": "^0.6.1",
+    "mongodb-memory-server": "^11.3.0",
     "oxlint": "^1.81.0",
     "typescript": "~6.0.2",
     "vite": "^8.3.0"

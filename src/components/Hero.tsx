@@ -5,6 +5,8 @@ import VideoCard from './VideoCard'
 import SmartImage from './SmartImage'
 import { IconArrowRight, IconCheck } from './icons'
 import { IMAGES, VIDEOS, type SiteImage, type SiteVideo } from '../lib/images'
+import { useMediaQuery } from '../lib/network'
+import { CLIENTS } from '../lib/constants'
 
 interface Cta {
   to: string
@@ -21,12 +23,20 @@ interface BaseSlide {
 }
 interface PhotoSlide extends BaseSlide {
   kind: 'photo'
+  /** Full-bleed image (phones, and desktop unless `frame` is set). */
   image: SiteImage
   position?: string
+  /**
+   * For photos whose resolution is too low to stretch across a wide screen: on desktop show the
+   * original, crisp, in a frame over a blurred copy of itself.
+   */
+  frame?: { image: SiteImage; className: string }
 }
 interface VideoSlide extends BaseSlide {
   kind: 'video'
   video: SiteVideo
+  /** Still photo used as the slide background behind the framed clip on desktop (costs no video data). */
+  backImage: SiteImage
 }
 type Slide = PhotoSlide | VideoSlide
 
@@ -45,6 +55,7 @@ const SLIDES: Slide[] = [
   {
     kind: 'video',
     video: VIDEOS.fieldTesting,
+    backImage: IMAGES.heroHall,
     kicker: 'CBT centre setup',
     title: 'Every station tested before exam day.',
     text: 'We set up, configure and check each machine — so candidates sit down to a system that just works.',
@@ -54,7 +65,7 @@ const SLIDES: Slide[] = [
   },
   {
     kind: 'photo',
-    image: IMAGES.labWoodRows,
+    image: IMAGES.heroLabs,
     position: '50% 60%',
     kicker: 'Completed labs',
     title: 'From an empty room to an exam-ready hall.',
@@ -66,6 +77,7 @@ const SLIDES: Slide[] = [
   {
     kind: 'video',
     video: VIDEOS.cablingInstall,
+    backImage: IMAGES.heroCrew,
     kicker: 'Networking, cabling & CCTV',
     title: 'Cabling and networks, done properly.',
     text: 'Structured cabling, trunking, CCTV and connectivity for offices, schools and homes.',
@@ -75,7 +87,7 @@ const SLIDES: Slide[] = [
   },
   {
     kind: 'photo',
-    image: IMAGES.internWiring,
+    image: IMAGES.heroIntern,
     position: '50% 40%',
     kicker: 'Internship & training',
     title: 'Learn the trade on real projects.',
@@ -92,11 +104,13 @@ const btn =
 
 export default function Hero() {
   const reduceMotion = useReducedMotion()
+  const isDesktop = useMediaQuery('(min-width: 1024px)')
   const [index, setIndex] = useState(0)
   const [paused, setPaused] = useState(false)
   const touchX = useRef<number | null>(null)
   const count = SLIDES.length
   const slide = SLIDES[index]
+  const framePhoto = slide.kind === 'photo' && isDesktop ? slide.frame : undefined
 
   const [progress, setProgress] = useState(0) // 0..1 through the current slide
   const elapsed = useRef(0)
@@ -159,7 +173,12 @@ export default function Hero() {
           exit={{ opacity: 0 }}
           transition={{ duration: reduceMotion ? 0 : 0.9 }}
         >
-          {slide.kind === 'photo' ? (
+          {framePhoto && slide.kind === 'photo' ? (
+            <div className="absolute inset-0 bg-[#1b1535]">
+              <SmartImage image={framePhoto.image} loading="eager" variant="dark" showLabel={false} className="h-full w-full scale-125 opacity-45 blur-2xl" />
+              <div className="absolute inset-0 bg-[radial-gradient(60%_70%_at_82%_45%,rgba(122,71,207,0.4),transparent_70%),radial-gradient(60%_60%_at_0%_100%,rgba(247,147,30,0.22),transparent_70%)]" />
+            </div>
+          ) : slide.kind === 'photo' ? (
             <motion.div
               className="h-full w-full"
               initial={{ scale: 1 }}
@@ -177,15 +196,22 @@ export default function Hero() {
             </motion.div>
           ) : (
             <>
-              {/* phones: full-bleed portrait footage */}
-              <VideoCard video={slide.video} eager className="h-full w-full lg:hidden" />
-              {/* desktop: blurred backdrop + large framed clip on the right */}
-              <img
-                src={slide.video.poster}
-                alt=""
-                aria-hidden="true"
-                className="absolute inset-0 hidden h-full w-full scale-125 object-cover blur-3xl lg:block"
-              />
+              {isDesktop ? (
+                /* desktop: brand backdrop + large framed clip on the right (below) */
+                <div className="absolute inset-0 bg-[#1b1535]">
+                  <SmartImage
+                    image={slide.backImage}
+                    loading="eager"
+                    variant="dark"
+                    showLabel={false}
+                    className="h-full w-full"
+                  />
+                  <div className="absolute inset-0 bg-[radial-gradient(60%_70%_at_82%_45%,rgba(122,71,207,0.35),transparent_70%)]" />
+                </div>
+              ) : (
+                /* phones: full-bleed portrait footage */
+                <VideoCard video={slide.video} eager className="h-full w-full" />
+              )}
             </>
           )}
         </motion.div>
@@ -193,11 +219,11 @@ export default function Hero() {
 
       {/* readability overlays */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-950/90 via-ink-950/25 to-ink-950/10" />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink-950/55 via-transparent to-transparent" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink-950/80 via-ink-950/35 to-transparent" />
 
       {/* large framed video (desktop) */}
       <AnimatePresence initial={false}>
-        {slide.kind === 'video' && (
+        {(framePhoto || (slide.kind === 'video' && isDesktop)) && (
           <motion.div
             key={`v-${index}`}
             initial={{ opacity: 0, x: 40 }}
@@ -206,10 +232,20 @@ export default function Hero() {
             transition={{ duration: reduceMotion ? 0 : 0.7 }}
             className="absolute top-1/2 right-[9%] z-10 hidden -translate-y-[46%] lg:block"
           >
+            {framePhoto ? (
+              <SmartImage
+                image={framePhoto.image}
+                loading="eager"
+                variant="dark"
+                showLabel={false}
+                className={`${framePhoto.className} rounded-3xl border border-white/25 shadow-[0_40px_90px_-30px_rgba(0,0,0,0.9)]`}
+              />
+            ) : slide.kind === 'video' ? (
+              <>
             <VideoCard
               video={slide.video}
               eager
-              className="aspect-[9/16] h-[min(76svh,780px)] rounded-3xl border border-white/20 shadow-[0_40px_90px_-30px_rgba(0,0,0,0.9)]"
+              className="aspect-[9/16] h-[min(66svh,720px)] rounded-3xl border border-white/20 shadow-[0_40px_90px_-30px_rgba(0,0,0,0.9)]"
             />
             <span className="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 px-3 py-1.5 text-[12px] font-semibold text-white backdrop-blur-md">
               <span className="relative flex h-2 w-2">
@@ -221,12 +257,14 @@ export default function Hero() {
             <p className="absolute right-4 bottom-4 left-4 rounded-2xl bg-black/55 px-4 py-3 text-[13px] leading-snug text-white backdrop-blur-md">
               {slide.video.alt}
             </p>
+              </>
+            ) : null}
           </motion.div>
         )}
       </AnimatePresence>
 
       {/* copy */}
-      <div className={`relative z-20 mx-auto flex h-full max-w-[1600px] flex-col justify-end px-4 pt-28 pb-24 sm:px-6 sm:pb-28 lg:px-10 ${slide.kind === 'video' ? 'lg:justify-center lg:pb-24' : ''}`}>
+      <div className={`relative z-20 mx-auto flex h-full max-w-[1600px] flex-col justify-end px-4 pt-28 pb-24 sm:px-6 sm:pb-28 lg:px-10 [@media(min-height:700px)]:sm:pb-40 ${slide.kind === 'video' || framePhoto ? 'lg:justify-center lg:pb-24' : ''}`}>
         <AnimatePresence mode="wait">
           <motion.div
             key={index}
@@ -242,7 +280,7 @@ export default function Hero() {
               {slide.title}
             </h1>
             <p className="mt-4 max-w-lg text-[16px] leading-relaxed text-white/85 sm:text-[17.5px]">{slide.text}</p>
-            <ul className="mt-5 hidden space-y-2 sm:block">
+            <ul className="mt-5 hidden space-y-2 sm:block [@media(max-height:760px)]:hidden">
               {slide.points.map((pt) => (
                 <li key={pt} className="flex items-center gap-2.5 text-[14.5px] text-white/90">
                   <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-amber-400/20 text-amber-300">
@@ -263,6 +301,26 @@ export default function Hero() {
             </div>
           </motion.div>
         </AnimatePresence>
+      </div>
+
+      {/* social proof ticker */}
+      <div
+        aria-label="Clients we have worked with"
+        className="absolute inset-x-0 bottom-[4.1rem] z-20 hidden sm:block [@media(max-height:700px)]:hidden"
+      >
+        <div className="mx-auto flex max-w-[1600px] items-center gap-5 px-4 sm:px-6 lg:px-10">
+          <span className="shrink-0 text-[11.5px] font-semibold tracking-[0.14em] text-white/60 uppercase">Trusted by</span>
+          <div className="relative min-w-0 flex-1 overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_6%,black_94%,transparent)]">
+            <ul className="animate-marquee flex w-max items-center gap-10 py-1 text-[14px] font-medium whitespace-nowrap text-white/85 motion-reduce:animate-none">
+              {[...CLIENTS, ...CLIENTS].map((c, i) => (
+                <li key={`${c}-${i}`} className="flex items-center gap-10" aria-hidden={i >= CLIENTS.length}>
+                  {c}
+                  <span className="h-1 w-1 rounded-full bg-amber-400" />
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
 
       {/* controls */}

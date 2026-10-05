@@ -26,9 +26,9 @@ export default function CompanyIntro() {
     <section className="border-t border-ink-100 dark:border-white/10 py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-10">
         <div className="grid gap-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
-          <Reveal className="relative">
+          <Reveal direction="left" className="relative">
             <div className="aspect-[4/5] overflow-hidden rounded-2xl border border-ink-200/70 dark:border-white/10 shadow-[0_24px_70px_-30px_rgba(13,14,19,0.35)]">
-              <SmartImage image={IMAGES.labTechnician} className="h-full w-full" />
+              <SmartImage image={IMAGES.labWoodHall} className="h-full w-full" />
             </div>
             <div className="absolute -right-6 -bottom-10 hidden h-40 w-48 overflow-hidden rounded-xl border-4 border-paper dark:border-ink-950 shadow-[0_20px_50px_-20px_rgba(13,14,19,0.45)] sm:block lg:-right-10">
               <SmartImage image={IMAGES.jambReadiness} className="h-full w-full" />
@@ -36,7 +36,7 @@ export default function CompanyIntro() {
           </Reveal>
 
           <div className="lg:pt-4">
-            <Reveal>
+            <Reveal direction="right">
               <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-amber-600 dark:text-amber-400">
                 Who We Are
               </p>

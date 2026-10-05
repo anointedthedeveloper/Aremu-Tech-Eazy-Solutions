@@ -61,6 +61,11 @@
     @apply border-ink-200 dark:border-white/10;
   }
 
+  html,
+  body {
+    overflow-x: clip; /* off-screen reveal/parallax elements must never create a horizontal scrollbar */
+  }
+
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
@@ -173,6 +178,34 @@
     background-image: linear-gradient(100deg, #ffd08a, #ffe9cf 50%, #fff);
   }
 
+  .animate-marquee {
+    animation: marquee 38s linear infinite;
+  }
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+
+  /* Light sweep across the primary (amber) buttons on hover */
+  a.bg-amber-500,
+  button.bg-amber-500 {
+    position: relative;
+    overflow: hidden;
+  }
+  a.bg-amber-500::after,
+  button.bg-amber-500::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(110deg, transparent 32%, rgba(255, 255, 255, 0.55) 50%, transparent 68%);
+    transform: translateX(-130%);
+    transition: transform 0.75s ease;
+  }
+  a.bg-amber-500:hover::after,
+  button.bg-amber-500:hover:not(:disabled)::after {
+    transform: translateX(130%);
+  }
+
   .skeleton {
     position: relative;
     overflow: hidden;
@@ -209,6 +242,12 @@
       radial-gradient(60% 50% at 8% 0%, rgba(138, 63, 208, 0.45), transparent 70%),
       radial-gradient(50% 50% at 100% 100%, rgba(247, 147, 30, 0.28), transparent 70%),
       radial-gradient(40% 40% at 70% 10%, rgba(108, 143, 214, 0.22), transparent 70%);
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
   }
 }
 

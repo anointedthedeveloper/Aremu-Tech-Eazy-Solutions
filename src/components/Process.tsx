@@ -1,15 +1,12 @@
 import Reveal from './Reveal'
-import SmartImage from './SmartImage'
+import SectionBackground from './SectionBackground'
 import { PROCESS_STEPS } from '../lib/constants'
 import { IMAGES } from '../lib/images'
 
 export default function Process() {
   return (
     <section id="process" className="relative overflow-hidden border-t border-ink-100 bg-deep py-16 sm:py-20 lg:py-24">
-      <div className="pointer-events-none absolute inset-0">
-        <SmartImage image={IMAGES.siteCrew} variant="dark" showLabel={false} className="h-full w-full opacity-[0.16]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-ink-950 via-ink-950/95 to-ink-950" />
-      </div>
+      <SectionBackground image={IMAGES.heroHall} tone="dark" position="50% 45%" />
       <div className="relative mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-10">
         <Reveal className="max-w-2xl">
           <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-amber-400">

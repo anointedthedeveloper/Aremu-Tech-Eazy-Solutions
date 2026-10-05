@@ -7,4 +7,6 @@ export const CONTACT = {
   email: 'aremutecheazysolutions@gmail.com',
   addresses: ['Plot 1 Behind CAC Church, Kubwa, FCT', 'Shop 6, Arsenal Close, New Maitama, Kubwa, FCT'],
   social: 'aremutecheazysolutions',
+  facebook: 'https://www.facebook.com/aremutecheazysolutions',
+  instagram: 'https://www.instagram.com/aremutecheazysolutions',
 }

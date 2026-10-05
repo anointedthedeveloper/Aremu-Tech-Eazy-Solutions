@@ -36,7 +36,7 @@ export default function ServiceDetail() {
       {/* header */}
       <section className="bg-paper-dim/60 pt-28 pb-12 dark:bg-transparent sm:pt-32 sm:pb-16 lg:pt-36 lg:pb-20">
         <div className="mx-auto grid max-w-[1600px] items-center gap-10 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 lg:px-8">
-          <Reveal>
+          <Reveal direction="left">
             <nav aria-label="Breadcrumb" className="text-[13px] text-ink-500 dark:text-ink-400">
               <Link to="/services" className="font-medium text-violet-700 hover:underline dark:text-violet-400">Services</Link>
               <span className="mx-2">/</span>
@@ -55,9 +55,9 @@ export default function ServiceDetail() {
               )}
             </div>
           </Reveal>
-          <Reveal delay={0.08}>
+          <Reveal direction="right" delay={0.1}>
             <div className="aspect-[4/3] overflow-hidden rounded-2xl border border-ink-200/70 shadow-lifted dark:border-white/10">
-              <SmartImage image={service.image} loading="eager" className="h-full w-full" />
+              <SmartImage image={service.image} loading="eager" fit="auto" className="h-full w-full" />
             </div>
           </Reveal>
         </div>

@@ -5,8 +5,12 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
 import PageLoader from './components/PageLoader'
+import ScrollProgress from './components/ScrollProgress'
+import RouteCurtain from './components/RouteCurtain'
 import { PageSkeleton } from './components/Skeleton'
 import { ThemeProvider } from './lib/theme'
+import AuthProvider from './lib/AuthProvider'
+import RequireRole from './components/RequireRole'
 const Home = lazy(() => import('./pages/Home'))
 const ServicesPage = lazy(() => import('./pages/ServicesPage'))
 const About = lazy(() => import('./pages/About'))
@@ -16,6 +20,10 @@ const Apply = lazy(() => import('./pages/Apply'))
 const Projects = lazy(() => import('./pages/Projects'))
 const ServiceDetail = lazy(() => import('./pages/ServiceDetail'))
 const NotFound = lazy(() => import('./pages/NotFound'))
+const Login = lazy(() => import('./pages/Login'))
+const AdminLogin = lazy(() => import('./pages/AdminLogin'))
+const Dashboard = lazy(() => import('./pages/Dashboard'))
+const Admin = lazy(() => import('./pages/Admin'))
 
 function AnimatedRoutes() {
   const location = useLocation()
@@ -35,6 +43,10 @@ function AnimatedRoutes() {
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/services/:slug" element={<ServiceDetail />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/lgad" element={<AdminLogin />} />
+          <Route path="/dashboard" element={<RequireRole role="applicant"><Dashboard /></RequireRole>} />
+          <Route path="/admin/*" element={<RequireRole role="admin"><Admin /></RequireRole>} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/apply" element={<Apply />} />
           <Route path="/internship" element={<InternshipPage />} />
@@ -51,8 +63,11 @@ function AnimatedRoutes() {
 function App() {
   return (
     <ThemeProvider>
+    <AuthProvider>
     <BrowserRouter>
       <PageLoader />
+      <ScrollProgress />
+      <RouteCurtain />
       <ScrollToTop />
       <div className="min-h-screen bg-paper dark:bg-ink-950">
         <Navbar />
@@ -62,6 +77,7 @@ function App() {
         <Footer />
       </div>
     </BrowserRouter>
+    </AuthProvider>
     </ThemeProvider>
   )
 }

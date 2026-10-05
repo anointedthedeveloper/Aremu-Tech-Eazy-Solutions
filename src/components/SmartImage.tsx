@@ -8,6 +8,8 @@ interface SmartImageProps {
   variant?: 'light' | 'dark'
   showLabel?: boolean
   objectPosition?: string
+  /** 'auto': portrait photos are shown in full (contained over a blurred copy) instead of being cropped. */
+  fit?: 'cover' | 'auto'
 }
 
 export default function SmartImage({
@@ -17,9 +19,13 @@ export default function SmartImage({
   variant = 'light',
   showLabel = true,
   objectPosition,
+  fit = 'cover',
 }: SmartImageProps) {
   const [failed, setFailed] = useState(false)
   const [loaded, setLoaded] = useState(false)
+  const [portrait, setPortrait] = useState(false)
+
+  const contain = fit === 'auto' && portrait
 
   if (failed) {
     const tone =
@@ -37,15 +43,27 @@ export default function SmartImage({
   return (
     <span className={`relative block overflow-hidden ${className}`}>
       {!loaded && <span aria-hidden="true" className="skeleton absolute inset-0 rounded-none" />}
+      {contain && (
+        <img
+          src={image.url}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full scale-125 object-cover opacity-70 blur-2xl"
+        />
+      )}
       <img
         src={image.url}
         alt={image.alt}
         loading={loading}
         decoding="async"
         style={objectPosition ? { objectPosition } : undefined}
-        onLoad={() => setLoaded(true)}
+        onLoad={(e) => {
+          const { naturalWidth: w, naturalHeight: h } = e.currentTarget
+          if (fit === 'auto' && h > w * 1.1) setPortrait(true)
+          setLoaded(true)
+        }}
         onError={() => setFailed(true)}
-        className={`h-full w-full object-cover transition-opacity duration-500 ${loaded ? 'opacity-100' : 'opacity-0'}`}
+        className={`relative h-full w-full transition-opacity duration-500 ${contain ? 'object-contain' : 'object-cover'} ${loaded ? 'opacity-100' : 'opacity-0'}`}
       />
     </span>
   )

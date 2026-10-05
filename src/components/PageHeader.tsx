@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import Reveal from './Reveal'
-import SmartImage from './SmartImage'
+import ParallaxImage from './ParallaxImage'
 import type { SiteImage } from '../lib/images'
 
 interface PageHeaderProps {
@@ -17,7 +17,7 @@ export default function PageHeader({ eyebrow, title, description, image, childre
       <div className="pointer-events-none absolute inset-0 -z-10">
       </div>
       <div className="mx-auto grid max-w-[1600px] items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10 lg:px-10">
-        <Reveal>
+        <Reveal direction="left">
           <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-amber-600 dark:text-amber-400">
             {eyebrow}
           </p>
@@ -30,9 +30,10 @@ export default function PageHeader({ eyebrow, title, description, image, childre
           {children}
         </Reveal>
 
-        <Reveal delay={0.1} className="relative mx-auto w-full max-w-md lg:max-w-none">
-          <SmartImage
+        <Reveal direction="right" delay={0.1} className="relative mx-auto w-full max-w-md lg:max-w-none">
+          <ParallaxImage
             image={image}
+            loading="eager"
             className="aspect-[4/3] w-full rounded-2xl border border-ink-200/70 dark:border-white/10 shadow-[0_20px_60px_-25px_rgba(13,14,19,0.35)]"
           />
         </Reveal>

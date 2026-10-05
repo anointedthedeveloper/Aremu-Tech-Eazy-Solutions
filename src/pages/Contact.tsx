@@ -1,8 +1,10 @@
 import { Link, useSearchParams } from 'react-router-dom'
 import Reveal from '../components/Reveal'
 import ContactForm from '../components/ContactForm'
-import { IconArrowRight, IconCheck } from '../components/icons'
+import { IconArrowRight } from '../components/icons'
+import SuccessBurst from '../components/SuccessBurst'
 import { CONTACT } from '../lib/contact'
+import SocialLinks from '../components/SocialLinks'
 
 const row = 'flex flex-col gap-0.5 border-b border-ink-100 py-4 last:border-0 dark:border-white/10'
 const rowLabel = 'text-[12px] font-semibold uppercase tracking-[0.12em] text-violet-600 dark:text-violet-400'
@@ -16,7 +18,7 @@ export default function Contact() {
     <section className="bg-paper-dim/60 pt-28 pb-14 dark:bg-transparent sm:pt-32 lg:pt-36 lg:pb-20">
       <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-10">
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
-          <Reveal>
+          <Reveal direction="left">
             <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-amber-600 dark:text-amber-400">Contact Us</p>
             <h1 className="mt-3 text-balance font-display text-[2.25rem] leading-[1.08] font-bold text-ink-950 dark:text-white sm:text-5xl">
               Let&apos;s talk about your project.
@@ -48,6 +50,8 @@ export default function Contact() {
               </div>
             </address>
 
+            <SocialLinks tone="light" className="mt-6" />
+
             <p className="mt-6 text-[14.5px] text-ink-500 dark:text-ink-300">
               Looking to train with us instead?{' '}
               <Link to="/apply" className="font-semibold text-violet-700 underline decoration-amber-500 underline-offset-4 dark:text-violet-400">
@@ -57,12 +61,10 @@ export default function Contact() {
             </p>
           </Reveal>
 
-          <Reveal delay={0.08}>
+          <Reveal direction="right" delay={0.1}>
             {sent ? (
               <div className="rounded-2xl border border-ink-200/70 bg-white p-8 text-center shadow-soft dark:border-white/10 dark:bg-ink-900 sm:p-12">
-                <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-500/15">
-                  <IconCheck className="h-7 w-7" />
-                </span>
+                <SuccessBurst />
                 <h2 className="mt-6 font-display text-[26px] font-bold text-ink-950 dark:text-white">Message sent</h2>
                 <p className="mx-auto mt-3 max-w-md text-[15.5px] leading-relaxed text-ink-500 dark:text-ink-300">
                   Thanks for reaching out. We&apos;ll get back to you shortly. For anything urgent, call or WhatsApp us.

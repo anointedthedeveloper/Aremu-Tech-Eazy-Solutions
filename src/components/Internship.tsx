@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import Reveal from './Reveal'
+import SectionBackground from './SectionBackground'
 import SmartImage from './SmartImage'
+import ParallaxImage from './ParallaxImage'
 import { IconArrowRight } from './icons'
 import { IMAGES } from '../lib/images'
 
@@ -14,22 +16,23 @@ const LEARNING = [
 export default function Internship() {
   return (
     <section id="internship" className="relative overflow-hidden bg-deep py-16 sm:py-20 lg:py-24">
+      <SectionBackground image={IMAGES.heroLabs} tone="dark" position="50% 50%" />
       <div className="relative mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-10">
         <div className="grid items-center gap-12 lg:grid-cols-[1fr_1fr] lg:gap-20">
-          <Reveal className="relative">
+          <Reveal direction="left" className="relative">
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/15 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.8)]">
-              <SmartImage image={IMAGES.internWiring} variant="dark" showLabel={false} className="h-full w-full" />
+              <ParallaxImage image={IMAGES.internWiring} className="h-full w-full" />
               <div className="absolute inset-0 bg-gradient-to-t from-ink-950/70 via-transparent to-transparent" />
               <p className="absolute bottom-4 left-4 rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-[12.5px] font-medium text-white backdrop-blur-md">
                 Intern on a live lab installation
               </p>
             </div>
             <div className="absolute -right-3 -bottom-8 hidden h-32 w-44 overflow-hidden rounded-xl border-4 border-ink-950 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.9)] sm:block lg:-right-8 lg:h-40 lg:w-56">
-              <SmartImage image={IMAGES.labTechnician} variant="dark" showLabel={false} className="h-full w-full" />
+              <SmartImage image={IMAGES.labWoodDesk} variant="dark" showLabel={false} className="h-full w-full" />
             </div>
           </Reveal>
 
-          <Reveal delay={0.08}>
+          <Reveal direction="right" delay={0.1}>
             <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-amber-400">
               Internship &amp; Training
             </p>
