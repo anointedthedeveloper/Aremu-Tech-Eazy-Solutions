@@ -6,6 +6,7 @@ import SmartImage from './SmartImage'
 import { IconArrowRight, IconCheck } from './icons'
 import { IMAGES, VIDEOS, type SiteImage, type SiteVideo } from '../lib/images'
 import { useMediaQuery } from '../lib/network'
+import { CLIENTS } from '../lib/constants'
 
 interface Cta {
   to: string
@@ -28,6 +29,8 @@ interface PhotoSlide extends BaseSlide {
 interface VideoSlide extends BaseSlide {
   kind: 'video'
   video: SiteVideo
+  /** Still photo fanned out behind the framed clip on desktop (costs no video data). */
+  backImage: SiteImage
 }
 type Slide = PhotoSlide | VideoSlide
 
@@ -46,6 +49,7 @@ const SLIDES: Slide[] = [
   {
     kind: 'video',
     video: VIDEOS.fieldTesting,
+    backImage: IMAGES.labWoodHall,
     kicker: 'CBT centre setup',
     title: 'Every station tested before exam day.',
     text: 'We set up, configure and check each machine — so candidates sit down to a system that just works.',
@@ -67,6 +71,7 @@ const SLIDES: Slide[] = [
   {
     kind: 'video',
     video: VIDEOS.cablingInstall,
+    backImage: IMAGES.trunkingInstall,
     kicker: 'Networking, cabling & CCTV',
     title: 'Cabling and networks, done properly.',
     text: 'Structured cabling, trunking, CCTV and connectivity for offices, schools and homes.',
@@ -180,13 +185,16 @@ export default function Hero() {
           ) : (
             <>
               {isDesktop ? (
-                /* desktop: blurred backdrop + large framed clip on the right (below) */
-                <img
-                  src={slide.video.poster}
-                  alt=""
-                  aria-hidden="true"
-                  className="absolute inset-0 h-full w-full scale-125 object-cover blur-3xl"
-                />
+                /* desktop: brand backdrop + large framed clip on the right (below) */
+                <div className="absolute inset-0 bg-[#1b1535]">
+                  <img
+                    src={slide.video.poster}
+                    alt=""
+                    aria-hidden="true"
+                    className="absolute inset-0 h-full w-full scale-125 object-cover opacity-40 blur-3xl"
+                  />
+                  <div className="absolute inset-0 bg-[radial-gradient(70%_80%_at_85%_40%,rgba(122,71,207,0.55),transparent_70%),radial-gradient(60%_60%_at_0%_100%,rgba(247,147,30,0.28),transparent_70%)]" />
+                </div>
               ) : (
                 /* phones: full-bleed portrait footage */
                 <VideoCard video={slide.video} eager className="h-full w-full" />
@@ -211,10 +219,16 @@ export default function Hero() {
             transition={{ duration: reduceMotion ? 0 : 0.7 }}
             className="absolute top-1/2 right-[9%] z-10 hidden -translate-y-[46%] lg:block"
           >
+            <div
+              aria-hidden="true"
+              className="absolute top-[7%] -left-28 -z-10 hidden aspect-[9/16] h-[82%] -rotate-[8deg] overflow-hidden rounded-3xl border-4 border-white/70 shadow-[0_30px_60px_-25px_rgba(0,0,0,0.8)] xl:block"
+            >
+              <SmartImage image={slide.backImage} loading="eager" variant="dark" showLabel={false} className="h-full w-full" />
+            </div>
             <VideoCard
               video={slide.video}
               eager
-              className="aspect-[9/16] h-[min(76svh,780px)] rounded-3xl border border-white/20 shadow-[0_40px_90px_-30px_rgba(0,0,0,0.9)]"
+              className="aspect-[9/16] h-[min(66svh,720px)] rounded-3xl border border-white/20 shadow-[0_40px_90px_-30px_rgba(0,0,0,0.9)]"
             />
             <span className="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 px-3 py-1.5 text-[12px] font-semibold text-white backdrop-blur-md">
               <span className="relative flex h-2 w-2">
@@ -231,7 +245,7 @@ export default function Hero() {
       </AnimatePresence>
 
       {/* copy */}
-      <div className={`relative z-20 mx-auto flex h-full max-w-[1600px] flex-col justify-end px-4 pt-28 pb-24 sm:px-6 sm:pb-28 lg:px-10 ${slide.kind === 'video' ? 'lg:justify-center lg:pb-24' : ''}`}>
+      <div className={`relative z-20 mx-auto flex h-full max-w-[1600px] flex-col justify-end px-4 pt-28 pb-24 sm:px-6 sm:pb-28 lg:px-10 [@media(min-height:700px)]:sm:pb-40 ${slide.kind === 'video' ? 'lg:justify-center lg:pb-24' : ''}`}>
         <AnimatePresence mode="wait">
           <motion.div
             key={index}
@@ -247,7 +261,7 @@ export default function Hero() {
               {slide.title}
             </h1>
             <p className="mt-4 max-w-lg text-[16px] leading-relaxed text-white/85 sm:text-[17.5px]">{slide.text}</p>
-            <ul className="mt-5 hidden space-y-2 sm:block">
+            <ul className="mt-5 hidden space-y-2 sm:block [@media(max-height:760px)]:hidden">
               {slide.points.map((pt) => (
                 <li key={pt} className="flex items-center gap-2.5 text-[14.5px] text-white/90">
                   <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-amber-400/20 text-amber-300">
@@ -268,6 +282,26 @@ export default function Hero() {
             </div>
           </motion.div>
         </AnimatePresence>
+      </div>
+
+      {/* social proof ticker */}
+      <div
+        aria-label="Clients we have worked with"
+        className="absolute inset-x-0 bottom-[4.1rem] z-20 hidden sm:block [@media(max-height:700px)]:hidden"
+      >
+        <div className="mx-auto flex max-w-[1600px] items-center gap-5 px-4 sm:px-6 lg:px-10">
+          <span className="shrink-0 text-[11.5px] font-semibold tracking-[0.14em] text-white/60 uppercase">Trusted by</span>
+          <div className="relative min-w-0 flex-1 overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_6%,black_94%,transparent)]">
+            <ul className="animate-marquee flex w-max items-center gap-10 py-1 text-[14px] font-medium whitespace-nowrap text-white/85 motion-reduce:animate-none">
+              {[...CLIENTS, ...CLIENTS].map((c, i) => (
+                <li key={`${c}-${i}`} className="flex items-center gap-10" aria-hidden={i >= CLIENTS.length}>
+                  {c}
+                  <span className="h-1 w-1 rounded-full bg-amber-400" />
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
 
       {/* controls */}

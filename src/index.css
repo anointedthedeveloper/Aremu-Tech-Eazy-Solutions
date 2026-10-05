@@ -173,6 +173,13 @@
     background-image: linear-gradient(100deg, #ffd08a, #ffe9cf 50%, #fff);
   }
 
+  .animate-marquee {
+    animation: marquee 38s linear infinite;
+  }
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+
   .skeleton {
     position: relative;
     overflow: hidden;
@@ -209,6 +216,12 @@
       radial-gradient(60% 50% at 8% 0%, rgba(138, 63, 208, 0.45), transparent 70%),
       radial-gradient(50% 50% at 100% 100%, rgba(247, 147, 30, 0.28), transparent 70%),
       radial-gradient(40% 40% at 70% 10%, rgba(108, 143, 214, 0.22), transparent 70%);
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
   }
 }
 
