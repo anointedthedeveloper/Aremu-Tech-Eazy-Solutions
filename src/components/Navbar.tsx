@@ -3,7 +3,6 @@ import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Link, useLocation } from 'react-router-dom'
 import Logo from './Logo'
 import ThemeToggle from './ThemeToggle'
-import { useTheme } from '../lib/theme'
 import { NAV_LINKS } from '../lib/constants'
 import { CONTACT } from '../lib/contact'
 import { SERVICES, serviceHref } from '../lib/services'
@@ -26,7 +25,6 @@ function isCurrent(pathname: string, href: string) {
 export default function Navbar() {
   const { pathname } = useLocation()
   const reduceMotion = useReducedMotion()
-  const { theme } = useTheme()
   const [solid, setSolid] = useState(false)
   const [openPath, setOpenPath] = useState<string | null>(null)
   const open = openPath === pathname // closes automatically on navigation
@@ -37,7 +35,7 @@ export default function Navbar() {
 
   const active = NAV_LINKS.find((l) => isCurrent(pathname, l.href))?.href ?? null
   const pillAt = hovered ?? active
-  const onDark = theme === 'dark' && pathname === '/' && !solid && !open // transparent glass over the home hero
+  const onDark = pathname === '/' && !solid && !open // transparent glass over the home hero
   const servicesOpen = menuFor === pathname // closes automatically on navigation
 
   const openServices = () => {
