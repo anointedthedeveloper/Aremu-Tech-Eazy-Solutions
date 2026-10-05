@@ -4,6 +4,10 @@ import trunkingInstall from '../assets/photos/trunking-install.jpg'
 import labTechnician from '../assets/photos/lab-technician.jpg'
 import jambReadiness from '../assets/photos/jamb-readiness.jpg'
 import measuringWall from '../assets/photos/measuring-wall.jpg'
+import heroHall from '../assets/photos/hero-hall.jpg'
+import heroCrew from '../assets/photos/hero-crew.jpg'
+import heroLabs from '../assets/photos/hero-labs.jpg'
+import heroIntern from '../assets/photos/hero-intern.jpg'
 import heroTeam from '../assets/photos/hero-team.jpg'
 import etakTravels from '../assets/photos/etak-travels.jpg'
 import labWoodRows from '../assets/photos/lab-wood-rows.jpg'
@@ -84,6 +88,22 @@ export const IMAGES = {
   jambReadiness: {
     url: jambReadiness,
     alt: 'Laptop showing the JAMB Test system readiness inspection passing',
+  },
+  heroHall: {
+    url: heroHall,
+    alt: 'Team members in branded vests looking out over a large CBT exam hall',
+  },
+  heroCrew: {
+    url: heroCrew,
+    alt: 'Team members seen from behind in vests printed with ICT, networking and CCTV, facing a CBT lab',
+  },
+  heroLabs: {
+    url: heroLabs,
+    alt: 'Completed computer lab with rows of wooden cubicles and laptops under ceiling fans',
+  },
+  heroIntern: {
+    url: heroIntern,
+    alt: 'Intern stripping and terminating cable at a workbench during a lab installation',
   },
   heroTeam: {
     url: heroTeam,
