@@ -61,6 +61,11 @@
     @apply border-ink-200 dark:border-white/10;
   }
 
+  html,
+  body {
+    overflow-x: clip; /* off-screen reveal/parallax elements must never create a horizontal scrollbar */
+  }
+
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
