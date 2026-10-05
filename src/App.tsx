@@ -6,6 +6,7 @@ import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
 import PageLoader from './components/PageLoader'
 import ScrollProgress from './components/ScrollProgress'
+import RouteCurtain from './components/RouteCurtain'
 import { PageSkeleton } from './components/Skeleton'
 import { ThemeProvider } from './lib/theme'
 const Home = lazy(() => import('./pages/Home'))
@@ -55,6 +56,7 @@ function App() {
     <BrowserRouter>
       <PageLoader />
       <ScrollProgress />
+      <RouteCurtain />
       <ScrollToTop />
       <div className="min-h-screen bg-paper dark:bg-ink-950">
         <Navbar />

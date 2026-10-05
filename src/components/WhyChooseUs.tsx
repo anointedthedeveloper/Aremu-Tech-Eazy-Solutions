@@ -1,9 +1,12 @@
 import Reveal from './Reveal'
+import SectionBackground from './SectionBackground'
+import { IMAGES } from '../lib/images'
 import { DIFFERENTIATORS } from '../lib/constants'
 
 export default function WhyChooseUs() {
   return (
     <section id="why-us" className="relative overflow-hidden py-16 sm:py-20 lg:py-24">
+      <SectionBackground image={IMAGES.heroTeam} tone="light" position="50% 30%" />
       <div className="relative mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-10">
         <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
           <Reveal>

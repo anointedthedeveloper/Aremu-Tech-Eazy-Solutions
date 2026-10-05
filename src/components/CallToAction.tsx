@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import Reveal from './Reveal'
+import SectionBackground from './SectionBackground'
+import { IMAGES } from '../lib/images'
 import { IconArrowRight } from './icons'
 
 const COPY = {
@@ -26,14 +28,15 @@ export default function CallToAction({ variant = 'contact' }: { variant?: keyof 
     <section className="py-12 sm:py-16 lg:py-20">
       <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-10">
         <Reveal direction="scale" className="bg-deep relative overflow-hidden rounded-3xl px-6 py-12 sm:px-12 sm:py-14 lg:flex lg:items-center lg:justify-between lg:gap-12 lg:py-16">
-          <div className="max-w-xl">
+          <SectionBackground image={IMAGES.heroCrew} tone="dark" position="50% 35%" />
+          <div className="relative max-w-xl">
             <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-amber-400">{c.eyebrow}</p>
             <h2 className="mt-3 text-balance text-[1.75rem] font-bold leading-tight text-white sm:text-[2.1rem]">{c.title}</h2>
             <p className="mt-4 text-[16px] leading-relaxed text-ink-300">{c.text}</p>
           </div>
           <Link
             to={c.to}
-            className="group mt-8 inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-amber-500 px-7 py-3.5 text-[15px] font-semibold text-[#1a1033] transition-colors hover:bg-amber-400 lg:mt-0"
+            className="group relative mt-8 inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-amber-500 px-7 py-3.5 text-[15px] font-semibold text-[#1a1033] transition-colors hover:bg-amber-400 lg:mt-0"
           >
             {c.label}
             <IconArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />

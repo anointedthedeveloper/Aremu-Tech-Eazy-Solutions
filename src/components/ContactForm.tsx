@@ -1,5 +1,6 @@
 import { useMemo, useRef, useState, type FormEvent } from 'react'
 import { SERVICES } from '../lib/services'
+import SendingOverlay from './SendingOverlay'
 import { APPLICATION_ENDPOINT } from '../lib/applicationForm'
 import { EMAIL_RE, inputClass } from '../lib/formStyles'
 
@@ -57,13 +58,15 @@ export default function ContactForm() {
       action={APPLICATION_ENDPOINT}
       noValidate
       onSubmit={onSubmit}
-      className="rounded-2xl border border-ink-200/70 bg-white p-5 shadow-soft dark:border-white/10 dark:bg-ink-900 sm:p-8"
+      className="relative overflow-hidden rounded-2xl border border-ink-200/70 bg-white p-5 shadow-soft dark:border-white/10 dark:bg-ink-900 sm:p-8"
     >
       <input type="hidden" name="_subject" value="New business enquiry from the website" />
       <input type="hidden" name="_next" value={nextUrl} />
       <input type="hidden" name="_captcha" value="false" />
       <input type="hidden" name="_template" value="table" />
       <input type="text" name="_honey" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
+
+      {sending && <SendingOverlay title="Sending your message…" text="This only takes a moment." />}
 
       <h2 className="font-display text-[22px] font-bold text-ink-950 dark:text-white">Tell us what you need</h2>
       <p className="mt-1.5 text-[14.5px] text-ink-500 dark:text-ink-300">We reply to every message, usually within one working day.</p>
