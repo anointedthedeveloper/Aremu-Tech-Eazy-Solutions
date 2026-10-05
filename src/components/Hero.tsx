@@ -157,7 +157,7 @@ export default function Hero() {
       id="top"
       aria-roledescription="carousel"
       aria-label="Highlights"
-      className="relative h-[100svh] max-h-[1000px] min-h-[600px] overflow-hidden bg-ink-950 text-white"
+      className="relative h-[100svh] max-h-[1000px] min-h-[600px] overflow-hidden bg-white text-ink-950 dark:bg-ink-950 dark:text-white"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onTouchStart={(e) => (touchX.current = e.touches[0].clientX)}
@@ -174,7 +174,7 @@ export default function Hero() {
           transition={{ duration: reduceMotion ? 0 : 0.9 }}
         >
           {framePhoto && slide.kind === 'photo' ? (
-            <div className="absolute inset-0 bg-[#1b1535]">
+            <div className="absolute inset-0 bg-[#f1ebfb] dark:bg-[#1b1535]">
               <SmartImage image={framePhoto.image} loading="eager" variant="dark" showLabel={false} className="h-full w-full scale-125 opacity-45 blur-2xl" />
               <div className="absolute inset-0 bg-[radial-gradient(60%_70%_at_82%_45%,rgba(122,71,207,0.4),transparent_70%),radial-gradient(60%_60%_at_0%_100%,rgba(247,147,30,0.22),transparent_70%)]" />
             </div>
@@ -198,7 +198,7 @@ export default function Hero() {
             <>
               {isDesktop ? (
                 /* desktop: brand backdrop + large framed clip on the right (below) */
-                <div className="absolute inset-0 bg-[#1b1535]">
+                <div className="absolute inset-0 bg-[#f1ebfb] dark:bg-[#1b1535]">
                   <SmartImage
                     image={slide.backImage}
                     loading="eager"
@@ -218,8 +218,8 @@ export default function Hero() {
       </AnimatePresence>
 
       {/* readability overlays */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-950/90 via-ink-950/25 to-ink-950/10" />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink-950/80 via-ink-950/35 to-transparent" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white/92 via-white/25 to-transparent dark:from-ink-950/90 dark:via-ink-950/25 dark:to-ink-950/10" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-white/92 via-white/45 to-transparent dark:from-ink-950/80 dark:via-ink-950/35 dark:to-transparent" />
 
       {/* large framed video (desktop) */}
       <AnimatePresence initial={false}>
@@ -275,14 +275,14 @@ export default function Hero() {
             className="max-w-2xl"
             aria-live="polite"
           >
-            <p className="mb-3 text-[12.5px] font-semibold uppercase tracking-[0.14em] text-amber-400 sm:text-[13px]">{slide.kicker}</p>
-            <h1 className="text-balance text-[2.1rem] leading-[1.08] font-bold tracking-tight text-white sm:text-5xl lg:text-[3.5rem]">
+            <p className="mb-3 text-[12.5px] font-semibold uppercase tracking-[0.14em] text-amber-700 sm:text-[13px] dark:text-amber-400">{slide.kicker}</p>
+            <h1 className="text-balance text-[2.1rem] leading-[1.08] font-bold tracking-tight text-ink-950 sm:text-5xl dark:text-white lg:text-[3.5rem]">
               {slide.title}
             </h1>
-            <p className="mt-4 max-w-lg text-[16px] leading-relaxed text-white/85 sm:text-[17.5px]">{slide.text}</p>
+            <p className="mt-4 max-w-lg text-[16px] leading-relaxed text-ink-700 sm:text-[17.5px] dark:text-white/85">{slide.text}</p>
             <ul className="mt-5 hidden space-y-2 sm:block [@media(max-height:760px)]:hidden">
               {slide.points.map((pt) => (
-                <li key={pt} className="flex items-center gap-2.5 text-[14.5px] text-white/90">
+                <li key={pt} className="flex items-center gap-2.5 text-[14.5px] text-ink-800 dark:text-white/90">
                   <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-amber-400/20 text-amber-300">
                     <IconCheck className="h-3 w-3" />
                   </span>
@@ -295,7 +295,7 @@ export default function Hero() {
                 {slide.primary.label}
                 <IconArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </Link>
-              <Link to={slide.secondary.to} className={`${btn} border border-white/35 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20`}>
+              <Link to={slide.secondary.to} className={`${btn} border border-ink-950/25 bg-white/60 text-ink-950 backdrop-blur-sm hover:bg-white dark:border-white/35 dark:bg-white/10 dark:text-white dark:hover:bg-white/20`}>
                 {slide.secondary.label}
               </Link>
             </div>
@@ -309,9 +309,9 @@ export default function Hero() {
         className="absolute inset-x-0 bottom-[4.1rem] z-20 hidden sm:block [@media(max-height:700px)]:hidden"
       >
         <div className="mx-auto flex max-w-[1600px] items-center gap-5 px-4 sm:px-6 lg:px-10">
-          <span className="shrink-0 text-[11.5px] font-semibold tracking-[0.14em] text-white/60 uppercase">Trusted by</span>
+          <span className="shrink-0 text-[11.5px] font-semibold tracking-[0.14em] text-ink-500 uppercase dark:text-white/60">Trusted by</span>
           <div className="relative min-w-0 flex-1 overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_6%,black_94%,transparent)]">
-            <ul className="animate-marquee flex w-max items-center gap-10 py-1 text-[14px] font-medium whitespace-nowrap text-white/85 motion-reduce:animate-none">
+            <ul className="animate-marquee flex w-max items-center gap-10 py-1 text-[14px] font-medium whitespace-nowrap text-ink-800 dark:text-white/85 motion-reduce:animate-none">
               {[...CLIENTS, ...CLIENTS].map((c, i) => (
                 <li key={`${c}-${i}`} className="flex items-center gap-10" aria-hidden={i >= CLIENTS.length}>
                   {c}
@@ -336,8 +336,8 @@ export default function Hero() {
                   aria-current={i === index}
                   className="group block h-5 w-full"
                 >
-                  <span className="relative block h-[3px] overflow-hidden rounded-full bg-white/30">
-                    {i < index && <span className="absolute inset-0 bg-white" />}
+                  <span className="relative block h-[3px] overflow-hidden rounded-full bg-ink-950/20 dark:bg-white/30">
+                    {i < index && <span className="absolute inset-0 bg-ink-950 dark:bg-white" />}
                     {i === index && (
                       <span
                         className="absolute inset-y-0 left-0 bg-amber-400"
@@ -350,18 +350,18 @@ export default function Hero() {
             ))}
           </ol>
           <div className="flex items-center gap-3">
-            <p className="hidden text-right text-[12.5px] leading-tight text-white/80 lg:block">
-              <span className="block text-[11px] tracking-[0.12em] text-white/60 uppercase">Next up</span>
-              <span className="font-semibold text-white">{SLIDES[(index + 1) % count].kicker}</span>
+            <p className="hidden text-right text-[12.5px] leading-tight text-ink-700 lg:block dark:text-white/80">
+              <span className="block text-[11px] tracking-[0.12em] text-ink-500 uppercase dark:text-white/60">Next up</span>
+              <span className="font-semibold text-ink-950 dark:text-white">{SLIDES[(index + 1) % count].kicker}</span>
             </p>
-            <span className="font-display text-[15px] font-semibold text-white tabular-nums">
+            <span className="font-display text-[15px] font-semibold text-ink-950 tabular-nums dark:text-white">
               {String(index + 1).padStart(2, '0')}
-              <span className="text-white/50"> / {String(count).padStart(2, '0')}</span>
+              <span className="text-ink-500 dark:text-white/50"> / {String(count).padStart(2, '0')}</span>
             </span>
-            <button type="button" onClick={() => go(index - 1)} aria-label="Previous slide" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-white/10 text-white backdrop-blur-sm transition-colors hover:bg-white/25">
+            <button type="button" onClick={() => go(index - 1)} aria-label="Previous slide" className="flex h-10 w-10 items-center justify-center rounded-full border border-ink-950/25 bg-white/70 text-ink-950 backdrop-blur-sm transition-colors hover:bg-white dark:border-white/30 dark:bg-white/10 dark:text-white dark:hover:bg-white/25">
               <IconArrowRight className="h-4 w-4 rotate-180" />
             </button>
-            <button type="button" onClick={() => go(index + 1)} aria-label="Next slide" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-white/10 text-white backdrop-blur-sm transition-colors hover:bg-white/25">
+            <button type="button" onClick={() => go(index + 1)} aria-label="Next slide" className="flex h-10 w-10 items-center justify-center rounded-full border border-ink-950/25 bg-white/70 text-ink-950 backdrop-blur-sm transition-colors hover:bg-white dark:border-white/30 dark:bg-white/10 dark:text-white dark:hover:bg-white/25">
               <IconArrowRight className="h-4 w-4" />
             </button>
           </div>
