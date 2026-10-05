@@ -24,8 +24,8 @@ export default function Team() {
 
         <ul className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5 lg:grid-cols-3 xl:grid-cols-6">
           {TEAM.map((member, i) => (
-            <Reveal key={member.photo?.url ?? member.role ?? i} as="li" delay={(i % 6) * 0.05}>
-              <figure className="overflow-hidden rounded-2xl border border-ink-200/70 bg-white dark:border-white/10 dark:bg-ink-900">
+            <Reveal key={member.photo?.url ?? member.role ?? i} as="li" className="flex" delay={(i % 6) * 0.05}>
+              <figure className="flex w-full flex-col overflow-hidden rounded-2xl border border-ink-200/70 bg-white dark:border-white/10 dark:bg-ink-900">
                 <div className="aspect-[4/5] overflow-hidden">
                   {member.photo ? (
                     <SmartImage image={member.photo} className="h-full w-full" />
@@ -39,7 +39,7 @@ export default function Team() {
                     </div>
                   )}
                 </div>
-                <figcaption className="p-4">
+                <figcaption className="flex-1 p-4">
                   <span className="mb-2.5 block h-0.5 w-8 rounded-full bg-gradient-to-r from-amber-500 to-violet-500" />
                   <p className="text-[15px] font-semibold text-ink-950 dark:text-white">{member.name ?? 'Team member'}</p>
                   {member.role && <p className="mt-0.5 text-[13px] text-ink-500 dark:text-ink-300">{member.role}</p>}
