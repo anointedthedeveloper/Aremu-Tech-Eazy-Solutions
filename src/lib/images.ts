@@ -1,7 +1,6 @@
 import internWiring from '../assets/photos/intern-wiring.jpg'
 import siteCrew from '../assets/photos/site-crew.jpg'
 import trunkingInstall from '../assets/photos/trunking-install.jpg'
-import labTechnician from '../assets/photos/lab-technician.jpg'
 import jambReadiness from '../assets/photos/jamb-readiness.jpg'
 import measuringWall from '../assets/photos/measuring-wall.jpg'
 import heroHall from '../assets/photos/hero-hall.jpg'
@@ -82,10 +81,6 @@ export const IMAGES = {
     url: trunkingInstall,
     alt: 'Technician mounting cable trunking on a wall while colleagues look on',
   },
-  labTechnician: {
-    url: labTechnician,
-    alt: 'Technician in a hi-vis vest at a green exam cubicle with Dell laptops',
-  },
   jambReadiness: {
     url: jambReadiness,
     alt: 'Laptop showing the JAMB Test system readiness inspection passing',
@@ -133,6 +128,10 @@ export const IMAGES = {
   serviceCctv: {
     url: unsplash('photo-1557597774-9d273605dfa9', 900),
     alt: 'Security camera mounted on a wall',
+  },
+  serviceHardware: {
+    url: unsplash('photo-1581091226825-a6a2a5aee158', 1600),
+    alt: 'Technician working on an open desktop computer',
   },
   serviceWeb: {
     url: unsplash('photo-1547658719-da2b51169166', 900),

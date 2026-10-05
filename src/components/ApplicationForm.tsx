@@ -14,6 +14,7 @@ import {
   type FormField,
 } from '../lib/applicationForm'
 import { IconArrowRight, IconCheck } from './icons'
+import SendingOverlay from './SendingOverlay'
 import { EMAIL_RE, inputClass } from '../lib/formStyles'
 
 const STEP_LABELS = ['Rules', 'About you', 'Training', 'Documents']
@@ -260,13 +261,15 @@ export default function ApplicationForm() {
       encType="multipart/form-data"
       noValidate
       onSubmit={onSubmit}
-      className="light-surface flex h-full min-h-0 flex-col overflow-hidden rounded-3xl border border-ink-200/70 bg-white shadow-lifted dark:border-white/10 dark:bg-ink-900"
+      className="light-surface relative flex h-full min-h-0 flex-col overflow-hidden rounded-3xl border border-ink-200/70 bg-white shadow-lifted dark:border-white/10 dark:bg-ink-900"
     >
       <input type="hidden" name="_subject" value={`New application: ${values['First name'] ?? ''} ${values.Surname ?? ''} (${mode || 'no mode'})`} />
       <input type="hidden" name="_next" value={nextUrl} />
       <input type="hidden" name="_captcha" value="false" />
       <input type="hidden" name="_template" value="table" />
       <input type="text" name="_honey" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
+
+      {submitting && <SendingOverlay title="Sending your application…" text="Uploading your details and documents. Please keep this page open." />}
 
       <header className="shrink-0 border-b border-ink-100 px-5 py-4 dark:border-white/10 sm:px-8">
         <div className="flex items-baseline justify-between gap-3">

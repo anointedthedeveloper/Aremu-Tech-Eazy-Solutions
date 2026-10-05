@@ -2,7 +2,8 @@ import { Link, useSearchParams } from 'react-router-dom'
 import Reveal from '../components/Reveal'
 import ApplicationForm from '../components/ApplicationForm'
 import SmartImage from '../components/SmartImage'
-import { IconArrowRight, IconCheck } from '../components/icons'
+import { IconArrowRight } from '../components/icons'
+import SuccessBurst from '../components/SuccessBurst'
 import { CONTACT } from '../lib/contact'
 import { FORM_TITLE } from '../lib/applicationForm'
 import { IMAGES } from '../lib/images'
@@ -18,9 +19,7 @@ export default function Apply() {
       <section className="flex min-h-[80svh] items-center bg-paper-dim/60 px-4 pt-24 pb-12 dark:bg-transparent">
         <Reveal className="mx-auto w-full max-w-xl">
           <div className="rounded-3xl border border-ink-200/70 bg-white p-8 text-center shadow-soft dark:border-white/10 dark:bg-ink-900 sm:p-12">
-            <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-500/15">
-              <IconCheck className="h-7 w-7" />
-            </span>
+            <SuccessBurst />
             <h1 className="mt-6 font-display text-[26px] font-bold text-ink-950 dark:text-white">Application received</h1>
             <p className="mx-auto mt-3 max-w-md text-[15.5px] leading-relaxed text-ink-500 dark:text-ink-300">
               Thank you for applying. We&apos;ll review your details and contact you using the phone number or email you provided.

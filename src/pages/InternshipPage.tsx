@@ -117,7 +117,7 @@ export default function InternshipPage() {
           </Reveal>
           <Reveal delay={0.1} className="grid grid-cols-2 gap-4">
             <div className="aspect-[3/4] overflow-hidden rounded-2xl border border-ink-200/70 dark:border-white/10">
-              <SmartImage image={IMAGES.labTechnician} className="h-full w-full" />
+              <SmartImage image={IMAGES.labWoodDesk} className="h-full w-full" />
             </div>
             <div className="mt-8 aspect-[3/4] overflow-hidden rounded-2xl border border-ink-200/70 dark:border-white/10">
               <SmartImage image={IMAGES.siteCrew} className="h-full w-full" />

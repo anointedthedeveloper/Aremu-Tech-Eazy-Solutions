@@ -1,9 +1,12 @@
 import Reveal from './Reveal'
+import SectionBackground from './SectionBackground'
+import { IMAGES } from '../lib/images'
 import { VALUES } from '../lib/constants'
 
 export default function VisionMission() {
   return (
     <section className="relative overflow-hidden bg-deep py-16 sm:py-20 lg:py-24">
+      <SectionBackground image={IMAGES.heroHall} tone="dark" position="50% 40%" />
       <div className="relative mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-10">
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
           <Reveal>

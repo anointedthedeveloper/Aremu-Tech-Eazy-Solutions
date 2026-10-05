@@ -180,6 +180,27 @@
     animation-play-state: paused;
   }
 
+  /* Light sweep across the primary (amber) buttons on hover */
+  a.bg-amber-500,
+  button.bg-amber-500 {
+    position: relative;
+    overflow: hidden;
+  }
+  a.bg-amber-500::after,
+  button.bg-amber-500::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(110deg, transparent 32%, rgba(255, 255, 255, 0.55) 50%, transparent 68%);
+    transform: translateX(-130%);
+    transition: transform 0.75s ease;
+  }
+  a.bg-amber-500:hover::after,
+  button.bg-amber-500:hover:not(:disabled)::after {
+    transform: translateX(130%);
+  }
+
   .skeleton {
     position: relative;
     overflow: hidden;

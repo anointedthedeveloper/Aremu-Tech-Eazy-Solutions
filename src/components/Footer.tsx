@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import Logo from './Logo'
-import SmartImage from './SmartImage'
+import SectionBackground from './SectionBackground'
 import { NAV_LINKS } from '../lib/constants'
 import { SERVICES, serviceHref } from '../lib/services'
 import { CONTACT } from '../lib/contact'
@@ -9,16 +9,7 @@ import { IMAGES } from '../lib/images'
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-ink-100 bg-deep">
-      <div className="pointer-events-none absolute inset-0">
-        <SmartImage
-          image={IMAGES.trunkingInstall}
-          variant="dark"
-          showLabel={false}
-          className="h-full w-full opacity-[0.08]"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/95 to-ink-950/80" />
-      </div>
-
+      <SectionBackground image={IMAGES.heroTeam} tone="dark" position="50% 30%" />
 
       <div className="relative mx-auto max-w-[1600px] px-5 py-16 sm:px-8 lg:px-10 lg:py-20">
         <div className="grid gap-12 lg:grid-cols-[1.1fr_0.8fr_0.8fr_0.9fr] lg:gap-10">

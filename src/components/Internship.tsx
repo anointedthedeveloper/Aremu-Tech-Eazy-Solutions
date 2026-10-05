@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import Reveal from './Reveal'
+import SectionBackground from './SectionBackground'
 import SmartImage from './SmartImage'
 import ParallaxImage from './ParallaxImage'
 import { IconArrowRight } from './icons'
@@ -15,6 +16,7 @@ const LEARNING = [
 export default function Internship() {
   return (
     <section id="internship" className="relative overflow-hidden bg-deep py-16 sm:py-20 lg:py-24">
+      <SectionBackground image={IMAGES.heroLabs} tone="dark" position="50% 50%" />
       <div className="relative mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-10">
         <div className="grid items-center gap-12 lg:grid-cols-[1fr_1fr] lg:gap-20">
           <Reveal direction="left" className="relative">
@@ -26,7 +28,7 @@ export default function Internship() {
               </p>
             </div>
             <div className="absolute -right-3 -bottom-8 hidden h-32 w-44 overflow-hidden rounded-xl border-4 border-ink-950 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.9)] sm:block lg:-right-8 lg:h-40 lg:w-56">
-              <SmartImage image={IMAGES.labTechnician} variant="dark" showLabel={false} className="h-full w-full" />
+              <SmartImage image={IMAGES.labWoodDesk} variant="dark" showLabel={false} className="h-full w-full" />
             </div>
           </Reveal>
 

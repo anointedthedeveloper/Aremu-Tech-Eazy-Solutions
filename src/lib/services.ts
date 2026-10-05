@@ -80,7 +80,7 @@ export const SERVICES: Service[] = [
       'On-site and remote support',
     ],
     bestFor: ['Offices', 'Schools', 'SMEs', 'Individuals'],
-    image: IMAGES.labTechnician,
+    image: IMAGES.serviceHardware,
     icon: IconTools,
     testimonial: 2,
     related: ['software-installation', 'computer-sales-supply', 'networking-cabling'],
