@@ -34,14 +34,14 @@ export const TEAM: TeamMember[] = [
     photo: photo(member1, 'Engr Ahmed Olamilekan Ajao'),
   },
   {
-    name: 'Engr Abdullateef Ayomipo Aliyu',
-    role: 'Head of Networking & CCTV Department',
-    photo: photo(member4, 'Engr Abdullateef Ayomipo Aliyu'),
-  },
-  {
     name: 'Engr Joseph Idoko',
     role: 'Head of Engineering Department',
     photo: photo(member2, 'Engr Joseph Idoko'),
+  },
+  {
+    name: 'Engr Abdullateef Ayomipo Aliyu',
+    role: 'Head of Networking & CCTV Department',
+    photo: photo(member4, 'Engr Abdullateef Ayomipo Aliyu'),
   },
   {
     // Add `photo: photo(<imported file>, name)` here once a photo is available.
