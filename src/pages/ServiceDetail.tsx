@@ -124,7 +124,7 @@ export default function ServiceDetail() {
             <div className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
               {service.videos?.map((v) => (
                 <Reveal key={v.src}>
-                  <VideoCard video={v} playOnTap className="aspect-[9/16] w-full rounded-2xl border border-ink-200/70 dark:border-white/10" />
+                  <VideoCard video={v} className="aspect-[9/16] w-full rounded-2xl border border-ink-200/70 dark:border-white/10" />
                 </Reveal>
               ))}
               {service.gallery?.map((img) => (

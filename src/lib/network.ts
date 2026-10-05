@@ -16,10 +16,11 @@ function subscribeConnection(cb: () => void) {
 
 function isLite() {
   const c = connection()
-  return Boolean(c?.saveData) || c?.effectiveType === 'slow-2g' || c?.effectiveType === '2g' || c?.effectiveType === '3g'
+  // Only an explicit Data Saver request or a very slow (2G) link — ordinary 3G/4G connections autoplay.
+  return Boolean(c?.saveData) || c?.effectiveType === 'slow-2g' || c?.effectiveType === '2g'
 }
 
-/** True when the visitor has Data Saver on or is on a slow connection — don't autoplay or preload video. */
+/** True when the visitor has Data Saver on or is on a 2G link — don't autoplay video. */
 export function useLiteMode() {
   return useSyncExternalStore(subscribeConnection, isLite, () => false)
 }

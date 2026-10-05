@@ -29,7 +29,7 @@ interface PhotoSlide extends BaseSlide {
 interface VideoSlide extends BaseSlide {
   kind: 'video'
   video: SiteVideo
-  /** Still photo fanned out behind the framed clip on desktop (costs no video data). */
+  /** Still photo used as the slide background behind the framed clip on desktop (costs no video data). */
   backImage: SiteImage
 }
 type Slide = PhotoSlide | VideoSlide
@@ -49,7 +49,7 @@ const SLIDES: Slide[] = [
   {
     kind: 'video',
     video: VIDEOS.fieldTesting,
-    backImage: IMAGES.labWoodHall,
+    backImage: IMAGES.labWoodRows,
     kicker: 'CBT centre setup',
     title: 'Every station tested before exam day.',
     text: 'We set up, configure and check each machine — so candidates sit down to a system that just works.',
@@ -71,7 +71,7 @@ const SLIDES: Slide[] = [
   {
     kind: 'video',
     video: VIDEOS.cablingInstall,
-    backImage: IMAGES.trunkingInstall,
+    backImage: IMAGES.siteCrew,
     kicker: 'Networking, cabling & CCTV',
     title: 'Cabling and networks, done properly.',
     text: 'Structured cabling, trunking, CCTV and connectivity for offices, schools and homes.',
@@ -187,13 +187,14 @@ export default function Hero() {
               {isDesktop ? (
                 /* desktop: brand backdrop + large framed clip on the right (below) */
                 <div className="absolute inset-0 bg-[#1b1535]">
-                  <img
-                    src={slide.video.poster}
-                    alt=""
-                    aria-hidden="true"
-                    className="absolute inset-0 h-full w-full scale-125 object-cover opacity-40 blur-3xl"
+                  <SmartImage
+                    image={slide.backImage}
+                    loading="eager"
+                    variant="dark"
+                    showLabel={false}
+                    className="h-full w-full scale-105 blur-[2px]"
                   />
-                  <div className="absolute inset-0 bg-[radial-gradient(70%_80%_at_85%_40%,rgba(122,71,207,0.55),transparent_70%),radial-gradient(60%_60%_at_0%_100%,rgba(247,147,30,0.28),transparent_70%)]" />
+                  <div className="absolute inset-0 bg-[radial-gradient(60%_70%_at_82%_45%,rgba(122,71,207,0.35),transparent_70%)]" />
                 </div>
               ) : (
                 /* phones: full-bleed portrait footage */
@@ -219,12 +220,6 @@ export default function Hero() {
             transition={{ duration: reduceMotion ? 0 : 0.7 }}
             className="absolute top-1/2 right-[9%] z-10 hidden -translate-y-[46%] lg:block"
           >
-            <div
-              aria-hidden="true"
-              className="absolute top-[7%] -left-28 -z-10 hidden aspect-[9/16] h-[82%] -rotate-[8deg] overflow-hidden rounded-3xl border-4 border-white/70 shadow-[0_30px_60px_-25px_rgba(0,0,0,0.8)] xl:block"
-            >
-              <SmartImage image={slide.backImage} loading="eager" variant="dark" showLabel={false} className="h-full w-full" />
-            </div>
             <VideoCard
               video={slide.video}
               eager
