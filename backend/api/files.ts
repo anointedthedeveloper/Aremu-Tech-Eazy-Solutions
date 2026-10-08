@@ -1,9 +1,10 @@
 import { ObjectId } from 'mongodb'
 import { bucket, col, getDb, type ApplicationDoc } from './_lib/db.js'
-import { allow, handler, HttpError, query } from './_lib/http.js'
+import { allow, cors, handler, HttpError, query } from './_lib/http.js'
 import { requireSession } from './_lib/security.js'
 
 export default handler(async (req, res) => {
+  if (cors(req, res)) return
   allow(req, 'GET')
   const session = await requireSession(req)
   const id = query(req).get('id') ?? ''

@@ -1,6 +1,6 @@
 import { ObjectId, type Filter } from 'mongodb'
 import { APPLICATION_STATUSES, bucket, col, type ApplicationDoc, type ApplicationStatus, type EnquiryDoc, type UserDoc } from './_lib/db.js'
-import { allow, handler, HttpError, query, readJson, send } from './_lib/http.js'
+import { allow, cors, handler, HttpError, query, readJson, send } from './_lib/http.js'
 import { sendApplicantLogin, sendStatusUpdate } from './_lib/mail.js'
 import { clean } from './_lib/schema.js'
 import { generatePassword, hashPassword, requireSession, sameOrigin } from './_lib/security.js'
@@ -23,6 +23,7 @@ const summary = (a: ApplicationDoc) => ({
 const csvCell = (v: unknown) => `"${String(v ?? '').replace(/"/g, '""').replace(/\r?\n/g, ' ')}"`
 
 export default handler(async (req, res) => {
+  if (cors(req, res)) return
   sameOrigin(req)
   await requireSession(req, 'admin')
   const q = query(req)

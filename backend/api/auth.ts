@@ -1,10 +1,11 @@
 import { ObjectId } from 'mongodb'
 import { col, type UserDoc } from './_lib/db.js'
-import { allow, clientIp, handler, HttpError, query, readJson, send } from './_lib/http.js'
+import { allow, clientIp, cors, handler, HttpError, query, readJson, send } from './_lib/http.js'
 import { checkAdmin, checkPassword, clearCookie, clearRateLimit, getSession, hashPassword, rateLimit, requireSession, sameOrigin, sessionCookie } from './_lib/security.js'
 import { clean, EMAIL_RE } from './_lib/schema.js'
 
 export default handler(async (req, res) => {
+  if (cors(req, res)) return
   sameOrigin(req)
   const action = query(req).get('action')
 

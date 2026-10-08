@@ -1,7 +1,7 @@
 import { Readable } from 'node:stream'
 import { pipeline } from 'node:stream/promises'
 import { bucket, getDb } from './_lib/db.js'
-import { allow, clientIp, handler, HttpError, readBody, send } from './_lib/http.js'
+import { allow, clientIp, cors, handler, HttpError, readBody, send } from './_lib/http.js'
 import { rateLimit, sameOrigin } from './_lib/security.js'
 import { clean, MAX_FILE_BYTES } from './_lib/schema.js'
 
@@ -17,6 +17,7 @@ function detectType(b: Buffer): string | null {
 }
 
 export default handler(async (req, res) => {
+  if (cors(req, res)) return
   sameOrigin(req)
   allow(req, 'POST')
   await rateLimit(`upload:${clientIp(req)}`, 40, 60 * 60)

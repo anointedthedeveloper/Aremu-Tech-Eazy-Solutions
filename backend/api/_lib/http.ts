@@ -77,3 +77,24 @@ export function handler(fn: Handler): Handler {
 export function allow(req: Req, ...methods: string[]) {
   if (!methods.includes(req.method ?? 'GET')) throw new HttpError(405, 'Method not allowed.')
 }
+
+/** Sets CORS headers and handles the OPTIONS preflight for cross-origin requests.
+ *  Call this at the very top of every handler, before anything else.
+ *  Returns true if the request was a preflight (OPTIONS) — the handler should return immediately in that case.
+ */
+export function cors(req: Req, res: Res): boolean {
+  const origin = process.env.ALLOWED_ORIGIN?.replace(/\/$/, '')
+  if (origin) {
+    res.setHeader('Access-Control-Allow-Origin', origin)
+    res.setHeader('Access-Control-Allow-Credentials', 'true')
+    res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS')
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-File-Name')
+    res.setHeader('Access-Control-Max-Age', '86400')
+  }
+  if (req.method === 'OPTIONS') {
+    res.statusCode = 204
+    res.end()
+    return true
+  }
+  return false
+}

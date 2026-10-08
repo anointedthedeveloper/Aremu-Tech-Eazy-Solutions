@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongodb'
 import { col, getDb, type ApplicationDoc, type StoredFile, type UserDoc } from './_lib/db.js'
-import { allow, clientIp, handler, HttpError, readJson, send } from './_lib/http.js'
+import { allow, clientIp, cors, handler, HttpError, readJson, send } from './_lib/http.js'
 import { notifyAdmin, sendApplicantLogin } from './_lib/mail.js'
 import { clean, EMAIL_RE, MODES, OPTIONAL_FIELDS, REQUIRED_FIELDS, REQUIRED_FILES } from './_lib/schema.js'
 import { generatePassword, hashPassword, rateLimit, requireSession, sameOrigin } from './_lib/security.js'
@@ -11,6 +11,7 @@ interface FilePayload {
 }
 
 export default handler(async (req, res) => {
+  if (cors(req, res)) return
   sameOrigin(req)
 
   // An applicant's own applications

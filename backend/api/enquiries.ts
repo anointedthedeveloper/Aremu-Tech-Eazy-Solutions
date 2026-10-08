@@ -1,10 +1,11 @@
 import { col, type EnquiryDoc } from './_lib/db.js'
-import { allow, clientIp, handler, HttpError, readJson, send } from './_lib/http.js'
+import { allow, clientIp, cors, handler, HttpError, readJson, send } from './_lib/http.js'
 import { notifyAdmin } from './_lib/mail.js'
 import { clean, EMAIL_RE } from './_lib/schema.js'
 import { rateLimit, sameOrigin } from './_lib/security.js'
 
 export default handler(async (req, res) => {
+  if (cors(req, res)) return
   sameOrigin(req)
   allow(req, 'POST')
   await rateLimit(`enquiry:${clientIp(req)}`, 8, 60 * 60)
