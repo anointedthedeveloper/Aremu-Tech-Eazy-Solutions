@@ -1,0 +1,20 @@
+{
+  "name": "aremu-tech-backend",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "hash-password": "node -e \"import('bcryptjs').then(m=>m.default.hash(process.argv[1],10)).then(console.log)\" --"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "jose": "^6.2.12",
+    "mongodb": "^7.7.0",
+    "nodemailer": "^10.0.15"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.1",
+    "@types/nodemailer": "^8.0.2",
+    "typescript": "~6.0.2"
+  }
+}

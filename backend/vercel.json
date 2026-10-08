@@ -1,0 +1,32 @@
+{
+  "version": 2,
+  "functions": {
+    "api/**/*.ts": {
+      "runtime": "nodejs22.x"
+    }
+  },
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "methods": ["OPTIONS"],
+      "headers": {
+        "Access-Control-Allow-Origin": "https://aremutecheazysolutions.com",
+        "Access-Control-Allow-Credentials": "true",
+        "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, X-File-Name",
+        "Access-Control-Max-Age": "86400"
+      },
+      "continue": false,
+      "status": 204,
+      "dest": "/dev/null"
+    },
+    {
+      "src": "/api/(.*)",
+      "headers": {
+        "Access-Control-Allow-Origin": "https://aremutecheazysolutions.com",
+        "Access-Control-Allow-Credentials": "true"
+      },
+      "dest": "/api/$1"
+    }
+  ]
+}
