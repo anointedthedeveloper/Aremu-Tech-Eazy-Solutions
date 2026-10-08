@@ -1,27 +1,14 @@
 {
   "version": 2,
-  "routes": [
+  "headers": [
     {
-      "src": "/api/(.*)",
-      "methods": ["OPTIONS"],
-      "headers": {
-        "Access-Control-Allow-Origin": "https://aremutecheazysolutions.com",
-        "Access-Control-Allow-Credentials": "true",
-        "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, X-File-Name",
-        "Access-Control-Max-Age": "86400"
-      },
-      "continue": false,
-      "status": 204,
-      "dest": "/dev/null"
-    },
-    {
-      "src": "/api/(.*)",
-      "headers": {
-        "Access-Control-Allow-Origin": "https://aremutecheazysolutions.com",
-        "Access-Control-Allow-Credentials": "true"
-      },
-      "dest": "/api/$1"
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "https://aremutecheazysolutions.com" },
+        { "key": "Access-Control-Allow-Credentials", "value": "true" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET,POST,OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type, X-File-Name" }
+      ]
     }
   ]
 }
