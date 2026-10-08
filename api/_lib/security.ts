@@ -30,8 +30,12 @@ export async function sessionCookie(session: Session): Promise<string> {
     .setIssuedAt()
     .setExpirationTime(`${age}s`)
     .sign(secret())
-  const secure = process.env.NODE_ENV === 'production' || process.env.VERCEL ? '; Secure' : ''
-  return `${COOKIE}=${token}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${age}${secure}`
+  // When frontend and backend are on different domains, cookies must be
+  // SameSite=None; Secure so the browser sends them cross-origin.
+  const crossOrigin = Boolean(process.env.ALLOWED_ORIGIN)
+  const secure = crossOrigin || process.env.NODE_ENV === 'production' || process.env.VERCEL ? '; Secure' : ''
+  const sameSite = crossOrigin ? 'None' : 'Lax'
+  return `${COOKIE}=${token}; Path=/; HttpOnly; SameSite=${sameSite}${secure}; Max-Age=${age}`
 }
 
 export function clearCookie(): string {
@@ -64,11 +68,24 @@ export async function requireSession(req: Req, role?: Role): Promise<Session> {
   return s
 }
 
-/** Same-origin check for state-changing requests (CSRF defence on top of SameSite cookies). */
+/** Same-origin / allowed-origin check for state-changing requests (CSRF defence on top of SameSite cookies).
+ *
+ * When the frontend is on a different domain (e.g. TrueHost) from the backend (Vercel),
+ * set the ALLOWED_ORIGIN env var to the frontend's origin, e.g. https://aremutecheazysolutions.com.
+ * Same-host requests are always allowed regardless of that setting.
+ */
 export function sameOrigin(req: Req) {
   if (req.method === 'GET' || req.method === 'HEAD') return
   const origin = req.headers.origin
   if (!origin) return
+
+  // Normalize the allowed origin from env (strip trailing slash).
+  const allowed = process.env.ALLOWED_ORIGIN?.replace(/\/$/, '')
+
+  // Allow if origin matches the explicitly configured frontend domain.
+  if (allowed && origin.replace(/\/$/, '') === allowed) return
+
+  // Otherwise fall back to same-host check.
   const host = req.headers['x-forwarded-host'] ?? req.headers.host
   try {
     if (new URL(origin).host !== host) throw new HttpError(403, 'Blocked request.')

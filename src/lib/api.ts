@@ -20,10 +20,19 @@ async function parse<T>(res: Response): Promise<T> {
   return data as T
 }
 
+// When the frontend is hosted separately (e.g. TrueHost) from the backend (e.g. Vercel),
+// set VITE_API_URL to the Vercel deployment URL (e.g. https://aremu-tech.vercel.app).
+// Leave it unset (or empty) when running everything on the same origin.
+const API_BASE = (import.meta.env.VITE_API_URL as string | undefined)?.replace(/\/$/, '') ?? ''
+
+// Cross-origin requests need 'include' so the session cookie is sent.
+const CREDENTIALS: RequestCredentials = API_BASE ? 'include' : 'same-origin'
+
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
+  const url = path.startsWith('/api/') ? `${API_BASE}${path}` : path
   let res: Response
   try {
-    res = await fetch(path, { credentials: 'same-origin', ...init })
+    res = await fetch(url, { credentials: CREDENTIALS, ...init })
   } catch {
     throw new ApiError(0, 'Could not reach the server. Check your internet connection and try again.')
   }
