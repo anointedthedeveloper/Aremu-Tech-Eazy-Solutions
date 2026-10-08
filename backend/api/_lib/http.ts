@@ -83,14 +83,13 @@ export function allow(req: Req, ...methods: string[]) {
  *  Returns true if the request was a preflight (OPTIONS) — the handler should return immediately in that case.
  */
 export function cors(req: Req, res: Res): boolean {
-  const origin = process.env.ALLOWED_ORIGIN?.replace(/\/$/, '')
-  if (origin) {
-    res.setHeader('Access-Control-Allow-Origin', origin)
-    res.setHeader('Access-Control-Allow-Credentials', 'true')
-    res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS')
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-File-Name')
-    res.setHeader('Access-Control-Max-Age', '86400')
-  }
+  // Use ALLOWED_ORIGIN env var, fall back to the known TrueHost domain.
+  const origin = (process.env.ALLOWED_ORIGIN?.replace(/\/$/, '')) || 'https://aremutecheazysolutions.com'
+  res.setHeader('Access-Control-Allow-Origin', origin)
+  res.setHeader('Access-Control-Allow-Credentials', 'true')
+  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS')
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-File-Name')
+  res.setHeader('Access-Control-Max-Age', '86400')
   if (req.method === 'OPTIONS') {
     res.statusCode = 204
     res.end()
